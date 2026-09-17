@@ -27,21 +27,21 @@ const tones: Record<Tone, { pill: string; pillHover: string; fill: string; circl
     pillHover: "group-hover:text-navy-900",
     fill: "bg-brand-500",
     circle: "border-navy-900 bg-white/80 text-navy-900 backdrop-blur-sm",
-    circleHover: "group-hover:border-brand-500 group-hover:bg-brand-500 group-hover:text-navy-900",
+    circleHover: "group-hover:bg-brand-500 group-hover:text-navy-900",
   },
   dark: {
     pill: "border-white/80 bg-white/5 text-white backdrop-blur-sm",
     pillHover: "group-hover:text-navy-900",
     fill: "bg-brand-500",
     circle: "border-white/80 bg-white/5 text-white backdrop-blur-sm",
-    circleHover: "group-hover:border-brand-500 group-hover:bg-brand-500 group-hover:text-navy-900",
+    circleHover: "group-hover:bg-brand-500 group-hover:text-navy-900",
   },
   gold: {
     pill: "border-navy-900 bg-white/15 text-navy-900",
     pillHover: "group-hover:text-white",
     fill: "bg-navy-900",
     circle: "border-navy-900 bg-white/15 text-navy-900",
-    circleHover: "group-hover:border-navy-900 group-hover:bg-navy-900 group-hover:text-white",
+    circleHover: "group-hover:bg-navy-900 group-hover:text-white",
   },
 };
 
