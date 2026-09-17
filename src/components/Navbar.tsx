@@ -156,7 +156,7 @@ export default function Navbar() {
           </ul>
 
           <div className="flex items-center gap-3">
-            <PhoneCta tone="dark" size="sm" className="hidden xl:inline-flex" />
+            
             <CtaButton href="#verify" tone="dark" size="sm" className="hidden sm:inline-flex">
               Verify Insurance
             </CtaButton>

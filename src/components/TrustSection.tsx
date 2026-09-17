@@ -31,7 +31,7 @@ export default function TrustSection() {
           <h2 className="mt-5 font-display text-3xl font-extrabold leading-tight tracking-tight text-navy-900 sm:text-4xl lg:text-[2.75rem]">
             Top-Rated Treatment in a Private, Supportive Setting
           </h2>
-          <p className="mt-6 leading-relaxed text-navy-600">
+          {/* <p className="mt-6 leading-relaxed text-navy-600">
             Create Recovery Center offers top-rated addiction treatment in a private, supportive setting. Our
             expert-led programs — Medically supervised detox, inpatient, IOP, PHP, and Online Outpatient — are
             tailored to your unique needs, ensuring lasting recovery. With evidence-based care, innovative therapies,
@@ -39,7 +39,7 @@ export default function TrustSection() {
           </p>
           <p className="mt-4 font-semibold text-navy-800">
             Start your recovery today — call now to verify insurance.
-          </p>
+          </p>*/}
 
           <div className="mt-7 space-y-3.5">
             {bullets.map((b, i) => (

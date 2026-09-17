@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { BadgeCheck, Lock, Star } from "lucide-react";
+import { BadgeCheck, Banknote, Lock, ShieldCheck, Star, type LucideIcon } from "lucide-react";
 import CtaButton from "./CtaButton";
 import InsuranceForm from "./InsuranceForm";
 import { PhoneCta } from "./Navbar";
@@ -8,7 +8,13 @@ import { EASE, Stagger, StaggerItem } from "./ui";
 const HERO_BG =
   "https://images.pexels.com/photos/806155/pexels-photo-806155.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1400&w=2400";
 
-const heroChecks = ["Verified", "Insurance accepted", "Cash pay options available"];
+type HeroCheck = { label: string; icon: LucideIcon };
+
+const heroChecks: HeroCheck[] = [
+  { label: "Verified", icon: BadgeCheck },
+  { label: "Insurance accepted", icon: ShieldCheck },
+  { label: "Cash pay options available", icon: Banknote },
+];
 
 function Stars() {
   return (
@@ -49,7 +55,7 @@ export default function Hero() {
           <StaggerItem className="flex flex-wrap items-center gap-3">
             <span className="glass-light inline-flex items-center gap-2.5 rounded-full px-4 py-2 text-xs font-bold tracking-wide text-navy-800">
               <Stars />
-              5-Star Outpatient Treatment Center
+              Outpatient Treatment Center
             </span>
             <span className="inline-flex items-center gap-2 rounded-full border border-brand-400/40 bg-brand-50 px-4 py-2 text-xs font-bold text-brand-700">
               <Lock className="h-3.5 w-3.5" />
@@ -104,10 +110,10 @@ export default function Hero() {
 
           <StaggerItem>
             <ul className="mt-7 flex flex-wrap gap-x-7 gap-y-3">
-              {heroChecks.map((c) => (
-                <li key={c} className="flex items-center gap-2 text-sm font-semibold text-navy-700">
-                  <BadgeCheck className="h-4.5 w-4.5 text-brand-600" />
-                  {c}
+              {heroChecks.map(({ label, icon: Icon }) => (
+                <li key={label} className="flex items-center gap-2 text-sm font-semibold text-navy-700">
+                  <Icon className="h-4.5 w-4.5 text-brand-600" aria-hidden />
+                  {label}
                 </li>
               ))}
             </ul>
