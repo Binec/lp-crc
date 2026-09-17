@@ -155,13 +155,11 @@ export default function InsuranceForm() {
               {status === "sending" ? "Verifying…" : "Verify My Insurance"}
             </CtaButton>
 
-            <p className="text-center text-[11px] text-navy-400">
-              <span className="text-brand-600">*</span> indicates required fields
-            </p>
+           
           </motion.form>
         )}
       </AnimatePresence>
-
+{/*
       <div className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 border-t border-navy-100 pt-5">
         {trustBadges.map((b) => (
           <span key={b} className="flex items-center gap-1.5 text-[11px] font-semibold text-navy-500">
@@ -169,7 +167,7 @@ export default function InsuranceForm() {
             {b}
           </span>
         ))}
-      </div>
+      </div>*/}
     </div>
   );
 }
