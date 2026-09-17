@@ -3,7 +3,10 @@ import { Menu, Phone, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { cn } from "../utils/cn";
 import CtaButton from "./CtaButton";
-import { EASE, Logo } from "./ui";
+import { EASE } from "./ui";
+
+const LOGO_URL =
+  "https://raw.githubusercontent.com/Binec/lp-crc/refs/heads/main/src/Captura%20de%20pantalla%202026-09-17%20004355%20(1).png";
 
 const links = [
   { label: "Facility", href: "#facility" },
@@ -60,7 +63,15 @@ export function PhoneCta({
   const s = sizes[size];
 
   return (
-    <a href={PHONE_TEL} className={cn("group inline-flex items-center transition-colors duration-300", s.link, t.link, className)}>
+    <a
+      href={PHONE_TEL}
+      className={cn(
+        "group inline-flex items-center transition-colors duration-300",
+        s.link,
+        t.link,
+        className,
+      )}
+    >
       <span
         className={cn(
           "flex shrink-0 items-center justify-center rounded-full backdrop-blur transition-all duration-300",
@@ -71,6 +82,19 @@ export function PhoneCta({
         <Phone className={s.icon} />
       </span>
       {PHONE_DISPLAY}
+    </a>
+  );
+}
+
+/* Site logo — uses the provided image */
+function Logo() {
+  return (
+    <a href="#" className="group flex items-center gap-2.5">
+      <img
+        src={LOGO_URL}
+        alt="CRC Logo"
+        className="h-10 w-auto max-w-[180px] object-contain transition-transform duration-300 group-hover:scale-[1.03] sm:h-12 sm:max-w-[220px]"
+      />
     </a>
   );
 }
@@ -171,7 +195,13 @@ export default function Navbar() {
                   {l.label}
                 </motion.a>
               ))}
-              <CtaButton href="#verify" tone="dark" fluid onClick={() => setOpen(false)} className="mt-3">
+              <CtaButton
+                href="#verify"
+                tone="dark"
+                fluid
+                onClick={() => setOpen(false)}
+                className="mt-3"
+              >
                 Verify Insurance
               </CtaButton>
             </div>
