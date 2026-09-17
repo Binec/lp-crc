@@ -7,6 +7,7 @@ import {
   Mail,
   MapPin,
   MessageCircle,
+  Palette,
   Phone,
   Share2,
   ShieldCheck,
@@ -14,7 +15,10 @@ import {
 import { useEffect, useState } from "react";
 import { cn } from "../utils/cn";
 import { PHONE_DISPLAY, PHONE_TEL, PhoneCta } from "./Navbar";
-import { Logo, Reveal } from "./ui";
+import { Reveal } from "./ui";
+
+const LOGO_URL =
+  "https://raw.githubusercontent.com/Binec/lp-crc/refs/heads/main/src/Captura%20de%20pantalla%202026-09-17%20004355%20(1).png";
 
 const pageLinks = [
   { label: "Our Facility", href: "#facility" },
@@ -55,38 +59,63 @@ const ctaPerks = [
   "Career and educational planning",
 ];
 
-function FooterNavCol({
-  title,
-  items,
-  cols = 1,
-}: {
-  title: string;
-  items: { label: string; href: string }[];
-  cols?: 1 | 2;
-}) {
+/* Site logo — same asset/markup used in the header (Navbar) */
+function FooterLogo() {
   return (
-    <div>
-      <h4 className="mb-4 text-[11px] font-bold uppercase tracking-[0.18em] text-white/45">{title}</h4>
-      <ul
-        className={cn(
-          "space-y-2.5 text-sm",
-          cols === 2 && "sm:grid sm:grid-cols-2 sm:gap-x-6 sm:space-y-2.5",
-        )}
-      >
-        {items.map((item) => (
-          <li key={item.label}>
-            <a
-              href={item.href}
-              className="group inline-flex items-center gap-1.5 text-white/70 transition-colors duration-300 hover:text-brand-300"
-            >
-              <span className="border-b border-transparent transition-colors duration-300 group-hover:border-brand-300/40">
-                {item.label}
-              </span>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <a href="#" className="group flex items-center gap-2.5">
+      <img
+        src={LOGO_URL}
+        alt="CRC Logo"
+        className="h-10 w-auto max-w-[180px] object-contain transition-transform duration-300 group-hover:scale-[1.03] sm:h-12 sm:max-w-[220px]"
+      />
+    </a>
+  );
+}
+
+/* Teal / Amarillo theme switch — toggles data-theme on <html> and persists it */
+type ThemeName = "teal" | "yellow";
+const THEME_STORAGE_KEY = "crc-theme";
+
+function useThemeSwitch() {
+  const [theme, setTheme] = useState<ThemeName>("teal");
+
+  useEffect(() => {
+    const stored = (localStorage.getItem(THEME_STORAGE_KEY) as ThemeName | null) ?? "teal";
+    setTheme(stored);
+    document.documentElement.setAttribute("data-theme", stored);
+  }, []);
+
+  const toggle = () => {
+    setTheme((prev) => {
+      const next: ThemeName = prev === "teal" ? "yellow" : "teal";
+      document.documentElement.setAttribute("data-theme", next);
+      localStorage.setItem(THEME_STORAGE_KEY, next);
+      return next;
+    });
+  };
+
+  return { theme, toggle };
+}
+
+function ThemeToggle() {
+  const { theme, toggle } = useThemeSwitch();
+  const isYellow = theme === "yellow";
+
+  return (
+    <button
+      type="button"
+      onClick={toggle}
+      aria-label="Cambiar entre tema teal y amarillo"
+      aria-pressed={isYellow}
+      className="group inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold text-white/70 backdrop-blur transition-all duration-300 hover:border-brand-400/40 hover:bg-white/10 hover:text-white"
+    >
+      <Palette className="h-3.5 w-3.5 text-brand-400" />
+      <span
+        className="h-3 w-3 rounded-full border border-white/20 transition-colors duration-300"
+        style={{ backgroundColor: isYellow ? "#f1b753" : "#3f7994" }}
+      />
+      {isYellow ? "Tema Amarillo" : "Tema Teal"}
+    </button>
   );
 }
 
@@ -137,7 +166,7 @@ export default function Footer() {
         <div className="mt-16 grid gap-12 lg:mt-20 lg:grid-cols-[1.2fr_2.8fr] lg:gap-16">
           {/* Brand column */}
           <div>
-            <Logo />
+            <FooterLogo />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/55">
               Top-rated PHP &amp; IOP outpatient programs designed to fit your life. Confidential, evidence-based care,
               24/7 admissions.
@@ -206,20 +235,58 @@ export default function Footer() {
           <p className="text-xs text-white/45">
             Copyright © 2026 Create Recovery Center. All Rights Reserved.
           </p>
-          <div className="flex items-center gap-5 text-xs text-white/45">
-            <a href="#top" className="transition-colors hover:text-white">
-              Privacy
-            </a>
-            <a href="#top" className="transition-colors hover:text-white">
-              Terms
-            </a>
-            <a href="#top" className="transition-colors hover:text-white">
-              Accessibility
-            </a>
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-5">
+            <div className="flex items-center gap-5 text-xs text-white/45">
+              <a href="#top" className="transition-colors hover:text-white">
+                Privacy
+              </a>
+              <a href="#top" className="transition-colors hover:text-white">
+                Terms
+              </a>
+              <a href="#top" className="transition-colors hover:text-white">
+                Accessibility
+              </a>
+            </div>
+            <ThemeToggle />
           </div>
         </div>
       </div>
     </footer>
+  );
+}
+
+function FooterNavCol({
+  title,
+  items,
+  cols = 1,
+}: {
+  title: string;
+  items: { label: string; href: string }[];
+  cols?: 1 | 2;
+}) {
+  return (
+    <div>
+      <h4 className="mb-4 text-[11px] font-bold uppercase tracking-[0.18em] text-white/45">{title}</h4>
+      <ul
+        className={cn(
+          "space-y-2.5 text-sm",
+          cols === 2 && "sm:grid sm:grid-cols-2 sm:gap-x-6 sm:space-y-2.5",
+        )}
+      >
+        {items.map((item) => (
+          <li key={item.label}>
+            <a
+              href={item.href}
+              className="group inline-flex items-center gap-1.5 text-white/70 transition-colors duration-300 hover:text-brand-300"
+            >
+              <span className="border-b border-transparent transition-colors duration-300 group-hover:border-brand-300/40">
+                {item.label}
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
