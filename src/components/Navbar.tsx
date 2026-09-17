@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { cn } from "../utils/cn";
 import CtaButton from "./CtaButton";
 import { EASE, Logo } from "./ui";
-import { Lock } from "lucide-react";
 
 const links = [
   { label: "Facility", href: "#facility" },
@@ -89,15 +88,14 @@ export default function Navbar() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
-      {/* Announcement bar */}
+      {/* Announcement bar — hidden on mobile */}
       <div
         className={cn(
-          "overflow-hidden bg-navy-950/95 transition-all duration-500",
+          "hidden overflow-hidden bg-navy-950/95 transition-all duration-500 sm:block",
           scrolled ? "max-h-0 opacity-0" : "max-h-12 opacity-100",
         )}
-      ><Lock className="h-3.5 w-3.5" />
+      >
         <div className="container-x flex h-10 items-center justify-between text-[11px] font-semibold tracking-wide text-white/70">
-          
           <p className="flex items-center gap-2.5">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-400 opacity-75" />
@@ -134,7 +132,7 @@ export default function Navbar() {
           </ul>
 
           <div className="flex items-center gap-3">
-            
+            <PhoneCta tone="dark" size="sm" className="hidden xl:inline-flex" />
             <CtaButton href="#verify" tone="dark" size="sm" className="hidden sm:inline-flex">
               Verify Insurance
             </CtaButton>
