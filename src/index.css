@@ -6,30 +6,30 @@
   --font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-body: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
 
-  /* Brand neutral — charcoal grey scale */
-  --color-navy-50: #f7f7f8;
-  --color-navy-100: #ededef;
-  --color-navy-200: #dadadf;
-  --color-navy-300: #b9b9c0;
-  --color-navy-400: #8e8e97;
-  --color-navy-500: #6c6c75;
-  --color-navy-600: #53535b;
-  --color-navy-700: #3e3e45;
-  --color-navy-800: #2a2a30;
-  --color-navy-900: #1c1c20;
-  --color-navy-950: #121214;
+  /* Brand neutral — teal scale */
+  --color-navy-50: #f4fafa;
+  --color-navy-100: #d1eeea;
+  --color-navy-200: #a1d7d6;
+  --color-navy-300: #79bbc3;
+  --color-navy-400: #599bae;
+  --color-navy-500: #3f7994;
+  --color-navy-600: #2a5674;
+  --color-navy-700: #1f4258;
+  --color-navy-800: #172f3f;
+  --color-navy-900: #101f2a;
+  --color-navy-950: #0a141c;
 
-  /* Brand gold — #F1B753 */
-  --color-brand-50: #fef9ee;
-  --color-brand-100: #fcf0d2;
-  --color-brand-200: #f8e2a9;
-  --color-brand-300: #f5d07f;
-  --color-brand-400: #f3c367;
-  --color-brand-500: #f1b753;
-  --color-brand-600: #dd9f3a;
-  --color-brand-700: #96691b;
-  --color-brand-800: #7a5516;
-  --color-brand-900: #634612;
+  /* Brand accent — misma escala teal (sin naranja) */
+  --color-brand-50: #f4fafa;
+  --color-brand-100: #d1eeea;
+  --color-brand-200: #a1d7d6;
+  --color-brand-300: #79bbc3;
+  --color-brand-400: #599bae;
+  --color-brand-500: #3f7994;
+  --color-brand-600: #2a5674;
+  --color-brand-700: #1f4258;
+  --color-brand-800: #172f3f;
+  --color-brand-900: #101f2a;
 
   --animate-float: float 9s ease-in-out infinite;
   --animate-float-slow: float 14s ease-in-out infinite;
@@ -75,23 +75,23 @@ body {
 }
 
 ::selection {
-  background: rgba(34, 197, 94, 0.28);
-  color: #1c1c20;
+  background: rgba(63, 121, 148, 0.28);
+  color: #101f2a;
 }
 
 ::-webkit-scrollbar {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #f7f7f8;
+  background: #f4fafa;
 }
 ::-webkit-scrollbar-thumb {
-  background: #dadadf;
+  background: #a1d7d6;
   border-radius: 999px;
-  border: 2px solid #f7f7f8;
+  border: 2px solid #f4fafa;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #b9b9c0;
+  background: #79bbc3;
 }
 
 /* ---------- Layout helpers ---------- */
@@ -113,7 +113,7 @@ body {
   -webkit-backdrop-filter: blur(22px);
   backdrop-filter: blur(22px);
   border: 1px solid rgba(255, 255, 255, 0.95);
-  box-shadow: 0 20px 50px -24px rgba(28, 28, 32, 0.22);
+  box-shadow: 0 20px 50px -24px rgba(16, 31, 42, 0.22);
 }
 
 .bg-grid {
@@ -125,8 +125,8 @@ body {
 
 .bg-grid-dark {
   background-image:
-    linear-gradient(rgba(28, 28, 32, 0.055) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(28, 28, 32, 0.055) 1px, transparent 1px);
+    linear-gradient(rgba(16, 31, 42, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16, 31, 42, 0.055) 1px, transparent 1px);
   background-size: 46px 46px;
 }
 
@@ -174,6 +174,6 @@ body {
   @apply mb-1.5 block text-xs font-semibold tracking-wide text-navy-600;
 }
 select.field option {
-  color: #1c1c20;
+  color: #101f2a;
   background: #ffffff;
 }
