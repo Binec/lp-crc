@@ -129,16 +129,21 @@ export default function Gallery() {
           </p>
         </Reveal>
 
-        {/* 8-Photo Grid: asymmetric bento on desktop for visual polish */}
+        {/* Photo Grid: 3 photos on mobile (< sm), full asymmetric bento on tablet/desktop */}
         <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:gap-5">
           {galleryPhotos.map((photo, i) => {
-            // First and fifth photo span 2 columns on larger screens for editorial rhythm
+            // First and sixth photo span 2 columns on larger screens for editorial rhythm
             const isFeatured = i === 0 || i === 5;
+            // On mobile (< sm), only show the first 3 photos in the grid
+            const mobileVisibility = i >= 3 ? "hidden sm:block" : "block";
+
             return (
               <Reveal
                 key={photo.id}
                 delay={i * 0.05}
-                className={isFeatured ? "lg:col-span-2" : "col-span-1"}
+                className={`${mobileVisibility} ${
+                  isFeatured ? "lg:col-span-2" : "col-span-1"
+                }`}
               >
                 <div
                   onClick={() => openLightbox(i)}
@@ -173,6 +178,13 @@ export default function Gallery() {
                     <Maximize2 className="h-4 w-4" />
                   </span>
 
+                  {/* Mobile "+3 more" indicator on the 3rd card */}
+                  {i === 2 && (
+                    <span className="absolute right-3.5 bottom-4 rounded-full border border-white/25 bg-navy-950/75 px-3 py-1 text-xs font-semibold text-white backdrop-blur-md sm:hidden">
+                      +{galleryPhotos.length - 3} more in gallery
+                    </span>
+                  )}
+
                   {/* Title — always visible on mobile, reveals on hover for desktop */}
                   <div className="absolute inset-x-0 bottom-0 p-4 transition-all duration-300 ease-out sm:p-5 lg:translate-y-5 lg:opacity-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100">
                     <h3 className="font-display text-base font-bold text-white transition-colors group-hover:text-brand-300 sm:text-lg">
@@ -183,6 +195,18 @@ export default function Gallery() {
               </Reveal>
             );
           })}
+        </div>
+
+        {/* Mobile-only button to launch full 6-photo lightbox */}
+        <div className="mt-6 flex justify-center sm:hidden">
+          <button
+            type="button"
+            onClick={() => openLightbox(3)}
+            className="inline-flex items-center gap-2 rounded-full border border-navy-200 bg-navy-50/80 px-5 py-2.5 text-xs font-bold text-navy-800 shadow-xs transition hover:border-brand-400 hover:bg-brand-50 hover:text-brand-700"
+          >
+            <Images className="h-4 w-4 text-brand-600" />
+            View All {galleryPhotos.length} Photos (+{galleryPhotos.length - 3} More)
+          </button>
         </div>
       </div>
 
