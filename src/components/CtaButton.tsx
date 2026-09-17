@@ -97,7 +97,7 @@ function Inner({
         <span
           aria-hidden
           className={cn(
-            "absolute inset-0 translate-y-[101%] rounded-full transition-transform duration-[450ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0",
+            "absolute inset-0 translate-y-[101%] rounded-full  transition-transform duration-[450ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0",
             t.fill,
           )}
         />
@@ -152,7 +152,7 @@ export default function CtaButton({
   className,
 }: CtaButtonProps) {
   const base = cn(
-    "group inline-flex select-none items-center gap-1.5 transition-transform duration-200 active:scale-[0.98]",
+    "group inline-flex select-none items-center gap-0 transition-transform duration-200 active:scale-[0.98]",
     fluid && "flex w-full",
     disabled && "pointer-events-none opacity-70",
     className,
