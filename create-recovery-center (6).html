@@ -1,0 +1,1840 @@
+<!doctype html>
+<html lang="en" data-theme="yellow">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Top-Rated PHP &amp; IOP Programs – Create Recovery Center</title>
+    <meta
+      name="description"
+      content="Create Recovery Center offers evidence-based outpatient programs — PHP, IOP, Evening IOP & Aftercare — with free insurance verification. 100% confidential admissions 24/7."
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23f1b753'/%3E%3Cpath d='M50 80c0-20 11-33 31-38-2 22-13 33-31 38z' fill='white'/%3E%3Cpath d='M50 80c0-20-11-33-31-38 2 22 13 33 31 38z' fill='white' opacity='.75'/%3E%3Cpath d='M50 84V58' stroke='white' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS v4 (browser build) -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.17"></script>
+    <!-- Lucide icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+    <style type="text/tailwindcss">
+      @theme {
+        --breakpoint-xs: 26rem;
+
+        --font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+        --font-body: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+        /* Brand neutral — teal scale */
+        --color-navy-50: #f4fafa;
+        --color-navy-100: #d1eeea;
+        --color-navy-200: #a1d7d6;
+        --color-navy-300: #79bbc3;
+        --color-navy-400: #599bae;
+        --color-navy-500: #3f7994;
+        --color-navy-600: #2a5674;
+        --color-navy-700: #1f4258;
+        --color-navy-800: #172f3f;
+        --color-navy-900: #101f2a;
+        --color-navy-950: #0a141c;
+
+        /* Brand accent */
+        --color-brand-50: #f4fafa;
+        --color-brand-100: #d1eeea;
+        --color-brand-200: #a1d7d6;
+        --color-brand-300: #79bbc3;
+        --color-brand-400: #599bae;
+        --color-brand-500: #3f7994;
+        --color-brand-600: #2a5674;
+        --color-brand-700: #1f4258;
+        --color-brand-800: #172f3f;
+        --color-brand-900: #101f2a;
+
+        --animate-float: float 9s ease-in-out infinite;
+        --animate-float-slow: float 14s ease-in-out infinite;
+        --animate-marquee: marquee 38s linear infinite;
+        --animate-pulse-ring: pulse-ring 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+        @keyframes float {
+          0%,
+          100% {
+            transform: translate3d(0, 0, 0) scale(1);
+          }
+          50% {
+            transform: translate3d(0, -26px, 0) scale(1.06);
+          }
+        }
+        @keyframes marquee {
+          from {
+            transform: translateX(0);
+          }
+          to {
+            transform: translateX(-50%);
+          }
+        }
+        @keyframes pulse-ring {
+          0% {
+            transform: scale(1);
+            opacity: 0.5;
+          }
+          75%,
+          100% {
+            transform: scale(1.9);
+            opacity: 0;
+          }
+        }
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* ---------- Alternate theme: gold + charcoal (as published) ---------- */
+      :root[data-theme="yellow"] {
+        --color-navy-50: #f7f7f8;
+        --color-navy-100: #ededef;
+        --color-navy-200: #dadadf;
+        --color-navy-300: #b9b9c0;
+        --color-navy-400: #8e8e97;
+        --color-navy-500: #6c6c75;
+        --color-navy-600: #53535b;
+        --color-navy-700: #3e3e45;
+        --color-navy-800: #2a2a30;
+        --color-navy-900: #1c1c20;
+        --color-navy-950: #121214;
+
+        --color-brand-50: #fef9ee;
+        --color-brand-100: #fcf0d2;
+        --color-brand-200: #f8e2a9;
+        --color-brand-300: #f5d07f;
+        --color-brand-400: #f3c367;
+        --color-brand-500: #f1b753;
+        --color-brand-600: #dd9f3a;
+        --color-brand-700: #96691b;
+        --color-brand-800: #7a5516;
+        --color-brand-900: #634612;
+      }
+
+      body {
+        @apply bg-white font-body text-navy-800 antialiased transition-colors duration-500;
+      }
+
+      ::selection {
+        background: rgba(241, 183, 83, 0.35);
+        color: #1c1c20;
+      }
+
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f7f7f8;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #dadadf;
+        border-radius: 999px;
+        border: 2px solid #f7f7f8;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #b9b9c0;
+      }
+
+      /* ---------- Layout helpers ---------- */
+      .container-x {
+        @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10;
+      }
+
+      /* ---------- Glassmorphism ---------- */
+      .glass-dark {
+        background: linear-gradient(150deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.04));
+        -webkit-backdrop-filter: blur(22px);
+        backdrop-filter: blur(22px);
+        border: 1px solid rgba(255, 255, 255, 0.13);
+        box-shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.55);
+      }
+      .glass-light {
+        background: linear-gradient(150deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.58));
+        -webkit-backdrop-filter: blur(22px);
+        backdrop-filter: blur(22px);
+        border: 1px solid rgba(255, 255, 255, 0.95);
+        box-shadow: 0 20px 50px -24px rgba(16, 31, 42, 0.22);
+      }
+      .bg-grid {
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        background-size: 46px 46px;
+      }
+      .bg-grid-dark {
+        background-image:
+          linear-gradient(rgba(16, 31, 42, 0.055) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(16, 31, 42, 0.055) 1px, transparent 1px);
+        background-size: 46px 46px;
+      }
+
+      /* ---------- Buttons ---------- */
+      .btn-outline {
+        @apply inline-flex h-[52px] items-center justify-center gap-2.5 rounded-full border border-navy-900 bg-white/80 px-7 font-display text-[12.5px] font-bold uppercase tracking-[0.08em] text-navy-900 backdrop-blur-sm transition-all duration-300 hover:bg-navy-900 hover:text-white active:scale-[0.98];
+      }
+      .btn-shine {
+        position: relative;
+        overflow: hidden;
+      }
+      .btn-shine::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.35) 50%, transparent 65%);
+        transform: translateX(-130%);
+        transition: transform 0.7s ease;
+        pointer-events: none;
+      }
+      .btn-shine:hover::after {
+        transform: translateX(130%);
+      }
+
+      /* ---------- Form fields ---------- */
+      .field {
+        @apply w-full rounded-xl border border-navy-200 bg-white px-4 py-3 text-sm text-navy-900 placeholder:text-navy-400 outline-none transition-all duration-300 focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-500/15;
+      }
+      .field-label {
+        @apply mb-1.5 block text-xs font-semibold tracking-wide text-navy-600;
+      }
+      select.field option {
+        color: #1c1c20;
+        background: #ffffff;
+      }
+
+      /* ---------- Scroll reveal (framer-motion replacement) ---------- */
+      [data-reveal] {
+        opacity: 0;
+        transform: translateY(var(--rv-y, 32px));
+        filter: blur(8px);
+        transition:
+          opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+          filter 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        will-change: opacity, transform;
+      }
+      [data-reveal].is-in {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+      [data-stagger] > * {
+        opacity: 0;
+        transform: translateY(26px);
+        filter: blur(6px);
+        transition:
+          opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+          filter 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      [data-stagger].is-in > * {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        [data-reveal],
+        [data-stagger] > * {
+          opacity: 1 !important;
+          transform: none !important;
+          filter: none !important;
+          transition: none !important;
+        }
+      }
+
+      /* ---------- Lightbox ---------- */
+      .lb-enter .lb-backdrop {
+        opacity: 1;
+      }
+      .lb-enter .lb-panel {
+        opacity: 1;
+        transform: none;
+        scale: 1;
+        translate: 0 0;
+      }
+      .slide-in-right {
+        animation: slideInRight 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+      .slide-in-left {
+        animation: slideInLeft 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+      @keyframes slideInRight {
+        from {
+          opacity: 0;
+          transform: translateX(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      @keyframes slideInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      @keyframes popIn {
+        0% {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+        60% {
+          transform: scale(1.03);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      .pop-in {
+        animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+      }
+      .no-scroll {
+        overflow: hidden;
+      }
+
+      /* Gentle float for the hero insurance card (framer-motion y:[0,-8,0]) */
+      @keyframes floatSoft {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-8px);
+        }
+      }
+      .float-soft {
+        animation: floatSoft 6s ease-in-out infinite;
+      }
+    </style>
+  </head>
+
+  <body id="top">
+    <!-- ================= NAVBAR ================= -->
+    <header class="fixed inset-x-0 top-0 z-50" id="site-header">
+      <!-- Announcement bar -->
+      <div
+        id="announce"
+        class="hidden overflow-hidden bg-navy-950/95 transition-all duration-500 sm:block max-h-12 opacity-100"
+      >
+        <div
+          class="container-x flex h-10 items-center justify-between text-[11px] font-semibold tracking-wide text-white/70"
+        >
+          <p class="flex items-center gap-2.5">
+            <span class="relative flex h-2 w-2">
+              <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-400 opacity-75"></span>
+              <span class="relative inline-flex h-2 w-2 rounded-full bg-brand-500"></span>
+            </span>
+            100% Confidential Admissions — 24/7
+          </p>
+          <a data-phone data-tone="dark" data-size="xs"></a>
+        </div>
+      </div>
+
+      <!-- Main nav -->
+      <div
+        id="navbar"
+        class="border-b border-white/10 bg-navy-950/95 backdrop-blur-xl transition-shadow duration-500 shadow-none"
+      >
+        <nav class="container-x flex h-[72px] items-center justify-between">
+          <a href="#top" class="group flex items-center gap-2.5">
+            <img
+              src="https://raw.githubusercontent.com/Binec/lp-crc/refs/heads/main/src/Captura%20de%20pantalla%202026-09-17%20004355%20(1).png"
+              alt="Create Recovery Center"
+              class="h-9 w-auto max-w-[150px] object-contain transition-transform duration-300 group-hover:scale-[1.03] sm:h-12 sm:max-w-[220px]"
+            />
+          </a>
+
+          <ul class="hidden items-center gap-0.5 lg:flex">
+            <li>
+              <a
+                href="#facility"
+                class="group relative rounded-full px-4 py-2 text-sm font-semibold text-white/75 transition-colors duration-300 hover:text-white"
+                >Facility<span
+                  class="absolute inset-x-4 -bottom-0.5 h-0.5 origin-left scale-x-0 rounded-full bg-gradient-to-r from-brand-400 to-brand-600 transition-transform duration-300 group-hover:scale-x-100"
+                ></span
+              ></a>
+            </li>
+            <li>
+              <a
+                href="#php"
+                class="group relative rounded-full px-4 py-2 text-sm font-semibold text-white/75 transition-colors duration-300 hover:text-white"
+                >PHP Program<span
+                  class="absolute inset-x-4 -bottom-0.5 h-0.5 origin-left scale-x-0 rounded-full bg-gradient-to-r from-brand-400 to-brand-600 transition-transform duration-300 group-hover:scale-x-100"
+                ></span
+              ></a>
+            </li>
+            <li>
+              <a
+                href="#iop"
+                class="group relative rounded-full px-4 py-2 text-sm font-semibold text-white/75 transition-colors duration-300 hover:text-white"
+                >IOP Program<span
+                  class="absolute inset-x-4 -bottom-0.5 h-0.5 origin-left scale-x-0 rounded-full bg-gradient-to-r from-brand-400 to-brand-600 transition-transform duration-300 group-hover:scale-x-100"
+                ></span
+              ></a>
+            </li>
+            <li>
+              <a
+                href="#supportive"
+                class="group relative rounded-full px-4 py-2 text-sm font-semibold text-white/75 transition-colors duration-300 hover:text-white"
+                >Supportive Housing<span
+                  class="absolute inset-x-4 -bottom-0.5 h-0.5 origin-left scale-x-0 rounded-full bg-gradient-to-r from-brand-400 to-brand-600 transition-transform duration-300 group-hover:scale-x-100"
+                ></span
+              ></a>
+            </li>
+            <li>
+              <a
+                href="#insurance"
+                class="group relative rounded-full px-4 py-2 text-sm font-semibold text-white/75 transition-colors duration-300 hover:text-white"
+                >Insurance<span
+                  class="absolute inset-x-4 -bottom-0.5 h-0.5 origin-left scale-x-0 rounded-full bg-gradient-to-r from-brand-400 to-brand-600 transition-transform duration-300 group-hover:scale-x-100"
+                ></span
+              ></a>
+            </li>
+            <li>
+              <a
+                href="#reviews"
+                class="group relative rounded-full px-4 py-2 text-sm font-semibold text-white/75 transition-colors duration-300 hover:text-white"
+                >Reviews<span
+                  class="absolute inset-x-4 -bottom-0.5 h-0.5 origin-left scale-x-0 rounded-full bg-gradient-to-r from-brand-400 to-brand-600 transition-transform duration-300 group-hover:scale-x-100"
+                ></span
+              ></a>
+            </li>
+          </ul>
+
+          <div class="flex items-center gap-2.5 sm:gap-3">
+            <a data-cta data-tone="dark" data-size="sm" href="#verify" class="hidden sm:inline-flex"
+              >Verify Insurance</a
+            >
+            <!-- Mobile: direct call button -->
+            <a
+              href="tel:8669137063"
+              aria-label="Call (866) 913-7063"
+              class="flex h-11 w-11 items-center justify-center rounded-xl border border-white/15 bg-white/5 text-white backdrop-blur transition-colors hover:border-brand-400/50 hover:bg-brand-500/15 hover:text-brand-300 lg:hidden"
+            >
+              <i data-lucide="phone" class="h-[18px] w-[18px]"></i>
+            </a>
+            <!-- Mobile: menu button -->
+            <button
+              id="menu-btn"
+              aria-label="Toggle menu"
+              aria-expanded="false"
+              aria-controls="mobile-menu"
+              class="flex h-11 w-11 items-center justify-center rounded-xl border border-white/15 bg-white/5 text-white backdrop-blur transition-colors hover:bg-white/10 lg:hidden"
+            >
+              <span id="menu-open-icon"><i data-lucide="menu" class="h-5 w-5"></i></span>
+              <span id="menu-close-icon" hidden><i data-lucide="x" class="h-5 w-5"></i></span>
+            </button>
+          </div>
+        </nav>
+      </div>
+
+      <!-- Mobile drop-down menu -->
+      <div
+        id="mobile-menu"
+        class="relative z-50 overflow-hidden border-b border-white/10 bg-navy-950/97 shadow-2xl shadow-navy-950/50 backdrop-blur-2xl lg:hidden"
+        style="height: 0; opacity: 0; visibility: hidden; transition: height 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease"
+      >
+        <div class="container-x flex flex-col gap-1 py-4">
+          <a href="#facility" class="mnav group flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold text-white/80 transition-colors hover:bg-white/5 hover:text-white">
+            <i data-lucide="images" class="h-4 w-4 shrink-0 text-brand-400/70 transition-colors group-hover:text-brand-400"></i>Facility
+          </a>
+          <a href="#php" class="mnav group flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold text-white/80 transition-colors hover:bg-white/5 hover:text-white">
+            <i data-lucide="heart-pulse" class="h-4 w-4 shrink-0 text-brand-400/70 transition-colors group-hover:text-brand-400"></i>PHP Program
+          </a>
+          <a href="#iop" class="mnav group flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold text-white/80 transition-colors hover:bg-white/5 hover:text-white">
+            <i data-lucide="brain" class="h-4 w-4 shrink-0 text-brand-400/70 transition-colors group-hover:text-brand-400"></i>IOP Program
+          </a>
+          <a href="#supportive" class="mnav group flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold text-white/80 transition-colors hover:bg-white/5 hover:text-white">
+            <i data-lucide="home" class="h-4 w-4 shrink-0 text-brand-400/70 transition-colors group-hover:text-brand-400"></i>Supportive Housing
+          </a>
+          <a href="#insurance" class="mnav group flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold text-white/80 transition-colors hover:bg-white/5 hover:text-white">
+            <i data-lucide="shield-check" class="h-4 w-4 shrink-0 text-brand-400/70 transition-colors group-hover:text-brand-400"></i>Insurance
+          </a>
+          <a href="#reviews" class="mnav group flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold text-white/80 transition-colors hover:bg-white/5 hover:text-white">
+            <i data-lucide="star" class="h-4 w-4 shrink-0 text-brand-400/70 transition-colors group-hover:text-brand-400"></i>Reviews
+          </a>
+
+          <div class="mt-2 border-t border-white/10 pt-3">
+            <a data-phone data-tone="dark" data-size="md" href="#verify" class="mnav"></a>
+          </div>
+          <a data-cta data-tone="dark" data-size="md" data-fluid="1" href="#verify" class="mnav mt-3">Verify Insurance</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- ================= HERO ================= -->
+    <section class="relative overflow-hidden bg-gradient-to-b from-white via-brand-50/60 to-white pt-32 pb-20 sm:pt-40 lg:pt-48 lg:pb-32">
+      <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+        <div class="absolute inset-0 bg-[radial-gradient(70%_50%_at_82%_15%,rgba(241,183,83,0.16),transparent_60%)]"></div>
+        <div class="absolute inset-0 bg-grid-dark opacity-60 [mask-image:radial-gradient(75%_60%_at_50%_30%,black,transparent)]"></div>
+        <div class="absolute -left-24 top-24 h-80 w-80 animate-float-slow rounded-full bg-brand-200/40 blur-3xl"></div>
+        <div class="absolute right-10 bottom-0 h-72 w-72 animate-float rounded-full bg-navy-100/70 blur-3xl"></div>
+      </div>
+
+      <div class="container-x relative grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+        <!-- Left — copy -->
+        <div data-stagger class="max-w-2xl">
+          <div class="flex flex-wrap items-center gap-3">
+            <span
+              class="glass-light inline-flex items-center gap-2.5 rounded-full px-4 py-2 text-xs font-bold tracking-wide text-navy-800"
+            >
+              <i data-lucide="stars" class="h-3.5 w-3.5 text-brand-600"></i>
+              Outpatient Treatment Center
+            </span>
+            <span
+              class="inline-flex items-center gap-2 rounded-full border border-brand-400/40 bg-brand-50 px-4 py-2 text-xs font-bold text-brand-700"
+            >
+              <i data-lucide="lock" class="h-3.5 w-3.5"></i>
+              100% Confidential Admissions 24/7
+            </span>
+          </div>
+
+          <div>
+            <h1
+              class="mt-6 font-display text-[2.6rem] font-extrabold leading-[1.05] tracking-tight text-navy-900 sm:text-6xl lg:text-[4.15rem]"
+            >
+              Flexible PHP &amp; IOP Programs for
+              <span class="bg-gradient-to-r from-brand-500 via-brand-600 to-brand-700 bg-clip-text text-transparent">
+                Lasting Recovery
+              </span>
+            </h1>
+          </div>
+
+          <div>
+            <p class="mt-7 max-w-xl text-base leading-relaxed text-navy-600 sm:text-lg">
+              Create Recovery Center offers evidence-based outpatient programs designed to fit your life. Our programs
+              are built for individuals ready to step down from a higher level of care or those seeking structure while
+              managing work, school, and family life.
+            </p>
+            <p class="mt-4 max-w-xl text-sm leading-relaxed text-navy-500">
+              Choose from Partial Hospitalization (PHP), Intensive Outpatient (IOP), Evening IOP, and Aftercare
+              options, all tailored to support you at every stage. We also encourage clients to enhance their progress
+              with additional support options aligned with their personal goals.
+            </p>
+          </div>
+
+          <div>
+            <ul class="mt-7 flex flex-wrap gap-x-7 gap-y-3">
+              <li class="flex items-center gap-2 text-sm font-semibold text-navy-700">
+                <i data-lucide="shield-check" class="h-4.5 w-4.5 text-brand-600"></i>Joint Commission Accredited
+              </li>
+              <li class="flex items-center gap-2 text-sm font-semibold text-navy-700">
+                <i data-lucide="calendar-clock" class="h-4.5 w-4.5 text-brand-600"></i>Day &amp; Evening Schedules
+              </li>
+              <li class="flex items-center gap-2 text-sm font-semibold text-navy-700">
+                <i data-lucide="badge-check" class="h-4.5 w-4.5 text-brand-600"></i>Most Insurance Accepted
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4">
+              <a data-cta data-tone="light" data-size="md" href="#verify">Verify Insurance</a>
+              <a data-phone data-tone="light" data-size="md"></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right — glass insurance form -->
+        <div id="verify" class="scroll-mt-32" data-reveal style="--rv-y: 44px">
+          <div class="float-soft">
+            <div class="glass-light relative overflow-hidden rounded-[1.75rem] p-6 sm:p-8">
+              <div class="absolute inset-x-12 top-0 h-px bg-gradient-to-r from-transparent via-brand-500/70 to-transparent"></div>
+
+              <div class="flex items-center gap-4">
+                <span
+                  class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-400 to-brand-600 text-white shadow-lg shadow-brand-500/30"
+                >
+                  <i data-lucide="shield-check" class="h-6 w-6"></i>
+                </span>
+                <div>
+                  <h2 class="font-display text-xl font-bold text-navy-900">Free Insurance Verification</h2>
+                  <p class="mt-0.5 text-xs font-medium text-navy-500">100% confidential — responses within 24 hours</p>
+                </div>
+              </div>
+
+              <!-- success state -->
+              <div id="form-done" class="hidden flex-col items-center py-14 text-center">
+                <div class="flex h-16 w-16 items-center justify-center rounded-full bg-brand-500/15 pop-in">
+                  <i data-lucide="check-circle-2" class="h-8 w-8 text-brand-500"></i>
+                </div>
+                <h3 class="mt-5 font-display text-lg font-bold text-navy-900">Thank you!</h3>
+                <p class="mt-2 max-w-xs text-sm leading-relaxed text-navy-600">
+                  Our admissions team will reach out shortly to verify your benefits — 100% confidential.
+                </p>
+                <button id="form-reset" class="mt-6 text-xs font-bold uppercase tracking-[0.14em] text-brand-700 underline-offset-4 hover:underline">
+                  Submit another request
+                </button>
+              </div>
+
+              <form id="verify-form" class="mt-6 space-y-4">
+                <div class="grid grid-cols-2 gap-3">
+                  <div>
+                    <label for="first" class="field-label">First Name <span class="text-brand-600">*</span></label>
+                    <input id="first" name="first" required placeholder="Jane" class="field" />
+                  </div>
+                  <div>
+                    <label for="last" class="field-label">Last Name <span class="text-brand-600">*</span></label>
+                    <input id="last" name="last" required placeholder="Doe" class="field" />
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  <div>
+                    <label for="phone" class="field-label">Phone <span class="text-brand-600">*</span></label>
+                    <input id="phone" name="phone" type="tel" required placeholder="(555) 000-0000" class="field" />
+                  </div>
+                  <div>
+                    <label for="email" class="field-label">Email <span class="text-brand-600">*</span></label>
+                    <input id="email" name="email" type="email" required placeholder="you@email.com" class="field" />
+                  </div>
+                </div>
+
+                <div>
+                  <label for="insurance" class="field-label">Insurance Provider</label>
+                  <select id="insurance" name="insurance" class="field">
+                    <option value="">Select your provider…</option>
+                    <option>Aetna</option>
+                    <option>Anthem / Blue Cross Blue Shield</option>
+                    <option>Cigna</option>
+                    <option>UnitedHealthcare</option>
+                    <option>Humana</option>
+                    <option>Magellan</option>
+                    <option>TRICARE</option>
+                    <option>Other</option>
+                    <option>I'm not sure</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="message" class="field-label">Anything we should know?</label>
+                  <textarea id="message" name="message" rows="3" placeholder="Tell us briefly how we can help…" class="field resize-none"></textarea>
+                </div>
+
+                <button data-cta data-tone="light" data-size="md" data-fluid="1" data-submit="1" type="submit">
+                  Verify My Insurance
+                </button>
+
+                <p class="flex items-center justify-center gap-1.5 pt-1 text-[11px] font-medium text-navy-500">
+                  <i data-lucide="lock" class="h-3 w-3 text-brand-600"></i>
+                  Your information is secure &amp; HIPAA compliant.
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PROGRAMS ================= -->
+    <section class="relative bg-gradient-to-b from-white via-brand-50/50 to-white py-24 lg:py-32">
+      <div class="container-x">
+        <div data-reveal class="mx-auto max-w-2xl text-center">
+          <span
+            class="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.16em] border-brand-500/25 bg-brand-50 text-brand-700"
+          >
+            <i data-lucide="sparkles" class="h-3.5 w-3.5"></i>Outpatient Programs
+          </span>
+          <h2
+            class="mt-5 font-display text-3xl font-extrabold leading-tight tracking-tight text-navy-900 sm:text-4xl lg:text-[2.75rem]"
+          >
+            Flexible PHP &amp; IOP Programs for Lasting Recovery
+          </h2>
+          <p class="mt-5 leading-relaxed text-navy-600">
+            Flexible outpatient programs built around your schedule, whether you’re stepping down from a higher level
+            of care or looking for structured support while managing work, school, or family life.
+          </p>
+        </div>
+
+        <div data-stagger class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div>
+            <div class="flex h-full items-center gap-4 rounded-2xl border border-navy-100/80 bg-white/70 p-5 shadow-sm backdrop-blur">
+              <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-500/10 text-brand-700"><i data-lucide="building-2" class="h-5.5 w-5.5"></i></span>
+              <h3 class="font-display text-[15px] font-bold text-navy-900">Center Overview</h3>
+            </div>
+          </div>
+          <div>
+            <div class="flex h-full items-center gap-4 rounded-2xl border border-navy-100/80 bg-white/70 p-5 shadow-sm backdrop-blur">
+              <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-500/10 text-brand-700"><i data-lucide="compass" class="h-5.5 w-5.5"></i></span>
+              <h3 class="font-display text-[15px] font-bold text-navy-900">Our Approach</h3>
+            </div>
+          </div>
+          <div>
+            <div class="flex h-full items-center gap-4 rounded-2xl border border-navy-100/80 bg-white/70 p-5 shadow-sm backdrop-blur">
+              <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-500/10 text-brand-700"><i data-lucide="clipboard-list" class="h-5.5 w-5.5"></i></span>
+              <h3 class="font-display text-[15px] font-bold text-navy-900">Personalized Treatment Plans</h3>
+            </div>
+          </div>
+          <div>
+            <div class="flex h-full items-center gap-4 rounded-2xl border border-navy-100/80 bg-white/70 p-5 shadow-sm backdrop-blur">
+              <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-500/10 text-brand-700"><i data-lucide="book-open-check" class="h-5.5 w-5.5"></i></span>
+              <h3 class="font-display text-[15px] font-bold text-navy-900">Evidence-Based Therapies</h3>
+            </div>
+          </div>
+          <div>
+            <div class="flex h-full items-center gap-4 rounded-2xl border border-navy-100/80 bg-white/70 p-5 shadow-sm backdrop-blur">
+              <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-500/10 text-brand-700"><i data-lucide="calendar-check-2" class="h-5.5 w-5.5"></i></span>
+              <h3 class="font-display text-[15px] font-bold text-navy-900">Flexible Scheduling</h3>
+            </div>
+          </div>
+          <div>
+            <div class="flex h-full items-center gap-4 rounded-2xl border border-navy-100/80 bg-white/70 p-5 shadow-sm backdrop-blur">
+              <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-500/10 text-brand-700"><i data-lucide="anchor" class="h-5.5 w-5.5"></i></span>
+              <h3 class="font-display text-[15px] font-bold text-navy-900">Focus on Lasting Stability</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scrolling services strip -->
+    <div class="relative overflow-hidden border-y border-navy-800/20 bg-navy-900 py-5">
+      <div class="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-navy-900 to-transparent"></div>
+      <div class="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-navy-900 to-transparent"></div>
+      <div class="flex w-max animate-marquee" id="marquee">
+        <span class="mx-7 flex items-center gap-3 whitespace-nowrap text-sm font-semibold tracking-wide text-white/70"><i data-lucide="sparkle" class="h-4 w-4 fill-brand-400/30 text-brand-400"></i>1-on-1 Counseling</span>
+        <span class="mx-7 flex items-center gap-3 whitespace-nowrap text-sm font-semibold tracking-wide text-white/70"><i data-lucide="sparkle" class="h-4 w-4 fill-brand-400/30 text-brand-400"></i>CBT</span>
+        <span class="mx-7 flex items-center gap-3 whitespace-nowrap text-sm font-semibold tracking-wide text-white/70"><i data-lucide="sparkle" class="h-4 w-4 fill-brand-400/30 text-brand-400"></i>DBT</span>
+        <span class="mx-7 flex items-center gap-3 whitespace-nowrap text-sm font-semibold tracking-wide text-white/70"><i data-lucide="sparkle" class="h-4 w-4 fill-brand-400/30 text-brand-400"></i>Meditation &amp; Mindfulness</span>
+        <span class="mx-7 flex items-center gap-3 whitespace-nowrap text-sm font-semibold tracking-wide text-white/70"><i data-lucide="sparkle" class="h-4 w-4 fill-brand-400/30 text-brand-400"></i>Twelve Step Facilitation</span>
+        <span class="mx-7 flex items-center gap-3 whitespace-nowrap text-sm font-semibold tracking-wide text-white/70"><i data-lucide="sparkle" class="h-4 w-4 fill-brand-400/30 text-brand-400"></i>Family &amp; Group Therapy</span>
+        <span class="mx-7 flex items-center gap-3 whitespace-nowrap text-sm font-semibold tracking-wide text-white/70"><i data-lucide="sparkle" class="h-4 w-4 fill-brand-400/30 text-brand-400"></i>Dual-Diagnosis Treatment</span>
+        <span class="mx-7 flex items-center gap-3 whitespace-nowrap text-sm font-semibold tracking-wide text-white/70"><i data-lucide="sparkle" class="h-4 w-4 fill-brand-400/30 text-brand-400"></i>Evening IOP</span>
+        <span class="mx-7 flex items-center gap-3 whitespace-nowrap text-sm font-semibold tracking-wide text-white/70"><i data-lucide="sparkle" class="h-4 w-4 fill-brand-400/30 text-brand-400"></i>Aftercare</span>
+        <span class="mx-7 flex items-center gap-3 whitespace-nowrap text-sm font-semibold tracking-wide text-white/70"><i data-lucide="sparkle" class="h-4 w-4 fill-brand-400/30 text-brand-400"></i>Supportive Housing</span>
+      </div>
+    </div>
+
+    <!-- ================= LEVELS OF CARE ================= -->
+    <section class="relative overflow-hidden bg-gradient-to-b from-white via-navy-50/60 to-white py-24 lg:py-32">
+      <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+        <div class="absolute right-0 top-24 h-96 w-96 rounded-full bg-brand-100/60 blur-3xl"></div>
+        <div class="absolute bottom-10 left-0 h-96 w-96 rounded-full bg-navy-100/50 blur-3xl"></div>
+      </div>
+
+      <div class="container-x relative">
+        <div data-reveal class="mx-auto max-w-2xl text-center">
+          <span class="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.16em] border-brand-500/25 bg-brand-50 text-brand-700">
+            <i data-lucide="route" class="h-3.5 w-3.5"></i>Levels of Care
+          </span>
+          <h2 class="mt-5 font-display text-3xl font-extrabold leading-tight tracking-tight text-navy-900 sm:text-4xl lg:text-[2.75rem]">
+            Your Path to Recovery
+          </h2>
+          <p class="mt-5 text-lg text-navy-600">Guiding you through every stage of recovery.</p>
+        </div>
+
+        <div data-stagger class="mt-14 grid gap-7 md:grid-cols-2 lg:grid-cols-3">
+          <div>
+            <article id="php" class="group flex h-full scroll-mt-32 flex-col overflow-hidden rounded-[1.75rem] border border-navy-100/80 bg-white shadow-[0_10px_40px_-18px_rgba(28,28,32,0.2)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_32px_60px_-20px_rgba(28,28,32,0.3)]">
+              <div class="relative h-52 overflow-hidden">
+                <img src="https://images.pexels.com/photos/5711021/pexels-photo-5711021.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200" alt="A diverse group therapy session sitting in a circle" loading="lazy" class="h-full w-full object-cover saturate-[0.85] transition-transform duration-700 ease-out group-hover:scale-110" />
+                <div class="absolute inset-0 bg-gradient-to-t from-navy-950/70 via-navy-950/10 to-transparent"></div>
+                <span class="glass-dark absolute left-4 top-4 rounded-full px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-white">PHP</span>
+                <span class="absolute bottom-3 right-5 font-display text-5xl font-extrabold text-white/25 transition-transform duration-500 group-hover:-translate-y-1">01</span>
+              </div>
+              <div class="flex flex-1 flex-col p-7">
+                <h3 class="font-display text-xl font-bold text-navy-900">Partial Hospitalization Program</h3>
+                <p class="mt-3 flex-1 text-sm leading-relaxed text-navy-600">
+                  Comprehensive PHP designed to provide structure and consistent care while allowing you to maintain
+                  independence and continue living at home. Our program combines individual therapy, group sessions,
+                  and medical oversight, all delivered through a trauma-informed approach tailored to your needs.
+                </p>
+                <div class="mt-5 flex flex-wrap gap-2">
+                  <span class="rounded-full bg-brand-50 px-3 py-1 text-[11px] font-bold text-brand-700 transition-colors duration-300 group-hover:bg-brand-500/15">Individual Therapy</span>
+                  <span class="rounded-full bg-brand-50 px-3 py-1 text-[11px] font-bold text-brand-700 transition-colors duration-300 group-hover:bg-brand-500/15">Group Sessions</span>
+                  <span class="rounded-full bg-brand-50 px-3 py-1 text-[11px] font-bold text-brand-700 transition-colors duration-300 group-hover:bg-brand-500/15">Medical Oversight</span>
+                </div>
+                <a data-cta data-tone="light" data-size="sm" href="#verify" class="mt-6 self-start">Verify Insurance</a>
+              </div>
+            </article>
+          </div>
+
+          <div>
+            <article id="iop" class="group flex h-full scroll-mt-32 flex-col overflow-hidden rounded-[1.75rem] border border-navy-100/80 bg-white shadow-[0_10px_40px_-18px_rgba(28,28,32,0.2)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_32px_60px_-20px_rgba(28,28,32,0.3)]">
+              <div class="relative h-52 overflow-hidden">
+                <img src="https://images.pexels.com/photos/9064678/pexels-photo-9064678.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200" alt="A one-on-one therapy session in a modern office" loading="lazy" class="h-full w-full object-cover saturate-[0.85] transition-transform duration-700 ease-out group-hover:scale-110" />
+                <div class="absolute inset-0 bg-gradient-to-t from-navy-950/70 via-navy-950/10 to-transparent"></div>
+                <span class="glass-dark absolute left-4 top-4 rounded-full px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-white">IOP</span>
+                <span class="absolute bottom-3 right-5 font-display text-5xl font-extrabold text-white/25 transition-transform duration-500 group-hover:-translate-y-1">02</span>
+              </div>
+              <div class="flex flex-1 flex-col p-7">
+                <h3 class="font-display text-xl font-bold text-navy-900">Intensive Outpatient Program</h3>
+                <p class="mt-3 flex-1 text-sm leading-relaxed text-navy-600">
+                  Our IOP is designed for those who need consistent support and accountability while managing work,
+                  school, or family responsibilities. With flexible scheduling, including Evening IOP options, the
+                  program combines evidence-based therapy with continued access to the tools and structure that help
+                  you build lasting stability.
+                </p>
+                <div class="mt-5 flex flex-wrap gap-2">
+                  <span class="rounded-full bg-brand-50 px-3 py-1 text-[11px] font-bold text-brand-700 transition-colors duration-300 group-hover:bg-brand-500/15">Flexible Scheduling</span>
+                  <span class="rounded-full bg-brand-50 px-3 py-1 text-[11px] font-bold text-brand-700 transition-colors duration-300 group-hover:bg-brand-500/15">Evening IOP</span>
+                  <span class="rounded-full bg-brand-50 px-3 py-1 text-[11px] font-bold text-brand-700 transition-colors duration-300 group-hover:bg-brand-500/15">Evidence-Based Therapy</span>
+                </div>
+                <a data-cta data-tone="light" data-size="sm" href="#verify" class="mt-6 self-start">Verify Insurance</a>
+              </div>
+            </article>
+          </div>
+
+          <div>
+            <article id="supportive" class="group flex h-full scroll-mt-32 flex-col overflow-hidden rounded-[1.75rem] border border-navy-100/80 bg-white shadow-[0_10px_40px_-18px_rgba(28,28,32,0.2)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_32px_60px_-20px_rgba(28,28,32,0.3)]">
+              <div class="relative h-52 overflow-hidden">
+                <img src="https://images.pexels.com/photos/8556339/pexels-photo-8556339.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200" alt="Friends supporting each other outdoors" loading="lazy" class="h-full w-full object-cover saturate-[0.85] transition-transform duration-700 ease-out group-hover:scale-110" />
+                <div class="absolute inset-0 bg-gradient-to-t from-navy-950/70 via-navy-950/10 to-transparent"></div>
+                <span class="glass-dark absolute left-4 top-4 rounded-full px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-white">Housing + Aftercare</span>
+                <span class="absolute bottom-3 right-5 font-display text-5xl font-extrabold text-white/25 transition-transform duration-500 group-hover:-translate-y-1">03</span>
+              </div>
+              <div class="flex flex-1 flex-col p-7">
+                <h3 class="font-display text-xl font-bold text-navy-900">Supportive Housing &amp; Aftercare</h3>
+                <p class="mt-3 flex-1 text-sm leading-relaxed text-navy-600">
+                  For those who need continued support, we offer supportive housing and aftercare options that provide
+                  a safe, structured environment alongside ongoing therapy and peer support. It's there when you need
+                  it, to help you keep the progress you've made while rebuilding your daily life.
+                </p>
+                <div class="mt-5 flex flex-wrap gap-2">
+                  <span class="rounded-full bg-brand-50 px-3 py-1 text-[11px] font-bold text-brand-700 transition-colors duration-300 group-hover:bg-brand-500/15">Safe Environment</span>
+                  <span class="rounded-full bg-brand-50 px-3 py-1 text-[11px] font-bold text-brand-700 transition-colors duration-300 group-hover:bg-brand-500/15">Peer Support</span>
+                  <span class="rounded-full bg-brand-50 px-3 py-1 text-[11px] font-bold text-brand-700 transition-colors duration-300 group-hover:bg-brand-500/15">Ongoing Therapy</span>
+                </div>
+                <a data-cta data-tone="light" data-size="sm" href="#verify" class="mt-6 self-start">Verify Insurance</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= GALLERY ================= -->
+    <section id="facility" class="relative scroll-mt-28 overflow-hidden bg-white py-20 sm:py-24 lg:py-32">
+      <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+        <div class="absolute -left-32 top-1/3 h-[26rem] w-[26rem] rounded-full bg-brand-100/50 blur-3xl"></div>
+      </div>
+
+      <div class="container-x relative">
+        <div data-reveal class="mx-auto max-w-2xl text-center">
+          <span class="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.16em] border-brand-500/25 bg-brand-50 text-brand-700">
+            <i data-lucide="images" class="h-3.5 w-3.5"></i>Our Facility &amp; Grounds
+          </span>
+          <h2 class="mt-4 font-display text-3xl font-extrabold leading-tight tracking-tight text-navy-900 sm:text-4xl lg:text-[2.75rem]">
+            A Peaceful Environment Built for
+            <span class="bg-gradient-to-r from-brand-500 via-brand-600 to-brand-700 bg-clip-text text-transparent">Healing</span>
+          </h2>
+          <p class="mt-4 text-sm leading-relaxed text-navy-600 sm:text-base">
+            Take a look inside Create Recovery Center — comfortable living spaces, serene meditation lounges, private
+            counseling rooms, and coastal outdoor amenities designed to support your journey.
+          </p>
+        </div>
+
+        <div id="gallery-grid" class="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:gap-5"></div>
+
+        <div class="mt-8 flex justify-center sm:hidden">
+          <button data-cta data-tone="light" data-size="md" data-icon="images" id="open-gallery">View Full Gallery</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= DETAILS ================= -->
+    <section class="relative overflow-hidden bg-gradient-to-br from-brand-400 via-brand-500 to-brand-600 py-16 sm:py-24 lg:py-32">
+      <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+        <div class="absolute inset-0 bg-[radial-gradient(60%_45%_at_85%_10%,rgba(255,255,255,0.25),transparent_60%)]"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(50%_40%_at_10%_90%,rgba(28,28,32,0.08),transparent_60%)]"></div>
+        <div class="absolute left-1/2 top-0 h-72 w-[40rem] -translate-x-1/2 animate-float-slow rounded-full bg-white/15 blur-3xl"></div>
+        <div class="absolute inset-0 bg-grid-dark opacity-30 [mask-image:radial-gradient(70%_60%_at_50%_40%,black,transparent)]"></div>
+      </div>
+
+      <div class="container-x relative">
+        <div data-reveal class="mx-auto max-w-2xl text-center">
+          <span class="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.16em] border-navy-900/15 bg-navy-900/90 text-white">
+            <i data-lucide="building-2" class="h-3.5 w-3.5"></i>Center Overview
+          </span>
+          <h2 class="mt-4 font-display text-[1.75rem] font-extrabold leading-tight tracking-tight text-navy-900 sm:mt-5 sm:text-4xl lg:text-[2.75rem]">
+            Care Designed Around <span class="text-white drop-shadow-[0_2px_0_rgba(28,28,32,0.35)]">Your Life</span>
+          </h2>
+          <p class="mt-4 text-sm leading-relaxed text-navy-900/70 sm:mt-5 sm:text-base">
+            Structure, support, and real-world flexibility — everything you need to rebuild, at every stage of
+            recovery.
+          </p>
+        </div>
+
+        <div data-stagger id="details-grid" class="mt-10 grid gap-4 sm:mt-14 sm:gap-6 lg:grid-cols-2"></div>
+      </div>
+    </section>
+
+    <!-- ================= TRUST / STATS ================= -->
+    <section id="insurance" class="relative scroll-mt-28 overflow-hidden bg-white py-24 lg:py-32">
+      <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+        <div class="absolute -right-40 top-0 h-[30rem] w-[30rem] rounded-full bg-brand-100/50 blur-3xl"></div>
+        <div class="absolute -left-40 bottom-0 h-[26rem] w-[26rem] rounded-full bg-navy-100/60 blur-3xl"></div>
+      </div>
+
+      <div class="container-x relative grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
+        <div data-reveal>
+          <span class="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.16em] border-brand-500/25 bg-brand-50 text-brand-700">
+            <i data-lucide="award" class="h-3.5 w-3.5"></i>Joint Commission Accredited
+          </span>
+          <h2 class="mt-5 font-display text-3xl font-extrabold leading-tight tracking-tight text-navy-900 sm:text-4xl lg:text-[2.75rem]">
+            Top-Rated Treatment in a Private, Supportive Setting
+          </h2>
+
+          <div class="mt-7 space-y-3.5">
+            <div class="flex items-center gap-2.5">
+              <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-500/15 text-brand-700"><i data-lucide="check" class="h-3 w-3" stroke-width="3"></i></span>
+              <span class="text-sm font-medium text-navy-700">Most private insurance accepted</span>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-500/15 text-brand-700"><i data-lucide="check" class="h-3 w-3" stroke-width="3"></i></span>
+              <span class="text-sm font-medium text-navy-700">Exceptional remission rates</span>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-500/15 text-brand-700"><i data-lucide="check" class="h-3 w-3" stroke-width="3"></i></span>
+              <span class="text-sm font-medium text-navy-700">Career and educational planning</span>
+            </div>
+          </div>
+
+          <div class="mt-9"><a data-phone data-tone="light" data-size="md"></a></div>
+        </div>
+
+        <div data-stagger class="grid gap-5 sm:grid-cols-2">
+          <div>
+            <div class="glass-light group h-full rounded-3xl p-6 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_24px_50px_-20px_rgba(28,28,32,0.3)]">
+              <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-500/10 text-brand-700 transition-all duration-500 group-hover:scale-110 group-hover:bg-brand-500 group-hover:text-navy-900 group-hover:shadow-lg group-hover:shadow-brand-500/40"><i data-lucide="star" class="h-5.5 w-5.5"></i></div>
+              <p class="mt-5 font-display text-4xl font-extrabold tracking-tight text-navy-900"><span data-count="5" data-suffix="-Star">0</span></p>
+              <p class="mt-1.5 text-sm font-medium leading-snug text-navy-500">Rated Outpatient Treatment Center</p>
+            </div>
+          </div>
+          <div>
+            <div class="glass-light group h-full rounded-3xl p-6 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_24px_50px_-20px_rgba(28,28,32,0.3)]">
+              <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-500/10 text-brand-700 transition-all duration-500 group-hover:scale-110 group-hover:bg-brand-500 group-hover:text-navy-900 group-hover:shadow-lg group-hover:shadow-brand-500/40"><i data-lucide="clock" class="h-5.5 w-5.5"></i></div>
+              <p class="mt-5 font-display text-4xl font-extrabold tracking-tight text-navy-900"><span data-count="24" data-suffix="/7">0</span></p>
+              <p class="mt-1.5 text-sm font-medium leading-snug text-navy-500">Confidential Admissions</p>
+            </div>
+          </div>
+          <div>
+            <div class="glass-light group h-full rounded-3xl p-6 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_24px_50px_-20px_rgba(28,28,32,0.3)]">
+              <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-500/10 text-brand-700 transition-all duration-500 group-hover:scale-110 group-hover:bg-brand-500 group-hover:text-navy-900 group-hover:shadow-lg group-hover:shadow-brand-500/40"><i data-lucide="shield-check" class="h-5.5 w-5.5"></i></div>
+              <p class="mt-5 font-display text-4xl font-extrabold tracking-tight text-navy-900"><span data-count="100" data-suffix="%">0</span></p>
+              <p class="mt-1.5 text-sm font-medium leading-snug text-navy-500">Confidential Care</p>
+            </div>
+          </div>
+          <div>
+            <div class="glass-light group h-full rounded-3xl p-6 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_24px_50px_-20px_rgba(28,28,32,0.3)]">
+              <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-500/10 text-brand-700 transition-all duration-500 group-hover:scale-110 group-hover:bg-brand-500 group-hover:text-navy-900 group-hover:shadow-lg group-hover:shadow-brand-500/40"><i data-lucide="layers" class="h-5.5 w-5.5"></i></div>
+              <p class="mt-5 font-display text-4xl font-extrabold tracking-tight text-navy-900"><span data-count="4" data-suffix="+">0</span></p>
+              <p class="mt-1.5 text-sm font-medium leading-snug text-navy-500">Programs — PHP, IOP, Evening &amp; Aftercare</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= REVIEWS ================= -->
+    <section id="reviews" class="relative scroll-mt-28 overflow-hidden bg-gradient-to-b from-white via-navy-50/60 to-white py-20 sm:py-24 lg:py-32">
+      <div class="container-x relative">
+        <div data-reveal class="mx-auto max-w-2xl text-center">
+          <span class="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.16em] border-brand-500/25 bg-brand-50 text-brand-700">
+            <i data-lucide="message-circle-heart" class="h-3.5 w-3.5"></i>Client Reviews
+          </span>
+          <h2 class="mt-4 font-display text-3xl font-extrabold leading-tight tracking-tight text-navy-900 sm:text-4xl lg:text-[2.75rem]">
+            Real Stories, Real
+            <span class="bg-gradient-to-r from-brand-500 via-brand-600 to-brand-700 bg-clip-text text-transparent">Recovery</span>
+          </h2>
+          <div class="mt-5 flex items-center justify-center gap-3">
+            <span class="flex items-center gap-0.5" id="rating-stars"></span>
+            <span class="text-sm font-bold text-navy-900">5.0</span>
+            <span class="text-sm text-navy-500">· Verified Google Reviews</span>
+          </div>
+        </div>
+
+        <div data-reveal class="relative mx-auto mt-10 max-w-3xl sm:mt-14">
+          <div class="flex items-center gap-3 sm:gap-5">
+            <button
+              class="rev-prev hidden h-11 w-11 shrink-0 items-center justify-center rounded-full border border-navy-200 bg-white text-navy-700 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-400 hover:text-brand-700 sm:flex"
+              aria-label="Previous review"
+            >
+              <i data-lucide="chevron-left" class="h-5 w-5"></i>
+            </button>
+
+            <div id="review-viewport" class="relative w-full flex-1 overflow-hidden sm:min-h-[300px]"></div>
+
+            <button
+              class="rev-next hidden h-11 w-11 shrink-0 items-center justify-center rounded-full border border-navy-200 bg-white text-navy-700 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-400 hover:text-brand-700 sm:flex"
+              aria-label="Next review"
+            >
+              <i data-lucide="chevron-right" class="h-5 w-5"></i>
+            </button>
+          </div>
+
+          <!-- Keep the dots directly beneath the review on mobile. -->
+          <div id="review-dots" class="mt-2 flex items-center justify-center gap-2 sm:mt-6"></div>
+
+          <!-- Mobile arrows + counter -->
+          <div class="mt-4 flex items-center justify-center gap-4 sm:hidden">
+            <button class="rev-prev flex h-10 w-10 items-center justify-center rounded-full border border-navy-200 bg-white text-navy-700 shadow-sm" aria-label="Previous review">
+              <i data-lucide="chevron-left" class="h-4 w-4"></i>
+            </button>
+            <span class="min-w-[3.5rem] text-center font-display text-xs font-bold text-navy-500">
+              <span class="text-navy-900" id="rev-current">01</span><span class="mx-1 text-navy-300">/</span><span id="rev-total">06</span>
+            </span>
+            <button class="rev-next flex h-10 w-10 items-center justify-center rounded-full border border-navy-200 bg-white text-navy-700 shadow-sm" aria-label="Next review">
+              <i data-lucide="chevron-right" class="h-4 w-4"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="relative overflow-hidden bg-navy-950">
+      <div class="pointer-events-none absolute -top-24 left-1/2 h-72 w-[46rem] -translate-x-1/2 rounded-full bg-brand-500/10 blur-3xl" aria-hidden="true"></div>
+
+      <div class="container-x relative py-16 sm:py-20">
+        <!-- CTA band -->
+        <div data-reveal>
+          <div class="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-brand-400 via-brand-500 to-brand-600 px-6 py-12 text-center shadow-2xl shadow-brand-500/30 sm:rounded-[2.5rem] sm:px-14 sm:py-16">
+            <h2 class="relative font-display text-3xl font-extrabold tracking-tight text-navy-900 sm:text-4xl">
+              Start Your Recovery Today
+            </h2>
+            <p class="relative mx-auto mt-4 max-w-xl text-sm font-medium leading-relaxed text-navy-900/75 sm:text-base">
+              Call now to verify your insurance — our admissions team is available 24/7, 100% confidential.
+            </p>
+
+            <div class="relative mt-8 flex flex-col items-center justify-center gap-5 sm:flex-row sm:gap-7">
+              <a data-phone data-tone="gold" data-size="lg"></a>
+              <a data-cta data-tone="gold" data-size="md" href="#verify">Verify Insurance</a>
+            </div>
+
+            <div class="relative mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+              <span class="flex items-center gap-1.5 text-xs font-bold text-navy-900/80"><i data-lucide="badge-check" class="h-3.5 w-3.5"></i>Free Insurance Verification</span>
+              <span class="flex items-center gap-1.5 text-xs font-bold text-navy-900/80"><i data-lucide="badge-check" class="h-3.5 w-3.5"></i>24/7 Admissions</span>
+              <span class="flex items-center gap-1.5 text-xs font-bold text-navy-900/80"><i data-lucide="badge-check" class="h-3.5 w-3.5"></i>100% Confidential</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main footer grid -->
+        <div class="mt-16 grid gap-12 lg:mt-20 lg:grid-cols-[1.2fr_2.8fr] lg:gap-16">
+          <div>
+            <a href="#top" class="group flex items-center gap-2.5">
+              <img
+                src="https://raw.githubusercontent.com/Binec/lp-crc/refs/heads/main/src/Captura%20de%20pantalla%202026-09-17%20004355%20(1).png"
+                alt="Create Recovery Center"
+                class="h-12 w-auto max-w-[220px] object-contain transition-transform duration-300 group-hover:scale-[1.03]"
+              />
+            </a>
+            <p class="mt-5 max-w-xs text-sm leading-relaxed text-white/55">
+              Top-rated PHP &amp; IOP outpatient programs designed to fit your life. Confidential, evidence-based care,
+              24/7 admissions.
+            </p>
+
+            <div class="mt-6"><a data-phone data-tone="dark" data-size="sm"></a></div>
+
+            <div class="mt-6 flex items-center gap-2">
+              <a href="#" aria-label="Facebook" class="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/70 backdrop-blur transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-400/40 hover:bg-brand-500/10 hover:text-brand-300"><i data-lucide="facebook" class="h-4 w-4"></i></a>
+              <a href="#" aria-label="Instagram" class="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/70 backdrop-blur transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-400/40 hover:bg-brand-500/10 hover:text-brand-300"><i data-lucide="instagram" class="h-4 w-4"></i></a>
+              <a href="#" aria-label="LinkedIn" class="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/70 backdrop-blur transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-400/40 hover:bg-brand-500/10 hover:text-brand-300"><i data-lucide="linkedin" class="h-4 w-4"></i></a>
+              <a href="#" aria-label="YouTube" class="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/70 backdrop-blur transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-400/40 hover:bg-brand-500/10 hover:text-brand-300"><i data-lucide="youtube" class="h-4 w-4"></i></a>
+            </div>
+          </div>
+
+          <div class="grid gap-10 sm:grid-cols-3">
+            <div>
+              <h3 class="font-display text-xs font-bold uppercase tracking-[0.18em] text-brand-300">Programs</h3>
+              <ul class="mt-5 space-y-3">
+                <li><a href="#php" class="text-sm text-white/55 transition-colors hover:text-white">PHP Program</a></li>
+                <li><a href="#iop" class="text-sm text-white/55 transition-colors hover:text-white">IOP Program</a></li>
+                <li><a href="#iop" class="text-sm text-white/55 transition-colors hover:text-white">Evening IOP</a></li>
+                <li><a href="#supportive" class="text-sm text-white/55 transition-colors hover:text-white">Aftercare</a></li>
+                <li><a href="#supportive" class="text-sm text-white/55 transition-colors hover:text-white">Supportive Housing</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="font-display text-xs font-bold uppercase tracking-[0.18em] text-brand-300">Center</h3>
+              <ul class="mt-5 space-y-3">
+                <li><a href="#facility" class="text-sm text-white/55 transition-colors hover:text-white">Our Facility</a></li>
+                <li><a href="#facility" class="text-sm text-white/55 transition-colors hover:text-white">Amenities</a></li>
+                <li><a href="#insurance" class="text-sm text-white/55 transition-colors hover:text-white">Accreditation</a></li>
+                <li><a href="#reviews" class="text-sm text-white/55 transition-colors hover:text-white">Reviews</a></li>
+                <li><a href="#verify" class="text-sm text-white/55 transition-colors hover:text-white">Admissions</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="font-display text-xs font-bold uppercase tracking-[0.18em] text-brand-300">Support</h3>
+              <ul class="mt-5 space-y-3">
+                <li><a href="#verify" class="text-sm text-white/55 transition-colors hover:text-white">Verify Insurance</a></li>
+                <li><a href="tel:8669137063" class="text-sm text-white/55 transition-colors hover:text-white">Call 24/7</a></li>
+                <li><a href="#" class="text-sm text-white/55 transition-colors hover:text-white">Privacy Policy</a></li>
+                <li><a href="#" class="text-sm text-white/55 transition-colors hover:text-white">Terms of Use</a></li>
+                <li><a href="#" class="text-sm text-white/55 transition-colors hover:text-white">HIPAA Notice</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accreditations strip -->
+        <div class="mt-14 flex flex-wrap items-center justify-center gap-x-5 gap-y-3 border-t border-white/10 pt-7 text-[11px] font-semibold text-white/45">
+          <span class="flex items-center gap-2"><i data-lucide="shield-check" class="h-3.5 w-3.5 text-brand-400"></i>Joint Commission Accredited</span>
+          <span class="hidden h-3 w-px bg-white/15 sm:block"></span>
+          <span>HIPAA Compliant</span>
+          <span class="hidden h-3 w-px bg-white/15 sm:block"></span>
+          <span>Insurance Accepted</span>
+          <span class="hidden h-3 w-px bg-white/15 sm:block"></span>
+          <span>Cash Pay Options</span>
+        </div>
+
+        <!-- Bottom bar -->
+        <div class="mt-7 flex flex-col-reverse items-center justify-between gap-4 sm:flex-row">
+          <p class="text-xs text-white/45">Copyright © 2026 Create Recovery Center. All Rights Reserved.</p>
+          <a href="#top" class="group flex items-center gap-2 text-xs font-semibold text-white/55 transition-colors hover:text-white">
+            Back to top
+            <span class="flex h-7 w-7 items-center justify-center rounded-full border border-white/15 bg-white/5 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-brand-400/50 group-hover:text-brand-300">
+              <i data-lucide="arrow-up" class="h-3.5 w-3.5"></i>
+            </span>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ================= FLOATING CALL ================= -->
+    <div id="floating-call" class="fixed bottom-5 right-5 z-40 translate-y-24 opacity-0 transition-all duration-500 sm:bottom-7 sm:right-7">
+      <a
+        href="tel:8669137063"
+        aria-label="Call (866) 913-7063 — 24/7 admissions"
+        class="group relative flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-brand-400 via-brand-500 to-brand-600 text-navy-900 shadow-xl shadow-brand-500/40 ring-4 ring-white/70 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-brand-500/60 sm:h-16 sm:w-16 sm:ring-8 sm:ring-white/50"
+      >
+        <span class="absolute inset-0 animate-pulse-ring rounded-full bg-brand-500/50"></span>
+        <span class="relative flex h-6 w-6 items-center justify-center">
+          <i data-lucide="phone" class="h-5 w-5 transition-transform duration-300 group-hover:scale-110 sm:h-6 sm:w-6"></i>
+        </span>
+        <span class="sr-only">(866) 913-7063</span>
+      </a>
+    </div>
+
+    <!-- ================= LIGHTBOX ================= -->
+    <div id="lightbox" class="fixed inset-0 z-[100] hidden items-center justify-center p-3 sm:p-8" role="dialog" aria-modal="true" aria-label="Facility gallery">
+      <div class="lb-backdrop absolute inset-0 bg-navy-950/92 opacity-0 backdrop-blur-md transition-opacity duration-300"></div>
+
+      <div class="lb-panel relative z-10 w-full max-w-5xl translate-y-4 scale-95 opacity-0 transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)]">
+        <div class="flex items-center justify-between pb-3">
+          <span class="glass-dark rounded-full px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-white" id="lb-category">Facility</span>
+          <button id="lb-close" aria-label="Close gallery" class="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white backdrop-blur transition-all duration-300 hover:rotate-90 hover:bg-brand-500 hover:text-navy-900">
+            <i data-lucide="x" class="h-5 w-5"></i>
+          </button>
+        </div>
+
+        <div id="lb-stage" class="relative overflow-hidden rounded-2xl border border-white/10 bg-navy-900 shadow-2xl">
+          <img id="lb-image" src="" alt="" class="h-[46vh] w-full object-cover sm:h-[62vh]" />
+          <div class="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy-950/90 via-navy-950/30 to-transparent p-5 sm:p-7">
+            <h3 id="lb-title" class="font-display text-lg font-bold text-white sm:text-2xl"></h3>
+            <p id="lb-alt" class="mt-1 max-w-2xl text-xs text-white/60 sm:text-sm"></p>
+          </div>
+
+          <button id="lb-prev" aria-label="Previous photo" class="absolute left-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-navy-950/60 text-white backdrop-blur transition-all duration-300 hover:scale-110 hover:bg-brand-500 hover:text-navy-900 sm:left-5 sm:h-12 sm:w-12">
+            <i data-lucide="chevron-left" class="h-5 w-5"></i>
+          </button>
+          <button id="lb-next" aria-label="Next photo" class="absolute right-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-navy-950/60 text-white backdrop-blur transition-all duration-300 hover:scale-110 hover:bg-brand-500 hover:text-navy-900 sm:right-5 sm:h-12 sm:w-12">
+            <i data-lucide="chevron-right" class="h-5 w-5"></i>
+          </button>
+        </div>
+
+        <div class="mt-4 flex items-center justify-between gap-4">
+          <span class="font-display text-xs font-bold text-white/60"><span id="lb-index" class="text-white">01</span> <span class="text-white/30">/</span> <span id="lb-total">06</span></span>
+          <div id="lb-thumbs" class="flex flex-1 items-center justify-end gap-2 overflow-x-auto"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      /* =========================================================
+         Data
+      ========================================================= */
+      const PHONE_DISPLAY = "(866) 913-7063";
+      const PHONE_TEL = "tel:8669137063";
+
+      const galleryPhotos = [
+        {
+          id: "lounge",
+          title: "Community Living Room",
+          category: "Common Areas",
+          alt: "A serene minimalist living room featuring a clean-lined sofa, wooden accents and ambient candles.",
+          src: "https://images.pexels.com/photos/7404938/pexels-photo-7404938.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1400",
+        },
+        {
+          id: "lobby",
+          title: "Welcome Lobby",
+          category: "Facility",
+          alt: "Elegant, spacious lobby with modern design featuring large windows, leather sofas and indoor plants.",
+          src: "https://images.pexels.com/photos/5751698/pexels-photo-5751698.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1400",
+        },
+        {
+          id: "meditation",
+          title: "Meditation &amp; Mindfulness Studio",
+          category: "Wellness",
+          alt: "A serene meditation room with gongs, cushions and mats, set in nature.",
+          src: "https://images.pexels.com/photos/35129859/pexels-photo-35129859.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1400",
+        },
+        {
+          id: "rooms",
+          title: "Private &amp; Shared Guest Suites",
+          category: "Housing",
+          alt: "A stylish, light-filled room with comfortable furniture and warm decor.",
+          src: "https://images.pexels.com/photos/7546648/pexels-photo-7546648.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1400",
+        },
+        {
+          id: "pool",
+          title: "Poolside Courtyard",
+          category: "Outdoors",
+          alt: "A luxurious patio with a swimming pool, surrounded by lush greenery and tall trees.",
+          src: "https://images.pexels.com/photos/8143684/pexels-photo-8143684.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1400",
+        },
+        {
+          id: "garden",
+          title: "Garden &amp; Outdoor Therapy",
+          category: "Grounds",
+          alt: "Client practicing yoga outdoors amidst lush greenery, promoting wellness.",
+          src: "https://images.pexels.com/photos/4457911/pexels-photo-4457911.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1400",
+        },
+      ];
+
+      const detailCards = [
+        {
+          icon: "sparkles",
+          title: "What Sets Us Apart",
+          items: [
+            ["route", "Our Approach"],
+            ["clipboard-list", "Personalized Treatment Plans"],
+            ["lock", "Confidential &amp; Judgment-Free Care"],
+            ["calendar-clock", "Convenient Day &amp; Evening Scheduling"],
+          ],
+        },
+        {
+          icon: "users",
+          title: "Who We Treat",
+          items: [
+            ["briefcase", "Working Professionals"],
+            ["hard-hat", "Union Members"],
+            ["graduation-cap", "College Students"],
+            ["user-round", "Young Adults"],
+            ["users-round", "Adult Men &amp; Women"],
+          ],
+        },
+        {
+          icon: "home",
+          title: "Amenities &amp; Accommodations",
+          items: [
+            ["bed-double", "Private or Shared Rooms"],
+            ["smartphone", "Cell Phones Allowed"],
+            ["paw-print", "Pet Friendly"],
+            ["shield-check", "Safe Environment"],
+            ["car", "Transportation Assistance"],
+            ["sun", "Weekend Outings"],
+            ["waves", "Beach Access"],
+          ],
+        },
+        {
+          icon: "heart-handshake",
+          title: "Services &amp; Therapies",
+          items: [
+            ["messages-square", "1-on-1 Counseling"],
+            ["flower-2", "Meditation &amp; Mindfulness"],
+            ["brain", "Cognitive Behavioral Therapy (CBT)"],
+            ["heart-pulse", "Dialectical Behavior Therapy (DBT)"],
+            ["book-open", "Twelve Step Facilitation"],
+            ["users", "Family and Group Therapy"],
+            ["layers", "Dual-Diagnosis Treatment"],
+          ],
+        },
+      ];
+
+      const reviews = [
+        {
+          name: "Marissa T.",
+          short:
+            "The IOP program gave me structure without forcing me to put my whole life on hold. I kept working, kept seeing my kids, and still got the help I needed.",
+          more: "The counselors genuinely care — they remember the little things and they hold you accountable with kindness.",
+        },
+        {
+          name: "Daniel R.",
+          short:
+            "I stepped down from residential into their PHP and the transition was seamless. The team coordinated everything, including my insurance.",
+          more: "Six months later I'm still using the tools I learned in group every single day.",
+        },
+        {
+          name: "Angela P.",
+          short:
+            "Evening IOP was the only reason I could get treatment while finishing school. The scheduling flexibility here is real, not just a marketing line.",
+          more: "",
+        },
+        {
+          name: "Chris M.",
+          short:
+            "Dual-diagnosis care changed everything for me. For the first time someone treated the anxiety underneath the drinking instead of just the drinking.",
+          more: "The facility is calm, clean and private — you never feel like a case number.",
+        },
+        {
+          name: "Renee W.",
+          short:
+            "Admissions verified my benefits in less than a day and walked my family through every step. Zero pressure, total confidentiality.",
+          more: "",
+        },
+        {
+          name: "Jordan K.",
+          short:
+            "Supportive housing plus aftercare kept me steady during the hardest stretch of my first year. The peer community is the real medicine here.",
+          more: "I'd recommend Create Recovery Center to anyone who is serious about building a life again.",
+        },
+      ];
+
+      /* =========================================================
+         Component builders (CtaButton / PhoneCta)
+      ========================================================= */
+      const ctaTones = {
+        light: {
+          pill: "border-navy-900 bg-white/80 text-navy-900 backdrop-blur-sm group-hover:text-navy-900",
+          fill: "bg-brand-500",
+          circle: "border-navy-900 bg-white/80 text-navy-900 backdrop-blur-sm group-hover:bg-brand-500 group-hover:text-navy-900",
+        },
+        dark: {
+          pill: "border-white/80 bg-white/5 text-white backdrop-blur-sm group-hover:text-navy-900",
+          fill: "bg-brand-500",
+          circle: "border-white/80 bg-white/5 text-white backdrop-blur-sm group-hover:bg-brand-500 group-hover:text-navy-900",
+        },
+        gold: {
+          pill: "border-navy-900 bg-white/15 text-navy-900 group-hover:text-white",
+          fill: "bg-navy-900",
+          circle: "border-navy-900 bg-white/15 text-navy-900 group-hover:bg-navy-900 group-hover:text-white",
+        },
+      };
+
+      const ctaSizes = {
+        sm: { pill: "h-10 px-5 text-[11px] tracking-[0.08em]", circle: "h-10 w-10", icon: "h-4 w-4" },
+        md: { pill: "h-[52px] px-7 text-[12.5px] tracking-[0.08em] sm:px-8", circle: "h-[52px] w-[52px]", icon: "h-[18px] w-[18px]" },
+        lg: { pill: "h-14 px-8 text-[13px] tracking-[0.1em] sm:h-[60px] sm:px-10 sm:text-sm", circle: "h-14 w-14 sm:h-[60px] sm:w-[60px]", icon: "h-5 w-5" },
+      };
+
+      function buildCta(el) {
+        const tone = ctaTones[el.dataset.tone || "light"];
+        const size = ctaSizes[el.dataset.size || "md"];
+        const icon = el.dataset.icon || "arrow-up-right";
+        const fluid = el.dataset.fluid === "1";
+        const label = el.textContent.trim();
+
+        el.classList.add("group", "select-none", "items-center", "gap-0", "transition-transform", "duration-200", "active:scale-[0.98]");
+        // If the element is visibility-controlled (e.g. "hidden sm:inline-flex"),
+        // let those utilities own display so nothing leaks onto small screens.
+        const isVisibilityControlled = el.classList.contains("hidden") || el.classList.contains("sm:inline-flex");
+        if (fluid) el.classList.add("flex", "w-full");
+        else if (!isVisibilityControlled) el.classList.add("inline-flex");
+        else if (!el.classList.contains("hidden")) el.classList.add("inline-flex");
+
+        el.innerHTML = `
+          <span class="relative inline-flex items-center justify-center overflow-hidden rounded-full border font-display font-bold uppercase leading-none transition-colors duration-300 ${size.pill} ${tone.pill} ${fluid ? "flex-1" : ""}">
+            <span aria-hidden="true" class="absolute inset-0 translate-y-[101%] rounded-full ${tone.fill} transition-transform duration-[450ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0"></span>
+            <span class="relative whitespace-nowrap cta-label">${label}</span>
+          </span>
+          <span class="relative flex shrink-0 items-center justify-center overflow-hidden rounded-full border transition-colors duration-300 ${size.circle} ${tone.circle}">
+            <span class="cta-icon-wrap contents">
+              <i data-lucide="${icon}" class="${size.icon} transition-transform duration-300 ease-out group-hover:translate-x-7 group-hover:-translate-y-7"></i>
+              <i data-lucide="${icon}" class="absolute ${size.icon} -translate-x-7 translate-y-7 transition-transform duration-300 ease-out group-hover:translate-x-0 group-hover:translate-y-0"></i>
+            </span>
+          </span>`;
+      }
+
+      const phoneTones = {
+        dark: {
+          link: "text-white hover:text-brand-300",
+          circle: "border border-white/15 bg-white/10 text-white group-hover:scale-110 group-hover:border-brand-400/50 group-hover:bg-brand-500/15 group-hover:text-brand-300",
+        },
+        light: {
+          link: "text-navy-900 hover:text-brand-700",
+          circle: "border border-navy-900/10 bg-navy-900/[0.06] text-navy-900 group-hover:scale-110 group-hover:border-brand-500/50 group-hover:bg-brand-500/15 group-hover:text-brand-700",
+        },
+        gold: {
+          link: "text-navy-900 hover:text-navy-950",
+          circle: "border border-navy-900/20 bg-navy-900/10 text-navy-900 group-hover:scale-110 group-hover:border-navy-900 group-hover:bg-navy-900 group-hover:text-white",
+        },
+      };
+
+      const phoneSizes = {
+        xs: { link: "gap-1.5 text-[11px] font-semibold tracking-wide", circle: "h-6 w-6", icon: "h-3 w-3" },
+        sm: { link: "gap-2.5 text-sm font-bold", circle: "h-9 w-9", icon: "h-4 w-4" },
+        md: { link: "gap-3 text-base font-bold sm:text-lg", circle: "h-11 w-11", icon: "h-[18px] w-[18px]" },
+        lg: { link: "gap-4 font-display text-xl font-extrabold tracking-tight sm:text-2xl", circle: "h-14 w-14 sm:h-16 sm:w-16", icon: "h-6 w-6 sm:h-7 sm:w-7" },
+      };
+
+      function buildPhone(el) {
+        const tone = phoneTones[el.dataset.tone || "dark"];
+        const size = phoneSizes[el.dataset.size || "sm"];
+        el.setAttribute("href", PHONE_TEL);
+        el.className = `group inline-flex items-center transition-colors duration-300 ${size.link} ${tone.link} ${el.className}`;
+        el.innerHTML = `
+          <span class="flex shrink-0 items-center justify-center rounded-full backdrop-blur transition-all duration-300 ${size.circle} ${tone.circle}">
+            <i data-lucide="phone" class="${size.icon}"></i>
+          </span>
+          ${PHONE_DISPLAY}`;
+      }
+
+      /* =========================================================
+         Render: gallery grid, detail cards, reviews, marquee
+      ========================================================= */
+      function renderGallery() {
+        const grid = document.getElementById("gallery-grid");
+        grid.innerHTML = galleryPhotos
+          .map((photo, i) => {
+            const isFeatured = i === 0 || i === 5;
+            const mobileVisibility = i >= 3 ? "hidden sm:block" : "block";
+            return `
+            <div data-reveal style="transition-delay:${(i * 0.05).toFixed(2)}s" class="${mobileVisibility} ${isFeatured ? "lg:col-span-2" : "col-span-1"}">
+              <div tabindex="0" role="button" data-index="${i}" aria-label="View photo: ${photo.title}"
+                class="gallery-card group relative h-64 sm:h-72 w-full cursor-pointer overflow-hidden rounded-2xl border border-navy-100/80 bg-navy-100 shadow-[0_8px_30px_-16px_rgba(28,28,32,0.12)] transition-all duration-500 hover:-translate-y-1 hover:border-brand-400/60 hover:shadow-[0_20px_40px_-18px_rgba(28,28,32,0.22)] focus:outline-none focus:ring-4 focus:ring-brand-500/25">
+                <img src="${photo.src}" alt="${photo.alt}" loading="lazy" class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+                <div class="absolute inset-0 bg-gradient-to-t from-navy-950/85 via-navy-950/20 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-95 lg:opacity-0 lg:group-hover:opacity-95"></div>
+                <span class="glass-light absolute left-3.5 top-3.5 rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-navy-800 shadow-sm">${photo.category}</span>
+                <span class="absolute right-3.5 top-3.5 flex h-9 w-9 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-md transition-all duration-300 group-hover:scale-110 group-hover:bg-brand-500 group-hover:text-navy-900 lg:opacity-0 lg:group-hover:opacity-100">
+                  <i data-lucide="maximize-2" class="h-4 w-4"></i>
+                </span>
+                ${i === 2 ? `<span class="absolute right-3.5 bottom-4 rounded-full border border-white/25 bg-navy-950/75 px-3 py-1 text-xs font-semibold text-white backdrop-blur-md sm:hidden">+${galleryPhotos.length - 3} more in gallery</span>` : ""}
+                <div class="absolute inset-x-0 bottom-0 p-4 transition-all duration-300 ease-out sm:p-5 lg:translate-y-5 lg:opacity-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100">
+                  <h3 class="font-display text-base font-bold text-white transition-colors group-hover:text-brand-300 sm:text-lg">${photo.title}</h3>
+                </div>
+              </div>
+            </div>`;
+          })
+          .join("");
+      }
+
+      function renderDetails() {
+        const grid = document.getElementById("details-grid");
+        grid.innerHTML = detailCards
+          .map(
+            (card) => `
+          <div>
+            <div class="glass-light h-full rounded-2xl p-5 sm:rounded-[1.75rem] sm:p-8">
+              <div class="flex items-center gap-3 sm:gap-4">
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-500/15 text-brand-700 sm:h-12 sm:w-12 sm:rounded-2xl">
+                  <i data-lucide="${card.icon}" class="h-5 w-5 sm:h-5.5 sm:w-5.5"></i>
+                </span>
+                <h3 class="font-display text-[15px] font-bold leading-tight text-navy-900 sm:text-lg">${card.title}</h3>
+                <span class="ml-auto shrink-0 rounded-full border border-navy-100 bg-navy-50 px-2.5 py-1 text-[10px] font-bold text-navy-500 sm:px-3 sm:text-[11px]">
+                  ${card.items.length}<span class="hidden sm:inline"> items</span>
+                </span>
+              </div>
+              <ul class="mt-4 grid gap-0.5 sm:mt-5 sm:grid-cols-2 sm:gap-1">
+                ${card.items
+                  .map(
+                    ([icon, label]) => `
+                  <li class="flex items-center gap-2.5 rounded-lg px-2 py-2 text-[13px] font-medium text-navy-700 transition-colors hover:bg-white/60 sm:gap-3 sm:rounded-xl sm:px-3 sm:py-2.5 sm:text-sm">
+                    <i data-lucide="${icon}" class="h-4 w-4 shrink-0 text-brand-600"></i>
+                    <span class="leading-snug">${label}</span>
+                  </li>`,
+                  )
+                  .join("")}
+              </ul>
+            </div>
+          </div>`,
+          )
+          .join("");
+      }
+
+      function initials(name) {
+        return name
+          .split(" ")
+          .map((n) => n[0])
+          .join("")
+          .slice(0, 2)
+          .toUpperCase();
+      }
+
+      const GOOGLE_G = `<svg viewBox="0 0 24 24" class="h-3 w-3 shrink-0 sm:h-3.5 sm:w-3.5"><path fill="#4285F4" d="M23.5 12.3c0-.9-.1-1.5-.2-2.2H12v4.1h6.6c-.1 1.1-.9 2.8-2.5 3.9l3.8 3c2.3-2.1 3.6-5.2 3.6-8.8z"/><path fill="#34A853" d="M12 24c3.2 0 6-1.1 8-2.9l-3.8-3c-1 .7-2.4 1.2-4.2 1.2-3.2 0-5.9-2.1-6.9-5l-4 3.1C3.1 21.3 7.2 24 12 24z"/><path fill="#FBBC05" d="M5.1 14.3c-.3-.7-.4-1.5-.4-2.3s.2-1.6.4-2.3l-4-3.1C.4 8.2 0 10 0 12s.4 3.8 1.1 5.4l4-3.1z"/><path fill="#EA4335" d="M12 4.7c2.3 0 3.8 1 4.7 1.8l3.4-3.3C18 1.2 15.2 0 12 0 7.2 0 3.1 2.7 1.1 6.6l4 3.1C6.1 6.8 8.8 4.7 12 4.7z"/></svg>`;
+
+      let revIndex = 0;
+      let revDir = 1;
+
+      function renderReview(animate) {
+        const vp = document.getElementById("review-viewport");
+        const r = reviews[revIndex];
+        const stars = Array.from({ length: 5 })
+          .map(() => `<i data-lucide="star" class="h-3.5 w-3.5 fill-brand-500 text-brand-500 sm:h-4 sm:w-4"></i>`)
+          .join("");
+        vp.innerHTML = `
+          <figure class="${animate ? (revDir > 0 ? "slide-in-right" : "slide-in-left") : ""} flex h-full flex-col rounded-2xl border border-navy-100/80 bg-white p-5 shadow-[0_14px_40px_-20px_rgba(28,28,32,0.18)] sm:p-8 lg:p-9">
+            <div class="flex items-center justify-between">
+              <span class="flex items-center gap-0.5 sm:gap-1">${stars}</span>
+              <i data-lucide="quote" class="h-6 w-6 text-brand-500/40 sm:h-7 sm:w-7"></i>
+            </div>
+            <blockquote class="mt-4 flex-1 sm:mt-5">
+              <p class="text-[15px] leading-relaxed text-navy-700 sm:text-base lg:text-lg">“${r.more ? r.short + " " + r.more : r.short}”</p>
+            </blockquote>
+            <figcaption class="mt-5 flex items-center gap-3 border-t border-navy-100/70 pt-4 sm:mt-6 sm:gap-3.5 sm:pt-5">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand-400 to-brand-600 text-xs font-bold text-white sm:h-11 sm:w-11 sm:text-sm">${initials(r.name)}</span>
+              <div class="min-w-0">
+                <p class="truncate font-display text-sm font-bold text-navy-900 sm:text-base">${r.name}</p>
+                <p class="mt-0.5 flex items-center gap-1.5 text-[11px] font-medium text-navy-400 sm:text-xs">${GOOGLE_G}Google Review · Verified</p>
+              </div>
+            </figcaption>
+          </figure>`;
+
+        document.getElementById("rev-current").textContent = String(revIndex + 1).padStart(2, "0");
+        document.querySelectorAll("[data-dot]").forEach((d, i) => {
+          d.className =
+            "h-2 rounded-full transition-all duration-300 " +
+            (i === revIndex ? "w-7 bg-brand-500" : "w-2 bg-navy-200 hover:bg-navy-300");
+        });
+        if (window.lucide) lucide.createIcons();
+      }
+
+      function renderReviewChrome() {
+        document.getElementById("rev-total").textContent = String(reviews.length).padStart(2, "0");
+        document.getElementById("rating-stars").innerHTML = Array.from({ length: 5 })
+          .map(() => `<i data-lucide="star" class="h-4 w-4 fill-brand-500 text-brand-500"></i>`)
+          .join("");
+        document.getElementById("review-dots").innerHTML = reviews
+          .map((_, i) => `<button data-dot="${i}" aria-label="Go to review ${i + 1}" class="h-2 w-2 rounded-full bg-navy-200"></button>`)
+          .join("");
+        document.querySelectorAll("[data-dot]").forEach((d, i) =>
+          d.addEventListener("click", () => {
+            revDir = i > revIndex ? 1 : -1;
+            revIndex = i;
+            renderReview(true);
+            restartAuto();
+          }),
+        );
+      }
+
+      function paginate(dir) {
+        revDir = dir;
+        revIndex = (revIndex + dir + reviews.length) % reviews.length;
+        renderReview(true);
+      }
+
+      let autoTimer = null;
+      function restartAuto() {
+        clearInterval(autoTimer);
+        autoTimer = setInterval(() => paginate(1), 7000);
+      }
+
+      /* =========================================================
+         Lightbox (pop-up gallery)
+      ========================================================= */
+      let lbIndex = 0;
+      const lb = document.getElementById("lightbox");
+
+      function renderThumbs() {
+        document.getElementById("lb-thumbs").innerHTML = galleryPhotos
+          .map(
+            (p, i) => `
+          <button data-thumb="${i}" aria-label="${p.title}" class="h-12 w-16 shrink-0 overflow-hidden rounded-lg border transition-all duration-300 ${
+            i === lbIndex ? "border-brand-500 opacity-100 ring-2 ring-brand-500/40" : "border-white/15 opacity-50 hover:opacity-90"
+          }">
+            <img src="${p.src}" alt="" class="h-full w-full object-cover" />
+          </button>`,
+          )
+          .join("");
+        document.querySelectorAll("[data-thumb]").forEach((b) =>
+          b.addEventListener("click", () => showPhoto(Number(b.dataset.thumb), 1)),
+        );
+      }
+
+      function showPhoto(i, dir) {
+        lbIndex = (i + galleryPhotos.length) % galleryPhotos.length;
+        const p = galleryPhotos[lbIndex];
+        const img = document.getElementById("lb-image");
+        img.classList.remove("slide-in-right", "slide-in-left");
+        void img.offsetWidth;
+        img.classList.add(dir >= 0 ? "slide-in-right" : "slide-in-left");
+        img.src = p.src;
+        img.alt = p.alt;
+        document.getElementById("lb-title").innerHTML = p.title;
+        document.getElementById("lb-alt").textContent = p.alt;
+        document.getElementById("lb-category").textContent = p.category;
+        document.getElementById("lb-index").textContent = String(lbIndex + 1).padStart(2, "0");
+        renderThumbs();
+      }
+
+      function openLightbox(i) {
+        lb.classList.remove("hidden");
+        lb.classList.add("flex");
+        document.body.classList.add("no-scroll");
+        showPhoto(i, 1);
+        document.getElementById("lb-total").textContent = String(galleryPhotos.length).padStart(2, "0");
+        requestAnimationFrame(() => lb.classList.add("lb-enter"));
+        if (window.lucide) lucide.createIcons();
+      }
+
+      function closeLightbox() {
+        lb.classList.remove("lb-enter");
+        document.body.classList.remove("no-scroll");
+        setTimeout(() => {
+          lb.classList.add("hidden");
+          lb.classList.remove("flex");
+        }, 300);
+      }
+
+      /* =========================================================
+         Boot
+      ========================================================= */
+      document.addEventListener("DOMContentLoaded", () => {
+        // Duplicate marquee track for a seamless loop
+        const marquee = document.getElementById("marquee");
+        marquee.innerHTML += marquee.innerHTML;
+
+        renderGallery();
+        renderDetails();
+        renderReviewChrome();
+        renderReview(false);
+
+        document.querySelectorAll("[data-cta]").forEach(buildCta);
+        document.querySelectorAll("[data-phone]").forEach(buildPhone);
+
+        if (window.lucide) lucide.createIcons();
+
+        /* ---- Navbar scroll state ---- */
+        const announce = document.getElementById("announce");
+        const navbar = document.getElementById("navbar");
+        const floating = document.getElementById("floating-call");
+        const onScroll = () => {
+          const scrolled = window.scrollY > 24;
+          announce.classList.toggle("max-h-0", scrolled);
+          announce.classList.toggle("opacity-0", scrolled);
+          announce.classList.toggle("max-h-12", !scrolled);
+          announce.classList.toggle("opacity-100", !scrolled);
+          navbar.classList.toggle("shadow-2xl", scrolled);
+          navbar.classList.toggle("shadow-navy-950/40", scrolled);
+
+          const show = window.scrollY > 700;
+          floating.classList.toggle("translate-y-24", !show);
+          floating.classList.toggle("opacity-0", !show);
+          floating.classList.toggle("translate-y-0", show);
+          floating.classList.toggle("opacity-100", show);
+        };
+        onScroll();
+        window.addEventListener("scroll", onScroll, { passive: true });
+
+        /* ---- Mobile menu ---- */
+        const menuBtn = document.getElementById("menu-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const menuOpenIcon = document.getElementById("menu-open-icon");
+        const menuCloseIcon = document.getElementById("menu-close-icon");
+        let menuOpen = false;
+        let menuTimer;
+        const setMenu = (open) => {
+          clearTimeout(menuTimer);
+          menuOpen = open;
+          menuBtn.setAttribute("aria-expanded", String(open));
+          menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+          menuOpenIcon.hidden = open;
+          menuCloseIcon.hidden = !open;
+          if (open) mobileMenu.style.visibility = "visible";
+          if (open) {
+            mobileMenu.style.height = mobileMenu.scrollHeight + "px";
+            menuTimer = setTimeout(() => {
+              if (menuOpen) mobileMenu.style.height = "auto";
+            }, 420);
+          } else {
+            mobileMenu.style.height = mobileMenu.scrollHeight + "px";
+            requestAnimationFrame(() => {
+              if (!menuOpen) mobileMenu.style.height = "0px";
+            });
+          }
+          mobileMenu.style.opacity = open ? "1" : "0";
+
+          if (open) {
+            mobileMenu.querySelectorAll(".mnav").forEach((a, i) => {
+              a.style.transition = "opacity .3s ease, transform .3s ease";
+              a.style.transitionDelay = i * 0.05 + "s";
+              a.style.opacity = "0";
+              a.style.transform = "translateX(-16px)";
+              requestAnimationFrame(() => {
+                a.style.opacity = "1";
+                a.style.transform = "translateX(0)";
+              });
+            });
+          } else {
+            mobileMenu.querySelectorAll(".mnav").forEach((a) => {
+              a.style.transitionDelay = "0s";
+            });
+            menuTimer = setTimeout(() => {
+              if (!menuOpen) mobileMenu.style.visibility = "hidden";
+            }, 400);
+          }
+        };
+        menuBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          setMenu(!menuOpen);
+        });
+        mobileMenu.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => setMenu(false)));
+
+        // Close the drop-down on outside click or Escape
+        document.addEventListener("click", (e) => {
+          if (menuOpen && !mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) setMenu(false);
+        });
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && menuOpen) setMenu(false);
+        });
+        // Close when crossing back to desktop layout
+        window.addEventListener("resize", () => {
+          if (menuOpen && window.innerWidth >= 1024) setMenu(false);
+        });
+
+        /* ---- Scroll reveal ---- */
+        const revealObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add("is-in");
+                revealObserver.unobserve(e.target);
+              }
+            });
+          },
+          { rootMargin: "-60px 0px -60px 0px", threshold: 0.01 },
+        );
+        document.querySelectorAll("[data-reveal]").forEach((el) => revealObserver.observe(el));
+        document.querySelectorAll("[data-stagger]").forEach((el) => {
+          Array.from(el.children).forEach((child, i) => {
+            child.style.transitionDelay = (0.08 + i * 0.1).toFixed(2) + "s";
+          });
+          revealObserver.observe(el);
+        });
+
+        /* ---- CountUp ---- */
+        const countObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (!e.isIntersecting) return;
+              const el = e.target;
+              countObserver.unobserve(el);
+              const to = Number(el.dataset.count);
+              const suffix = el.dataset.suffix || "";
+              const duration = 1600;
+              const start = performance.now();
+              const tick = (t) => {
+                const p = Math.min(1, (t - start) / duration);
+                const eased = 1 - Math.pow(1 - p, 3);
+                el.textContent = Math.round(to * eased) + suffix;
+                if (p < 1) requestAnimationFrame(tick);
+              };
+              requestAnimationFrame(tick);
+            });
+          },
+          { rootMargin: "-40px" },
+        );
+        document.querySelectorAll("[data-count]").forEach((el) => countObserver.observe(el));
+
+        /* ---- Gallery -> lightbox ---- */
+        document.querySelectorAll(".gallery-card").forEach((card) => {
+          card.addEventListener("click", () => openLightbox(Number(card.dataset.index)));
+          card.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              openLightbox(Number(card.dataset.index));
+            }
+          });
+        });
+        document.getElementById("open-gallery").addEventListener("click", () => openLightbox(0));
+        document.getElementById("lb-close").addEventListener("click", closeLightbox);
+        document.getElementById("lb-prev").addEventListener("click", () => showPhoto(lbIndex - 1, -1));
+        document.getElementById("lb-next").addEventListener("click", () => showPhoto(lbIndex + 1, 1));
+        lb.querySelector(".lb-backdrop").addEventListener("click", closeLightbox);
+        document.addEventListener("keydown", (e) => {
+          if (lb.classList.contains("hidden")) return;
+          if (e.key === "Escape") closeLightbox();
+          if (e.key === "ArrowRight") showPhoto(lbIndex + 1, 1);
+          if (e.key === "ArrowLeft") showPhoto(lbIndex - 1, -1);
+        });
+
+        // Swipe on lightbox
+        let lbTouch = null;
+        const stage = document.getElementById("lb-stage");
+        stage.addEventListener("touchstart", (e) => (lbTouch = e.touches[0].clientX), { passive: true });
+        stage.addEventListener("touchend", (e) => {
+          if (lbTouch == null) return;
+          const dx = e.changedTouches[0].clientX - lbTouch;
+          if (Math.abs(dx) > 45) showPhoto(lbIndex + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1);
+          lbTouch = null;
+        });
+
+        /* ---- Reviews carousel ---- */
+        document.querySelectorAll(".rev-prev").forEach((b) =>
+          b.addEventListener("click", () => {
+            paginate(-1);
+            restartAuto();
+          }),
+        );
+        document.querySelectorAll(".rev-next").forEach((b) =>
+          b.addEventListener("click", () => {
+            paginate(1);
+            restartAuto();
+          }),
+        );
+        let revTouch = null;
+        const vp = document.getElementById("review-viewport");
+        vp.addEventListener("touchstart", (e) => (revTouch = e.touches[0].clientX), { passive: true });
+        vp.addEventListener("touchend", (e) => {
+          if (revTouch == null) return;
+          const dx = e.changedTouches[0].clientX - revTouch;
+          if (Math.abs(dx) > 45) {
+            paginate(dx < 0 ? 1 : -1);
+            restartAuto();
+          }
+          revTouch = null;
+        });
+        restartAuto();
+
+        /* ---- Insurance form ---- */
+        const form = document.getElementById("verify-form");
+        const done = document.getElementById("form-done");
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const btn = form.querySelector("[data-submit]");
+          const label = btn.querySelector(".cta-label");
+          const iconWrap = btn.querySelector(".cta-icon-wrap");
+          label.textContent = "Verifying…";
+          iconWrap.innerHTML = `<i data-lucide="loader-2" class="h-[18px] w-[18px] animate-spin"></i>`;
+          btn.classList.add("pointer-events-none", "opacity-70");
+          if (window.lucide) lucide.createIcons();
+
+          setTimeout(() => {
+            form.style.transition = "opacity .35s ease, transform .35s ease";
+            form.style.opacity = "0";
+            form.style.transform = "translateY(-12px)";
+            setTimeout(() => {
+              form.classList.add("hidden");
+              done.classList.remove("hidden");
+              done.classList.add("flex");
+              if (window.lucide) lucide.createIcons();
+            }, 320);
+          }, 1400);
+        });
+
+        document.getElementById("form-reset").addEventListener("click", () => {
+          done.classList.add("hidden");
+          done.classList.remove("flex");
+          form.reset();
+          form.classList.remove("hidden");
+          form.style.opacity = "1";
+          form.style.transform = "none";
+          const btn = form.querySelector("[data-submit]");
+          btn.classList.remove("pointer-events-none", "opacity-70");
+          btn.querySelector(".cta-label").textContent = "Verify My Insurance";
+          btn.querySelector(".cta-icon-wrap").innerHTML = `
+            <i data-lucide="arrow-up-right" class="h-[18px] w-[18px] transition-transform duration-300 ease-out group-hover:translate-x-7 group-hover:-translate-y-7"></i>
+            <i data-lucide="arrow-up-right" class="absolute h-[18px] w-[18px] -translate-x-7 translate-y-7 transition-transform duration-300 ease-out group-hover:translate-x-0 group-hover:translate-y-0"></i>`;
+          if (window.lucide) lucide.createIcons();
+        });
+      });
+    </script>
+  </body>
+</html>
