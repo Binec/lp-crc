@@ -72,7 +72,7 @@ function FooterLogo() {
   );
 }
 
-/* Teal / Amarillo theme switch — toggles data-theme on <html> and persists it */
+/* Teal / Amarillo theme switch — toggles data-theme on <html> and persists it 
 type ThemeName = "teal" | "yellow";
 const THEME_STORAGE_KEY = "crc-theme";
 
@@ -118,7 +118,7 @@ function ThemeToggle() {
     </button>
   );
 }
-
+*/
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden bg-navy-950">
