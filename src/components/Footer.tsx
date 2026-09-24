@@ -7,7 +7,6 @@ import {
   Mail,
   MapPin,
   MessageCircle,
-  Palette,
   Phone,
   Share2,
   ShieldCheck,
@@ -69,53 +68,6 @@ function FooterLogo() {
         className="h-10 w-auto max-w-[180px] object-contain transition-transform duration-300 group-hover:scale-[1.03] sm:h-12 sm:max-w-[220px]"
       />
     </a>
-  );
-}
-
-/* Teal / Amarillo theme switch — toggles data-theme on <html> and persists it */
-type ThemeName = "teal" | "yellow";
-const THEME_STORAGE_KEY = "crc-theme";
-
-function useThemeSwitch() {
-  const [theme, setTheme] = useState<ThemeName>("teal");
-
-  useEffect(() => {
-    const stored = (localStorage.getItem(THEME_STORAGE_KEY) as ThemeName | null) ?? "teal";
-    setTheme(stored);
-    document.documentElement.setAttribute("data-theme", stored);
-  }, []);
-
-  const toggle = () => {
-    setTheme((prev) => {
-      const next: ThemeName = prev === "teal" ? "yellow" : "teal";
-      document.documentElement.setAttribute("data-theme", next);
-      localStorage.setItem(THEME_STORAGE_KEY, next);
-      return next;
-    });
-  };
-
-  return { theme, toggle };
-}
-
-function ThemeToggle() {
-  const { theme, toggle } = useThemeSwitch();
-  const isYellow = theme === "yellow";
-
-  return (
-    <button
-      type="button"
-      onClick={toggle}
-      aria-label="Cambiar entre tema teal y amarillo"
-      aria-pressed={isYellow}
-      className="group inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold text-white/70 backdrop-blur transition-all duration-300 hover:border-brand-400/40 hover:bg-white/10 hover:text-white"
-    >
-      <Palette className="h-3.5 w-3.5 text-brand-400" />
-      <span
-        className="h-3 w-3 rounded-full border border-white/20 transition-colors duration-300"
-        style={{ backgroundColor: isYellow ? "#f1b753" : "#3f7994" }}
-      />
-      {isYellow ? "Tema Amarillo" : "Tema Teal"}
-    </button>
   );
 }
 
@@ -247,7 +199,6 @@ export default function Footer() {
                 Accessibility
               </a>
             </div>
-            <ThemeToggle />
           </div>
         </div>
       </div>
