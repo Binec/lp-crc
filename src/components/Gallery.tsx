@@ -43,7 +43,7 @@ export const galleryPhotos: GalleryPhoto[] = [
     id: "great views",
     title: "Quiet Hearth Lounge",
     category: "Supportive Housing",
-    src: "https://go.createrecoverycenter.com/wp-content/uploads/2025/01/exterior-view-of-a-contemporary-new-home-in-los-an-2024-05-10-20-48-20-utc-1-scaled.jpg",
+    src: "https://go.createrecoverycenter.com/wp-content/uploads/2025/01/IMG_2485-1-scaled-e1736447557797.jpeg",
     alt: "Inviting white couches beside a modern fireplace for group sharing",
   },
   {
