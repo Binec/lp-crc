@@ -22,12 +22,12 @@ export const galleryPhotos: GalleryPhoto[] = [
     id: "patio",
     title: "Outdoor Relaxation Patio",
     category: "Amenities",
-    src: "https://go.createrecoverycenter.com/wp-content/uploads/2025/01/IMG_2485-1-scaled-e1736447557797.jpeg",
+    src: "https://go.createrecoverycenter.com/wp-content/uploads/2025/01/exterior-view-of-a-contemporary-new-home-in-los-an-2024-05-10-20-48-20-utc-1-scaled.jpg",
     alt: "Sunny modern outdoor patio with lush greenery and cozy lounge seating",
   },
   {
-    id: "ocean-lounge",
-    title: "Ocean-View Therapy Lounge",
+    id: "lounge",
+    title: "Therapy Lounge",
     category: "Living Space",
     src: "https://go.createrecoverycenter.com/wp-content/uploads/2025/01/IMG_2502-scaled.jpeg",
     alt: "Minimalist living room with natural light overlooking the ocean",
@@ -40,7 +40,7 @@ export const galleryPhotos: GalleryPhoto[] = [
     alt: "Serene meditation room with natural wood, cushions, and peaceful light",
   },
   {
-    id: "cozy-fireplace",
+    id: "great views",
     title: "Quiet Hearth Lounge",
     category: "Supportive Housing",
     src: "https://go.createrecoverycenter.com/wp-content/uploads/2025/01/exterior-view-of-a-contemporary-new-home-in-los-an-2024-05-10-20-48-20-utc-1-scaled.jpg",
@@ -48,7 +48,7 @@ export const galleryPhotos: GalleryPhoto[] = [
   },
   {
     id: "beachside-living",
-    title: "Beachside Community Living",
+    title: "Community Living",
     category: "Supportive Housing",
     src: "https://go.createrecoverycenter.com/wp-content/uploads/2025/01/2dc922_0f388d99c87341b7b9f7caa91cc57c60mv2.jpeg",
     alt: "Bright indoor-outdoor residence with open doors to coastal air",
