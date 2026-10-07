@@ -18,7 +18,7 @@ const links = [
 ];
 
 export const PHONE_DISPLAY = "(866) 913-7063";
-export const PHONE_TEL = "tel:8669137063";
+export const PHONE_TEL = "tel:+18669137063";
 
 /* Shared calling CTA — circle icon + number, same design everywhere */
 export function PhoneCta({
