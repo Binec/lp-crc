@@ -2,13 +2,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowUpRight,
   BadgeCheck,
-  Camera,
-  Globe,
   Mail,
   MapPin,
-  MessageCircle,
   Phone,
-  Share2,
   ShieldCheck,
 } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -43,13 +39,6 @@ const resources = [
   { label: "Joint Commission Accredited", href: "#insurance" },
   { label: "Privacy Policy", href: "#top" },
   { label: "Terms of Service", href: "#top" },
-];
-
-const socials = [
-  { label: "Facebook", Icon: Share2, href: "#top" },
-  { label: "Instagram", Icon: Camera, href: "#top" },
-  { label: "Twitter / X", Icon: MessageCircle, href: "#top" },
-  { label: "LinkedIn", Icon: Globe, href: "#top" },
 ];
 
 const ctaPerks = [
@@ -143,20 +132,6 @@ export default function Footer() {
                 </span>
                 <span className="text-xs font-medium sm:text-sm">California · Joint Commission Accredited</span>
               </div>
-            </div>
-
-            {/* Socials */}
-            <div className="mt-6 flex items-center gap-2">
-              {socials.map(({ label, Icon, href }) => (
-                <a
-                  key={label}
-                  href={href}
-                  aria-label={label}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/70 backdrop-blur transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-400/40 hover:bg-brand-500/10 hover:text-brand-300"
-                >
-                  <Icon className="h-4 w-4" />
-                </a>
-              ))}
             </div>
           </div>
 
