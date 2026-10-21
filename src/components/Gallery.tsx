@@ -20,10 +20,10 @@ export interface GalleryPhoto {
 export const galleryPhotos: GalleryPhoto[] = [
   {
     id: "patio",
-    title: "Outdoor Relaxation Patio",
+    title: "Our Livingroom",
     category: "Amenities",
-    src: "https://go.createrecoverycenter.com/wp-content/uploads/2025/01/exterior-view-of-a-contemporary-new-home-in-los-an-2024-05-10-20-48-20-utc-1-scaled.jpg",
-    alt: "Sunny modern outdoor patio with lush greenery and cozy lounge seating",
+    src: "https://go.createrecoverycenter.com/wp-content/uploads/2025/01/2dc922_ec7596bc471d447ca9dbd844af0bee2cmv2.jpeg",
+    alt: "Modern indoor with lush greenery and cozy lounge seating",
   },
   {
     id: "lounge",
