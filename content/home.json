@@ -1,0 +1,175 @@
+{
+  "levelsOfCare": {
+    "sectionTag": "Levels of Care",
+    "title": "Your Path to Recovery",
+    "subtitle": "Guiding you through every stage of recovery.",
+    "programs": [
+      {
+        "id": "php",
+        "num": "01",
+        "tag": "PHP",
+        "title": "Partial Hospitalization Program",
+        "text": "Comprehensive PHP designed to provide structure and consistent care while allowing you to maintain independence and continue living at home. Our program combines individual therapy, group sessions, and medical oversight, all delivered through a trauma-informed approach tailored to your needs.",
+        "tags": [
+          "Individual Therapy",
+          "Group Sessions",
+          "Medical Oversight"
+        ],
+        "img": "https://images.pexels.com/photos/5711021/pexels-photo-5711021.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+        "alt": "A diverse group therapy session sitting in a circle"
+      },
+      {
+        "id": "iop",
+        "num": "02",
+        "tag": "IOP",
+        "title": "Intensive Outpatient Program",
+        "text": "Our IOP is designed for those who need consistent support and accountability while managing work, school, or family responsibilities. With flexible scheduling, including Evening IOP options, the program combines evidence-based therapy with continued access to the tools and structure that help you build lasting stability.",
+        "tags": [
+          "Flexible Scheduling",
+          "Evening IOP",
+          "Evidence-Based Therapy"
+        ],
+        "img": "https://images.pexels.com/photos/9064678/pexels-photo-9064678.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+        "alt": "A one-on-one therapy session in a modern office"
+      },
+      {
+        "id": "supportive",
+        "num": "03",
+        "tag": "Housing + Aftercare",
+        "title": "Supportive Housing & Aftercare",
+        "text": "For those who need continued support, we offer supportive housing and aftercare options that provide a safe, structured environment alongside ongoing therapy and peer support. It's there when you need it, to help you keep the progress you've made while rebuilding your daily life.",
+        "tags": [
+          "Safe Environment",
+          "Peer Support",
+          "Ongoing Therapy"
+        ],
+        "img": "https://images.pexels.com/photos/8556339/pexels-photo-8556339.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+        "alt": "Friends supporting each other outdoors"
+      }
+    ]
+  },
+  "gallery": {
+    "sectionTag": "Our Facility & Grounds",
+    "title": "A Peaceful Environment Built for ",
+    "titleHighlight": "Healing",
+    "description": "Take a look inside Create Recovery Center — comfortable living spaces, serene meditation lounges, private counseling rooms, and coastal outdoor amenities designed to support your journey.",
+    "photos": [
+      {
+        "id": "patio",
+        "title": "Outdoor Relaxation Patio",
+        "category": "Amenities",
+        "src": "https://go.createrecoverycenter.com/wp-content/uploads/2025/01/exterior-view-of-a-contemporary-new-home-in-los-an-2024-05-10-20-48-20-utc-1-scaled.jpg",
+        "alt": "Sunny modern outdoor patio with lush greenery and cozy lounge seating"
+      },
+      {
+        "id": "lounge",
+        "title": "Therapy Lounge",
+        "category": "Living Space",
+        "src": "https://go.createrecoverycenter.com/wp-content/uploads/2025/01/IMG_2502-scaled.jpeg",
+        "alt": "Minimalist living room with natural light overlooking the ocean"
+      },
+      {
+        "id": "meditation-hall",
+        "title": "Mindfulness & Meditation Space",
+        "category": "Therapy",
+        "src": "https://go.createrecoverycenter.com/wp-content/uploads/2025/01/IMG_9134-scaled.jpeg",
+        "alt": "Serene meditation room with natural wood, cushions, and peaceful light"
+      },
+      {
+        "id": "great views",
+        "title": "Quiet Hearth Lounge",
+        "category": "Supportive Housing",
+        "src": "https://go.createrecoverycenter.com/wp-content/uploads/2025/01/IMG_2485-1-scaled-e1736447557797.jpeg",
+        "alt": "Inviting white couches beside a modern fireplace for group sharing"
+      },
+      {
+        "id": "beachside-living",
+        "title": "Community Living",
+        "category": "Supportive Housing",
+        "src": "https://go.createrecoverycenter.com/wp-content/uploads/2025/01/2dc922_0f388d99c87341b7b9f7caa91cc57c60mv2.jpeg",
+        "alt": "Bright indoor-outdoor residence with open doors to coastal air"
+      },
+      {
+        "id": "sunlit-parlor",
+        "title": "Sunlit Peer Support Parlor",
+        "category": "Living Space",
+        "src": "https://go.createrecoverycenter.com/wp-content/uploads/2025/01/2dc922_977e310a3bb5475caf6da29cd73315efmv2.webp",
+        "alt": "Comfortable seating area with floor-to-ceiling windows for quiet discussion"
+      }
+    ]
+  },
+  "reviews": [
+    {
+      "name": "Shelley Henn",
+      "short": "I can’t express my gratitude for what Create Recovery Center has done for my son. After years of struggling with addiction and attempting other inpatient facilities with no success, we were beginning to lose hope.",
+      "more": "That’s when he found Create Recovery Center, and it truly was a life-changing experience. The level of care, compassion, and expertise provided by the staff is nothing short of remarkable."
+    },
+    {
+      "name": "Andy Kaiser",
+      "short": "I can attest to what the rest of these reviews say when they say that Create literally saved their life because it LITERALLY saved mine too. I can’t thank them enough for their understanding staff that put me back on the right track in life."
+    },
+    {
+      "name": "Mia Austin",
+      "short": "Create recovery is the best level of care I’ve experienced. This company has a great focus on success after leaving the program and discharge planning.",
+      "more": "Case management is phenomenal and one on one therapy with extremely qualified professionals. Create recovery center has played a primary role in my sobriety and became the foundation for my success. Thank you create recovery!"
+    },
+    {
+      "name": "Stuart Lyon",
+      "short": "Create was a phenomenal, vital experience for me. It created within me a solid, deep foundation of recovery. I have been to many treatments – Create was special.",
+      "more": "From bottom to top, staff was always positive leading me to a solution. The facilitators, the therapist, all staff were fabulous. This place rocks. If you’re looking to recover – look no further!"
+    },
+    {
+      "name": "Diane Holliday",
+      "short": "I will forever be grateful to Create Recovery Center for all the many ways they helped me through my recovery journey. The facilitators, therapists, doctor & nurse, case workers and management are top notch.",
+      "more": "I am nothing like the wreck I was when I walked in their doors. I’m sober now, finished the 12 steps with the help of a sponsor and the staff at Create and never want to look back. They truly care about their clients."
+    },
+    {
+      "name": "Simon Thomas",
+      "short": "CREATE IS ABSOLUTELY AMAZING! The amount of consideration they have toward clients is unparalleled! They have gone above and beyond what any other outpatient center would have done for me.",
+      "more": "The staff at Create definitely make it a point to get to know each person individually and make each client feel special. The environment is very connected and no one is ever left out here."
+    },
+    {
+      "name": "Jeremy Farr",
+      "short": "Create recovery is truly a home. The staff are what create the entire experience here. This is a place that is absolutely ran by servant leaders in their own right.",
+      "more": "Special shout out to Garrett and Zeena they are absolutely phenomenal with making a seamless process to get started. The clinical team here is unmatched and unlike any other. I am so grateful to have found create."
+    },
+    {
+      "name": "Trenn Medlin",
+      "short": "I absolutely love this place. Create provided so much support for me while I was there and has continued to show support for me through aftercare.",
+      "more": "The groups are amazing and the staff truly cares about their clients. Since attending Create I have been able to maintain my sobriety and even got a job working in treatment myself. I recommend Create for anyone looking to get sober and change their life."
+    }
+  ],
+  "hero": {
+    "badge": "Outpatient Treatment Center",
+    "confidentialBadge": "100% Confidential Admissions 24/7",
+    "titlePrefix": "Flexible PHP & IOP Programs for",
+    "titleHighlight": "Lasting Recovery",
+    "description": "Create Recovery Center offers evidence-based outpatient programs designed to fit your life. Our programs are built for individuals ready to step down from a higher level of care or those seeking structure while managing work, school, and family life.",
+    "subDescription": "Choose from Partial Hospitalization (PHP), Intensive Outpatient (IOP), Evening IOP, and Aftercare options, all tailored to support you at every stage. We also encourage clients to enhance their progress with additional support options aligned with their personal goals.",
+    "checks": [
+      "Insurance accepted",
+      "Verified",
+      "Cash pay options available"
+    ]
+  },
+  "details": {
+    "sectionTag": "Center Overview",
+    "title": "Care Designed Around ",
+    "titleHighlight": "Your Life",
+    "description": "Structure, support, and real-world flexibility — everything you need to rebuild, at every stage of recovery."
+  },
+  "trust": {
+    "sectionTag": "Joint Commission Accredited",
+    "title": "Top-Rated Treatment in a Private, Supportive Setting",
+    "bullets": [
+      "Most private insurance accepted",
+      "Exceptional remission rates",
+      "Career and educational planning"
+    ]
+  },
+  "footer": {
+    "ctaTitle": "Start Your Recovery Today",
+    "ctaDescription": "Call now to verify your insurance — our admissions team is available 24/7, 100% confidential.",
+    "brandDescription": "Top-rated PHP & IOP outpatient programs designed to fit your life. Confidential, evidence-based care, 24/7 admissions."
+  }
+}

@@ -1,0 +1,2165 @@
+﻿=== CtaButton.tsx ===
+import { ArrowUpRight, Loader2, type LucideIcon } from "lucide-react";
+import type { MouseEventHandler, ReactNode } from "react";
+import { cn } from "../utils/cn";
+
+type Tone = "light" | "dark" | "gold";
+type Size = "sm" | "md" | "lg";
+
+interface CtaButtonProps {
+  children: ReactNode;
+  href?: string;
+  onClick?: MouseEventHandler<HTMLElement>;
+  type?: "button" | "submit";
+  /** light = dark outline on white Â· dark = white outline on charcoal Â· gold = dark outline on gold band */
+  tone?: Tone;
+  size?: Size;
+  icon?: LucideIcon;
+  /** stretch to fill container width */
+  fluid?: boolean;
+  loading?: boolean;
+  disabled?: boolean;
+  className?: string;
+}
+
+const tones: Record<Tone, { pill: string; pillHover: string; fill: string; circle: string; circleHover: string }> = {
+  light: {
+    pill: "border-navy-900 bg-white/80 text-navy-900 backdrop-blur-sm",
+    pillHover: "group-hover:text-navy-900",
+    fill: "bg-brand-500",
+    circle: "border-navy-900 bg-white/80 text-navy-900 backdrop-blur-sm",
+    circleHover: "group-hover:bg-brand-500 group-hover:text-navy-900",
+  },
+  dark: {
+    pill: "border-white/80 bg-white/5 text-white backdrop-blur-sm",
+    pillHover: "group-hover:text-navy-900",
+    fill: "bg-brand-500",
+    circle: "border-white/80 bg-white/5 text-white backdrop-blur-sm",
+    circleHover: "group-hover:bg-brand-500 group-hover:text-navy-900",
+  },
+  gold: {
+    pill: "border-navy-900 bg-white/15 text-navy-900",
+    pillHover: "group-hover:text-white",
+    fill: "bg-navy-900",
+    circle: "border-navy-900 bg-white/15 text-navy-900",
+    circleHover: "group-hover:bg-navy-900 group-hover:text-white",
+  },
+};
+
+const sizes: Record<Size, { pill: string; circle: string; icon: string }> = {
+  sm: {
+    pill: "h-10 px-5 text-[11px] tracking-[0.08em]",
+    circle: "h-10 w-10",
+    icon: "h-4 w-4",
+  },
+  md: {
+    pill: "h-[52px] px-7 text-[12.5px] tracking-[0.08em] sm:px-8",
+    circle: "h-[52px] w-[52px]",
+    icon: "h-[18px] w-[18px]",
+  },
+  lg: {
+    pill: "h-14 px-8 text-[13px] tracking-[0.1em] sm:h-[60px] sm:px-10 sm:text-sm",
+    circle: "h-14 w-14 sm:h-[60px] sm:w-[60px]",
+    icon: "h-5 w-5",
+  },
+};
+
+function Inner({
+  children,
+  tone,
+  size,
+  icon: Icon,
+  fluid,
+  loading,
+}: {
+  children: ReactNode;
+  tone: Tone;
+  size: Size;
+  icon: LucideIcon;
+  fluid?: boolean;
+  loading?: boolean;
+}) {
+  const t = tones[tone];
+  const s = sizes[size];
+
+  return (
+    <>
+      {/* Pill */}
+      <span
+        className={cn(
+          "relative inline-flex items-center justify-center overflow-hidden rounded-full border font-display font-bold uppercase leading-none transition-colors duration-300",
+          s.pill,
+          t.pill,
+          t.pillHover,
+          fluid && "flex-1",
+        )}
+      >
+        {/* Fill sweep on hover */}
+        <span
+          aria-hidden
+          className={cn(
+            "absolute inset-0 translate-y-[101%] rounded-full  transition-transform duration-[450ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0",
+            t.fill,
+          )}
+        />
+        <span className="relative whitespace-nowrap">{children}</span>
+      </span>
+
+      {/* Circle */}
+      <span
+        className={cn(
+          "relative flex shrink-0 items-center justify-center overflow-hidden rounded-full border transition-colors duration-300",
+          s.circle,
+          t.circle,
+          t.circleHover,
+        )}
+      >
+        {loading ? (
+          <Loader2 className={cn(s.icon, "animate-spin")} />
+        ) : (
+          <>
+            {/* Icon exits to the top-rightâ€¦ */}
+            <Icon
+              className={cn(
+                s.icon,
+                "transition-transform duration-300 ease-out group-hover:translate-x-7 group-hover:-translate-y-7",
+              )}
+            />
+            {/* â€¦while a clone enters from the bottom-left */}
+            <Icon
+              className={cn(
+                s.icon,
+                "absolute -translate-x-7 translate-y-7 transition-transform duration-300 ease-out group-hover:translate-x-0 group-hover:translate-y-0",
+              )}
+            />
+          </>
+        )}
+      </span>
+    </>
+  );
+}
+
+export default function CtaButton({
+  children,
+  href,
+  onClick,
+  type = "button",
+  tone = "light",
+  size = "md",
+  icon = ArrowUpRight,
+  fluid = false,
+  loading = false,
+  disabled = false,
+  className,
+}: CtaButtonProps) {
+  const base = cn(
+    "group inline-flex select-none items-center gap-0 transition-transform duration-200 active:scale-[0.98]",
+    fluid && "flex w-full",
+    disabled && "pointer-events-none opacity-70",
+    className,
+  );
+
+  const inner = (
+    <Inner tone={tone} size={size} icon={icon} fluid={fluid} loading={loading}>
+      {children}
+    </Inner>
+  );
+
+  if (href) {
+    return (
+      <a href={href} onClick={onClick} className={base}>
+        {inner}
+      </a>
+    );
+  }
+
+  return (
+    <button type={type} onClick={onClick} disabled={disabled} className={base}>
+      {inner}
+    </button>
+  );
+}
+=== Details.tsx ===
+import {
+  BedDouble,
+  BookOpen,
+  Brain,
+  Briefcase,
+  Building2,
+  CalendarClock,
+  Car,
+  ClipboardList,
+  Flower2,
+  GraduationCap,
+  HardHat,
+  HeartHandshake,
+  HeartPulse,
+  Home,
+  Layers,
+  Lock,
+  MessagesSquare,
+  PawPrint,
+  Route,
+  ShieldCheck,
+  Smartphone,
+  Sparkles,
+  Sun,
+  UserRound,
+  Users,
+  UsersRound,
+  Waves,
+  type LucideIcon,
+} from "lucide-react";
+import { Reveal, SectionTag, Stagger, StaggerItem } from "./ui";
+
+type DetailItem = { icon: LucideIcon; label: string };
+type DetailCard = { icon: LucideIcon; title: string; items: DetailItem[] };
+
+const cards: DetailCard[] = [
+  {
+    icon: Sparkles,
+    title: "What Sets Us Apart",
+    items: [
+      { icon: Route, label: "Our Approach" },
+      { icon: ClipboardList, label: "Personalized Treatment Plans" },
+      { icon: Lock, label: "Confidential & Judgment-Free Care" },
+      { icon: CalendarClock, label: "Convenient Day & Evening Scheduling" },
+    ],
+  },
+  {
+    icon: Users,
+    title: "Who We Treat",
+    items: [
+      { icon: Briefcase, label: "Working Professionals" },
+      { icon: HardHat, label: "Union Members" },
+      { icon: GraduationCap, label: "College Students" },
+      { icon: UserRound, label: "Young Adults" },
+      { icon: UsersRound, label: "Adult Men & Women" },
+    ],
+  },
+  {
+    icon: Home,
+    title: "Amenities & Accommodations",
+    items: [
+      { icon: BedDouble, label: "Private or Shared Rooms" },
+      { icon: Smartphone, label: "Cell Phones Allowed" },
+      { icon: PawPrint, label: "Pet Friendly" },
+      { icon: ShieldCheck, label: "Safe Environment" },
+      { icon: Car, label: "Transportation Assistance" },
+      { icon: Sun, label: "Weekend Outings" },
+      { icon: Waves, label: "Beach Access" },
+    ],
+  },
+  {
+    icon: HeartHandshake,
+    title: "Services & Therapies",
+    items: [
+      { icon: MessagesSquare, label: "1-on-1 Counseling" },
+      { icon: Flower2, label: "Meditation & Mindfulness" },
+      { icon: Brain, label: "Cognitive Behavioral Therapy (CBT)" },
+      { icon: HeartPulse, label: "Dialectical Behavior Therapy (DBT)" },
+      { icon: BookOpen, label: "Twelve Step Facilitation" },
+      { icon: Users, label: "Family and Group Therapy" },
+      { icon: Layers, label: "Dual-Diagnosis Treatment" },
+    ],
+  },
+];
+
+export default function Details() {
+  return (
+    <section className="relative overflow-hidden bg-gradient-to-br from-brand-400 via-brand-500 to-brand-600 py-16 sm:py-24 lg:py-32">
+      {/* Background decor */}
+      <div className="pointer-events-none absolute inset-0" aria-hidden>
+        <div className="absolute inset-0 bg-[radial-gradient(60%_45%_at_85%_10%,rgba(255,255,255,0.25),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(50%_40%_at_10%_90%,rgba(28,28,32,0.08),transparent_60%)]" />
+        <div className="absolute left-1/2 top-0 h-72 w-[40rem] -translate-x-1/2 animate-float-slow rounded-full bg-white/15 blur-3xl" />
+        <div className="absolute inset-0 bg-grid-dark opacity-30 [mask-image:radial-gradient(70%_60%_at_50%_40%,black,transparent)]" />
+      </div>
+
+      <div className="container-x relative">
+        <Reveal className="mx-auto max-w-2xl text-center">
+          <SectionTag icon={Building2} className="border-navy-900/15 bg-navy-900/90 text-white">
+            Center Overview
+          </SectionTag>
+          <h2 className="mt-4 font-display text-[1.75rem] font-extrabold leading-tight tracking-tight text-navy-900 sm:mt-5 sm:text-4xl lg:text-[2.75rem]">
+            Care Designed Around <span className="text-white drop-shadow-[0_2px_0_rgba(28,28,32,0.35)]">Your Life</span>
+          </h2>
+          <p className="mt-4 text-sm leading-relaxed text-navy-900/70 sm:mt-5 sm:text-base">
+            Structure, support, and real-world flexibility â€” everything you need to rebuild, at every stage of
+            recovery.
+          </p>
+        </Reveal>
+
+        <Stagger className="mt-10 grid gap-4 sm:mt-14 sm:gap-6 lg:grid-cols-2">
+          {cards.map((card) => (
+            <StaggerItem key={card.title}>
+              <div className="glass-light h-full rounded-2xl p-5 sm:rounded-[1.75rem] sm:p-8">
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-500/15 text-brand-700 sm:h-12 sm:w-12 sm:rounded-2xl">
+                    <card.icon className="h-5 w-5 sm:h-5.5 sm:w-5.5" />
+                  </span>
+                  <h3 className="font-display text-[15px] font-bold leading-tight text-navy-900 sm:text-lg">
+                    {card.title}
+                  </h3>
+                  <span className="ml-auto shrink-0 rounded-full border border-navy-100 bg-navy-50 px-2.5 py-1 text-[10px] font-bold text-navy-500 sm:px-3 sm:text-[11px]">
+                    {card.items.length}
+                    <span className="hidden sm:inline"> items</span>
+                  </span>
+                </div>
+
+                <ul className="mt-4 grid gap-0.5 sm:mt-5 sm:grid-cols-2 sm:gap-1">
+                  {card.items.map((item) => (
+                    <li
+                      key={item.label}
+                      className="flex items-center gap-2.5 rounded-lg px-2 py-2 text-[13px] font-medium text-navy-700 sm:gap-3 sm:rounded-xl sm:px-3 sm:py-2.5 sm:text-sm"
+                    >
+                      <item.icon className="h-4 w-4 shrink-0 text-brand-600" />
+                      <span className="leading-snug">{item.label}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </StaggerItem>
+          ))}
+        </Stagger>
+      </div>
+    </section>
+  );
+}
+=== Footer.tsx ===
+import { AnimatePresence, motion } from "framer-motion";
+import {
+  ArrowUpRight,
+  BadgeCheck,
+  Mail,
+  MapPin,
+  Phone,
+  ShieldCheck,
+} from "lucide-react";
+import { useEffect, useState } from "react";
+import { cn } from "../utils/cn";
+import { PHONE_DISPLAY, PHONE_TEL, PhoneCta } from "./Navbar";
+import { Reveal } from "./ui";
+
+const LOGO_URL =
+  "https://raw.githubusercontent.com/Binec/lp-crc/refs/heads/main/src/Captura%20de%20pantalla%202026-09-17%20004355%20(1).png";
+
+const pageLinks = [
+  { label: "Our Facility", href: "#facility" },
+  { label: "PHP Program", href: "#php" },
+  { label: "IOP Program", href: "#iop" },
+  { label: "Supportive Housing", href: "#supportive" },
+  { label: "Center Overview", href: "#insurance" },
+  { label: "Insurance", href: "#insurance" },
+  { label: "Reviews", href: "#reviews" },
+];
+
+const programs = [
+  { label: "Partial Hospitalization (PHP)", href: "#php" },
+  { label: "Intensive Outpatient (IOP)", href: "#iop" },
+  { label: "Evening IOP", href: "#iop" },
+  { label: "Aftercare", href: "#supportive" },
+  { label: "Supportive Housing", href: "#supportive" },
+];
+
+const resources = [
+  { label: "Free Insurance Verification", href: "#verify" },
+  { label: "Admissions 24/7", href: PHONE_TEL },
+  { label: "Joint Commission Accredited", href: "#insurance" },
+  { label: "Privacy Policy", href: "#top" },
+  { label: "Terms of Service", href: "#top" },
+];
+
+const ctaPerks = [
+  "Most private insurance accepted",
+  "Exceptional remission rates",
+  "Career and educational planning",
+];
+
+/* Site logo â€” same asset/markup used in the header (Navbar) */
+function FooterLogo() {
+  return (
+    <a href="#" className="group flex items-center gap-2.5">
+      <img
+        src={LOGO_URL}
+        alt="CRC Logo"
+        className="h-10 w-auto max-w-[180px] object-contain transition-transform duration-300 group-hover:scale-[1.03] sm:h-12 sm:max-w-[220px]"
+      />
+    </a>
+  );
+}
+
+export default function Footer() {
+  return (
+    <footer className="relative overflow-hidden bg-navy-950">
+      <div className="pointer-events-none absolute inset-0" aria-hidden>
+        <div className="absolute inset-0 bg-[radial-gradient(55%_40%_at_50%_0%,rgba(241,183,83,0.12),transparent_60%)]" />
+        <div className="absolute -bottom-40 left-1/2 h-[28rem] w-[55rem] -translate-x-1/2 rounded-full bg-brand-500/8 blur-3xl" />
+        <div className="absolute inset-0 bg-grid opacity-25 [mask-image:radial-gradient(70%_50%_at_50%_0%,black,transparent)]" />
+      </div>
+
+      <div className="container-x relative pb-10 pt-20 lg:pt-28">
+        {/* CTA band */}
+        <Reveal>
+          <div className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-brand-400 via-brand-500 to-brand-600 px-6 py-12 text-center shadow-2xl shadow-brand-500/30 sm:rounded-[2.5rem] sm:px-14 sm:py-16">
+            <div className="pointer-events-none absolute inset-0" aria-hidden>
+              <div className="absolute -left-20 -top-20 h-64 w-64 rounded-full bg-white/15 blur-2xl" />
+              <div className="absolute -bottom-24 -right-16 h-72 w-72 rounded-full bg-navy-950/20 blur-2xl" />
+              <div className="absolute left-12 top-10 h-3 w-3 rounded-full bg-white/40" />
+              <div className="absolute bottom-12 left-1/4 h-2 w-2 rounded-full bg-white/30" />
+              <div className="absolute right-1/4 top-16 h-2.5 w-2.5 rounded-full bg-white/25" />
+            </div>
+
+            <h2 className="relative font-display text-3xl font-extrabold tracking-tight text-navy-900 sm:text-4xl">
+              Start Your Recovery Today
+            </h2>
+            <p className="relative mx-auto mt-4 max-w-xl text-sm font-medium leading-relaxed text-navy-900/75 sm:text-base">
+              Call now to verify your insurance â€” our admissions team is available 24/7, 100% confidential.
+            </p>
+
+            <div className="relative mt-7 flex justify-center sm:mt-8">
+              <PhoneCta tone="gold" size="lg" />
+            </div>
+
+            <div className="relative mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2.5 sm:mt-8">
+              {ctaPerks.map((p) => (
+                <span key={p} className="flex items-center gap-1.5 text-xs font-bold text-navy-900/80">
+                  <BadgeCheck className="h-3.5 w-3.5" />
+                  {p}
+                </span>
+              ))}
+            </div>
+          </div>
+        </Reveal>
+
+        {/* Main footer grid */}
+        <div className="mt-16 grid gap-12 lg:mt-20 lg:grid-cols-[1.2fr_2.8fr] lg:gap-16">
+          {/* Brand column */}
+          <div>
+            <FooterLogo />
+            <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/55">
+              Top-rated PHP &amp; IOP outpatient programs designed to fit your life. Confidential, evidence-based care,
+              24/7 admissions.
+            </p>
+
+            <div className="mt-6 space-y-3 text-sm">
+              <PhoneCta tone="dark" size="sm" />
+              <a
+                href="mailto:admissions@createrecoverycenter.com"
+                className="group flex items-center gap-3 text-white/80 transition-colors duration-300 hover:text-brand-300"
+              >
+                <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 backdrop-blur transition-all duration-300 group-hover:scale-110 group-hover:border-brand-400/40">
+                  <Mail className="h-3.5 w-3.5 text-brand-400" />
+                </span>
+                <span className="truncate text-xs font-semibold sm:text-sm">
+                  admissions@createrecoverycenter.com
+                </span>
+              </a>
+              <div className="flex items-center gap-3 text-white/60">
+                <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 backdrop-blur">
+                  <MapPin className="h-3.5 w-3.5 text-brand-400" />
+                </span>
+                <span className="text-xs font-medium sm:text-sm">California Â· Joint Commission Accredited</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Nav columns */}
+          <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 sm:gap-x-10">
+            <FooterNavCol title="On This Page" items={pageLinks} />
+            <FooterNavCol title="Programs" items={programs} />
+            <FooterNavCol title="Resources" items={resources} />
+          </div>
+        </div>
+
+        {/* Accreditations strip */}
+        <div className="mt-12 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 border-y border-white/10 py-5 text-[11px] font-bold uppercase tracking-[0.18em] text-white/45 sm:gap-x-10">
+          <span className="flex items-center gap-2">
+            <ShieldCheck className="h-3.5 w-3.5 text-brand-400" />
+            Joint Commission Accredited
+          </span>
+          <span className="hidden h-3 w-px bg-white/15 sm:block" />
+          <span>HIPAA Compliant</span>
+          <span className="hidden h-3 w-px bg-white/15 sm:block" />
+          <span>Insurance Accepted</span>
+          <span className="hidden h-3 w-px bg-white/15 sm:block" />
+          <span>Cash Pay Options</span>
+        </div>
+
+        {/* Bottom bar */}
+        <div className="mt-7 flex flex-col-reverse items-center justify-between gap-4 sm:flex-row">
+          <p className="text-xs text-white/45">
+            Copyright Â© 2026 Create Recovery Center. All Rights Reserved.
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-5">
+            <div className="flex items-center gap-5 text-xs text-white/45">
+              <a href="#top" className="transition-colors hover:text-white">
+                Privacy
+              </a>
+              <a href="#top" className="transition-colors hover:text-white">
+                Terms
+              </a>
+              <a href="#top" className="transition-colors hover:text-white">
+                Accessibility
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+function FooterNavCol({
+  title,
+  items,
+  cols = 1,
+}: {
+  title: string;
+  items: { label: string; href: string }[];
+  cols?: 1 | 2;
+}) {
+  return (
+    <div>
+      <h4 className="mb-4 text-[11px] font-bold uppercase tracking-[0.18em] text-white/45">{title}</h4>
+      <ul
+        className={cn(
+          "space-y-2.5 text-sm",
+          cols === 2 && "sm:grid sm:grid-cols-2 sm:gap-x-6 sm:space-y-2.5",
+        )}
+      >
+        {items.map((item) => (
+          <li key={item.label}>
+            <a
+              href={item.href}
+              className="group inline-flex items-center gap-1.5 text-white/70 transition-colors duration-300 hover:text-brand-300"
+            >
+              <span className="border-b border-transparent transition-colors duration-300 group-hover:border-brand-300/40">
+                {item.label}
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+/* Floating call button â€” appears after scrolling */
+export function FloatingCall() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > 500);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <AnimatePresence>
+      {visible && (
+        <motion.a
+          href={PHONE_TEL}
+          aria-label={`Call ${PHONE_DISPLAY}`}
+          initial={{ opacity: 0, scale: 0.5, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.5, y: 20 }}
+          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          className="fixed bottom-5 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-brand-400 to-brand-600 shadow-xl shadow-brand-500/40 transition-transform duration-300 hover:scale-110"
+        >
+          <span className="absolute inset-0 animate-pulse-ring rounded-full bg-brand-500" />
+          <Phone className="relative h-5 w-5 text-white" />
+        </motion.a>
+      )}
+    </AnimatePresence>
+  );
+}
+
+/* Scroll-to-top arrow â€” used inline by the footer */
+export function ScrollTop() {
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setShow(window.scrollY > 400);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <AnimatePresence>
+      {show && (
+        <motion.button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          aria-label="Scroll to top"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 12 }}
+          transition={{ duration: 0.3 }}
+          className="fixed bottom-5 left-5 z-40 flex h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-navy-900/90 text-white shadow-xl shadow-navy-950/40 backdrop-blur transition-colors hover:bg-brand-500 hover:text-navy-900"
+        >
+          <ArrowUpRight className="h-5 w-5 -rotate-45" />
+        </motion.button>
+      )}
+    </AnimatePresence>
+  );
+}
+=== Gallery.tsx ===
+import { AnimatePresence, motion } from "framer-motion";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Images,
+  Maximize2,
+  X,
+} from "lucide-react";
+import { useCallback, useEffect, useState } from "react";
+import { Reveal, SectionTag } from "./ui";
+
+export interface GalleryPhoto {
+  id: string;
+  title: string;
+  category: string;
+  src: string;
+  alt: string;
+}
+
+export const galleryPhotos: GalleryPhoto[] = [
+  {
+    id: "patio",
+    title: "Outdoor Relaxation Patio",
+    category: "Amenities",
+    src: "https://go.createrecoverycenter.com/wp-content/uploads/2025/01/exterior-view-of-a-contemporary-new-home-in-los-an-2024-05-10-20-48-20-utc-1-scaled.jpg",
+    alt: "Sunny modern outdoor patio with lush greenery and cozy lounge seating",
+  },
+  {
+    id: "lounge",
+    title: "Therapy Lounge",
+    category: "Living Space",
+    src: "https://go.createrecoverycenter.com/wp-content/uploads/2025/01/IMG_2502-scaled.jpeg",
+    alt: "Minimalist living room with natural light overlooking the ocean",
+  },
+  {
+    id: "meditation-hall",
+    title: "Mindfulness & Meditation Space",
+    category: "Therapy",
+    src: "https://go.createrecoverycenter.com/wp-content/uploads/2025/01/IMG_9134-scaled.jpeg",
+    alt: "Serene meditation room with natural wood, cushions, and peaceful light",
+  },
+  {
+    id: "great views",
+    title: "Quiet Hearth Lounge",
+    category: "Supportive Housing",
+    src: "https://go.createrecoverycenter.com/wp-content/uploads/2025/01/IMG_2485-1-scaled-e1736447557797.jpeg",
+    alt: "Inviting white couches beside a modern fireplace for group sharing",
+  },
+  {
+    id: "beachside-living",
+    title: "Community Living",
+    category: "Supportive Housing",
+    src: "https://go.createrecoverycenter.com/wp-content/uploads/2025/01/2dc922_0f388d99c87341b7b9f7caa91cc57c60mv2.jpeg",
+    alt: "Bright indoor-outdoor residence with open doors to coastal air",
+  },
+  {
+    id: "sunlit-parlor",
+    title: "Sunlit Peer Support Parlor",
+    category: "Living Space",
+    src: "https://go.createrecoverycenter.com/wp-content/uploads/2025/01/2dc922_977e310a3bb5475caf6da29cd73315efmv2.webp",
+    alt: "Comfortable seating area with floor-to-ceiling windows for quiet discussion",
+  },
+];
+
+export default function Gallery() {
+  const [activeIdx, setActiveIdx] = useState<number | null>(null);
+
+  const openLightbox = (i: number) => setActiveIdx(i);
+  const closeLightbox = () => setActiveIdx(null);
+
+  const prev = useCallback(() => {
+    setActiveIdx((curr) =>
+      curr === null
+        ? null
+        : (curr - 1 + galleryPhotos.length) % galleryPhotos.length,
+    );
+  }, []);
+
+  const next = useCallback(() => {
+    setActiveIdx((curr) =>
+      curr === null ? null : (curr + 1) % galleryPhotos.length,
+    );
+  }, []);
+
+  // Keyboard navigation & body scroll lock
+  useEffect(() => {
+    if (activeIdx === null) return;
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "ArrowRight") next();
+    };
+
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [activeIdx, next, prev]);
+
+  return (
+    <section
+      id="facility"
+      className="relative scroll-mt-24 overflow-hidden bg-white py-20 sm:py-24 lg:py-28"
+    >
+      {/* Subtle ambient light */}
+      <div className="pointer-events-none absolute inset-0" aria-hidden>
+        <div className="absolute left-1/2 top-0 h-96 w-[45rem] -translate-x-1/2 rounded-full bg-brand-100/40 blur-3xl" />
+        <div className="absolute right-0 top-1/3 h-80 w-80 rounded-full bg-navy-100/50 blur-3xl" />
+      </div>
+
+      <div className="container-x relative">
+        <Reveal className="mx-auto max-w-2xl text-center">
+          <SectionTag icon={Images}>Our Facility &amp; Grounds</SectionTag>
+          <h2 className="mt-4 font-display text-3xl font-extrabold leading-tight tracking-tight text-navy-900 sm:text-4xl lg:text-[2.75rem]">
+            A Peaceful Environment Built for{" "}
+            <span className="bg-gradient-to-r from-brand-500 via-brand-600 to-brand-700 bg-clip-text text-transparent">
+              Healing
+            </span>
+          </h2>
+          <p className="mt-4 text-sm leading-relaxed text-navy-600 sm:text-base">
+            Take a look inside Create Recovery Center â€” comfortable living
+            spaces, serene meditation lounges, private counseling rooms, and
+            coastal outdoor amenities designed to support your journey.
+          </p>
+        </Reveal>
+
+        {/* Photo Grid: 3 photos on mobile (< sm), full asymmetric bento on tablet/desktop */}
+        <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:gap-5">
+          {galleryPhotos.map((photo, i) => {
+            // First and sixth photo span 2 columns on larger screens for editorial rhythm
+            const isFeatured = i === 0 || i === 5;
+            // On mobile (< sm), only show the first 3 photos in the grid
+            const mobileVisibility = i >= 3 ? "hidden sm:block" : "block";
+
+            return (
+              <Reveal
+                key={photo.id}
+                delay={i * 0.05}
+                className={`${mobileVisibility} ${
+                  isFeatured ? "lg:col-span-2" : "col-span-1"
+                }`}
+              >
+                <div
+                  onClick={() => openLightbox(i)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      openLightbox(i);
+                    }
+                  }}
+                  tabIndex={0}
+                  role="button"
+                  aria-label={`View photo: ${photo.title}`}
+                  className="group relative h-64 sm:h-72 w-full cursor-pointer overflow-hidden rounded-2xl border border-navy-100/80 bg-navy-100 shadow-[0_8px_30px_-16px_rgba(28,28,32,0.12)] transition-all duration-500 hover:-translate-y-1 hover:border-brand-400/60 hover:shadow-[0_20px_40px_-18px_rgba(28,28,32,0.22)] focus:outline-none focus:ring-4 focus:ring-brand-500/25"
+                >
+                  <img
+                    src={photo.src}
+                    alt={photo.alt}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+
+                  {/* Gradient overlay â€” always on mobile, fades in on desktop hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy-950/85 via-navy-950/20 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-95 lg:opacity-0 lg:group-hover:opacity-95" />
+
+                  {/* Category chip */}
+                  <span className="glass-light absolute left-3.5 top-3.5 rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-navy-800 shadow-sm">
+                    {photo.category}
+                  </span>
+
+                  {/* Quick-view icon top-right */}
+                  <span className="absolute right-3.5 top-3.5 flex h-9 w-9 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-md transition-all duration-300 group-hover:scale-110 group-hover:bg-brand-500 group-hover:text-navy-900 lg:opacity-0 lg:group-hover:opacity-100">
+                    <Maximize2 className="h-4 w-4" />
+                  </span>
+
+                  {/* Mobile "+3 more" indicator on the 3rd card */}
+                  {i === 2 && (
+                    <span className="absolute right-3.5 bottom-4 rounded-full border border-white/25 bg-navy-950/75 px-3 py-1 text-xs font-semibold text-white backdrop-blur-md sm:hidden">
+                      +{galleryPhotos.length - 3} more in gallery
+                    </span>
+                  )}
+
+                  {/* Title â€” always visible on mobile, reveals on hover for desktop */}
+                  <div className="absolute inset-x-0 bottom-0 p-4 transition-all duration-300 ease-out sm:p-5 lg:translate-y-5 lg:opacity-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100">
+                    <h3 className="font-display text-base font-bold text-white transition-colors group-hover:text-brand-300 sm:text-lg">
+                      {photo.title}
+                    </h3>
+                  </div>
+                </div>
+              </Reveal>
+            );
+          })}
+        </div>
+
+        {/* Mobile-only button to launch full 6-photo lightbox */}
+        <div className="mt-6 flex justify-center sm:hidden">
+          <button
+            type="button"
+            onClick={() => openLightbox(3)}
+            className="inline-flex items-center gap-2 rounded-full border border-navy-200 bg-navy-50/80 px-5 py-2.5 text-xs font-bold text-navy-800 shadow-xs transition hover:border-brand-400 hover:bg-brand-50 hover:text-brand-700"
+          >
+            <Images className="h-4 w-4 text-brand-600" />
+            View All {galleryPhotos.length} Photos (+{galleryPhotos.length - 3} More)
+          </button>
+        </div>
+      </div>
+
+      {/* Lightbox Modal with Animated Transitions & Navigation */}
+      <AnimatePresence>
+        {activeIdx !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            onClick={closeLightbox}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-navy-950/92 p-4 backdrop-blur-md sm:p-6 lg:p-10"
+            aria-modal="true"
+            role="dialog"
+            aria-label="Photo gallery preview"
+          >
+            {/* Top bar controls */}
+            <div
+              className="absolute inset-x-0 top-0 flex items-center justify-between p-4 sm:p-6 text-white"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center gap-2">
+                <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/80">
+                  {galleryPhotos[activeIdx].category}
+                </span>
+                <span className="text-xs text-white/50">
+                  {activeIdx + 1} of {galleryPhotos.length}
+                </span>
+              </div>
+
+              <button
+                onClick={closeLightbox}
+                aria-label="Close photo preview"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white transition-all duration-200 hover:scale-105 hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-brand-400"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            {/* Previous button */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                prev();
+              }}
+              aria-label="Previous photo"
+              className="absolute left-3 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-navy-950/80 text-white shadow-xl backdrop-blur-md transition-all duration-200 hover:scale-110 hover:border-brand-400 hover:bg-brand-500 hover:text-navy-900 focus:outline-none focus:ring-2 focus:ring-brand-400 sm:left-6"
+            >
+              <ChevronLeft className="h-6 w-6" />
+            </button>
+
+            {/* Next button */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                next();
+              }}
+              aria-label="Next photo"
+              className="absolute right-3 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-navy-950/80 text-white shadow-xl backdrop-blur-md transition-all duration-200 hover:scale-110 hover:border-brand-400 hover:bg-brand-500 hover:text-navy-900 focus:outline-none focus:ring-2 focus:ring-brand-400 sm:right-6"
+            >
+              <ChevronRight className="h-6 w-6" />
+            </button>
+
+            {/* Photo content container */}
+            <motion.div
+              key={activeIdx}
+              initial={{ opacity: 0, scale: 0.94, y: 12 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.94, y: 12 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative max-h-[82vh] max-w-5xl overflow-hidden rounded-2xl border border-white/10 bg-navy-900 shadow-2xl"
+            >
+              <img
+                src={galleryPhotos[activeIdx].src}
+                alt={galleryPhotos[activeIdx].alt}
+                className="max-h-[70vh] w-auto max-w-full object-contain"
+              />
+
+              {/* Photo caption footer */}
+              <div className="flex flex-col gap-1 border-t border-white/10 bg-navy-950/95 px-5 py-3.5 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+                <div>
+                  <h4 className="font-display text-base font-bold text-white sm:text-lg">
+                    {galleryPhotos[activeIdx].title}
+                  </h4>
+                  <p className="text-xs text-white/60">
+                    {galleryPhotos[activeIdx].alt}
+                  </p>
+                </div>
+
+                {/* Thumbnail strip inside modal */}
+                <div className="mt-2 flex items-center gap-1.5 overflow-x-auto py-1 sm:mt-0">
+                  {galleryPhotos.map((p, i) => (
+                    <button
+                      key={p.id}
+                      onClick={() => setActiveIdx(i)}
+                      aria-label={`Jump to photo ${i + 1}`}
+                      className={`relative h-9 w-12 shrink-0 overflow-hidden rounded-md border transition-all ${
+                        i === activeIdx
+                          ? "border-brand-400 ring-2 ring-brand-400/40"
+                          : "border-white/20 opacity-50 hover:opacity-100"
+                      }`}
+                    >
+                      <img
+                        src={p.src}
+                        alt=""
+                        className="h-full w-full object-cover"
+                      />
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </section>
+  );
+}
+=== Hero.tsx ===
+import { motion } from "framer-motion";
+import { BadgeCheck, Banknote, Lock, ShieldCheck, Star, type LucideIcon } from "lucide-react";
+import CtaButton from "./CtaButton";
+import InsuranceForm from "./InsuranceForm";
+import { PhoneCta } from "./Navbar";
+import { EASE, Stagger, StaggerItem } from "./ui";
+
+const HERO_BG =
+  "https://images.pexels.com/photos/806155/pexels-photo-806155.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1400&w=2400";
+
+type HeroCheck = { label: string; icon: LucideIcon };
+
+const heroChecks: HeroCheck[] = [
+  { label: "Verified", icon: BadgeCheck },
+  { label: "Insurance accepted", icon: ShieldCheck },
+  { label: "Cash pay options available", icon: Banknote },
+];
+
+function Stars() {
+  return (
+    <span className="flex items-center gap-0.5">
+      {Array.from({ length: 5 }).map((_, i) => (
+        <Star key={i} className="h-3.5 w-3.5 fill-brand-500 text-brand-500" />
+      ))}
+    </span>
+  );
+}
+
+export default function Hero() {
+  return (
+    <section id="top" className="relative overflow-hidden bg-white">
+      {/* Background image + white-wash overlays */}
+      <div className="pointer-events-none absolute inset-0" aria-hidden>
+        <motion.img
+          src={HERO_BG}
+          alt=""
+          initial={{ scale: 1.12, opacity: 0 }}
+          animate={{ scale: 1.03, opacity: 1 }}
+          transition={{ duration: 2.2, ease: EASE }}
+          className="absolute inset-0 h-full w-full object-cover object-center"
+        />
+        {/* White wash â€” copy stays crisp on the left, photo breathes on the right */}
+        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/92 to-white/55" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white via-white/10 to-white/30" />
+        <div className="absolute inset-0 bg-white/10" />
+        {/* Soft gold ambient glow */}
+        <div className="absolute inset-0 bg-[radial-gradient(70%_50%_at_82%_15%,rgba(241,183,83,0.16),transparent_60%)]" />
+        <div className="absolute -left-40 top-1/3 h-[28rem] w-[28rem] animate-float rounded-full bg-brand-200/40 blur-3xl" />
+        <div className="absolute inset-0 bg-grid-dark opacity-60 [mask-image:radial-gradient(75%_65%_at_50%_30%,black,transparent)]" />
+      </div>
+
+      <div className="container-x relative grid gap-14 pb-24 pt-36 sm:pt-40 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-16 lg:pb-32 lg:pt-48">
+        {/* Left â€” copy */}
+        <Stagger className="max-w-2xl">
+          <StaggerItem className="flex flex-wrap items-center gap-3">
+            <span className="glass-light inline-flex items-center gap-2.5 rounded-full px-4 py-2 text-xs font-bold tracking-wide text-navy-800">
+              <Stars />
+              Outpatient Treatment Center
+            </span>
+            <span className="inline-flex items-center gap-2 rounded-full border border-brand-400/40 bg-brand-50 px-4 py-2 text-xs font-bold text-brand-700">
+              <Lock className="h-3.5 w-3.5" />
+              100% Confidential Admissions 24/7
+            </span>
+          </StaggerItem>
+
+          <StaggerItem>
+            <h1 className="mt-8 font-display text-[2.6rem] font-extrabold leading-[1.04] tracking-tight text-navy-900 sm:text-6xl lg:text-[4.15rem]">
+              Flexible PHP &amp; IOP Programs for{" "}
+              <span className="relative inline-block bg-gradient-to-r from-brand-500 via-brand-600 to-brand-700 bg-clip-text text-transparent">
+                Lasting Recovery
+                <motion.svg
+                  className="absolute -bottom-2 left-0 w-full"
+                  viewBox="0 0 300 12"
+                  fill="none"
+                  initial="hidden"
+                  animate="show"
+                  aria-hidden
+                >
+                  <motion.path
+                    d="M3 9C60 3 150 2 297 7"
+                    stroke="url(#underline-gradient)"
+                    strokeWidth="5"
+                    strokeLinecap="round"
+                    variants={{ hidden: { pathLength: 0 }, show: { pathLength: 1 } }}
+                    transition={{ duration: 1, delay: 1.1, ease: "easeOut" }}
+                  />
+                  <defs>
+                    <linearGradient id="underline-gradient" x1="0" y1="0" x2="300" y2="0" gradientUnits="userSpaceOnUse">
+                      <stop stopColor="#f1b753" />
+                      <stop offset="1" stopColor="#dd9f3a" />
+                    </linearGradient>
+                  </defs>
+                </motion.svg>
+              </span>
+            </h1>
+          </StaggerItem>
+
+          <StaggerItem>
+            <p className="mt-7 max-w-xl text-base leading-relaxed text-navy-600 sm:text-lg">
+              Create Recovery Center offers evidence-based outpatient programs designed to fit your life. Our programs
+              are built for individuals ready to step down from a higher level of care or those seeking structure while
+              managing work, school, and family life.
+            </p>
+            <p className="mt-4 max-w-xl text-sm leading-relaxed text-navy-500">
+              Choose from Partial Hospitalization (PHP), Intensive Outpatient (IOP), Evening IOP, and Aftercare
+              options, all tailored to support you at every stage. We also encourage clients to enhance their progress
+              with additional support options aligned with their personal goals.
+            </p>
+          </StaggerItem>
+
+          <StaggerItem>
+            <ul className="mt-7 flex flex-wrap gap-x-7 gap-y-3">
+              {heroChecks.map(({ label, icon: Icon }) => (
+                <li key={label} className="flex items-center gap-2 text-sm font-semibold text-navy-700">
+                  <Icon className="h-4.5 w-4.5 text-brand-600" aria-hidden />
+                  {label}
+                </li>
+              ))}
+            </ul>
+          </StaggerItem>
+
+          <StaggerItem>
+            <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4">
+              <CtaButton href="#verify">Verify Insurance</CtaButton>
+              <PhoneCta tone="light" size="md" />
+            </div>
+          </StaggerItem>
+        </Stagger>
+
+        {/* Right â€” glass form */}
+        <motion.div
+          id="verify"
+          className="scroll-mt-32"
+          initial={{ opacity: 0, y: 44, scale: 0.97 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.9, delay: 0.35, ease: EASE }}
+        >
+          <motion.div
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <InsuranceForm />
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+=== InsuranceForm.tsx ===
+import { AnimatePresence, motion } from "framer-motion";
+import { BadgeCheck, CheckCircle2, ShieldCheck } from "lucide-react";
+import { useState, type FormEvent } from "react";
+import CtaButton from "./CtaButton";
+
+const insurers = [
+  "Aetna",
+  "Anthem Blue Cross",
+  "Cigna",
+  "UnitedHealthcare",
+  "Kaiser Permanente",
+  "Blue Shield",
+  "Self-Pay / Cash",
+  "Other",
+];
+
+const trustBadges = ["Joint Commission Accredited", "Insurance accepted", "Cash pay options"];
+
+export default function InsuranceForm() {
+  const [status, setStatus] = useState<"idle" | "sending" | "done">("idle");
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    if (status !== "idle") return;
+    setStatus("sending");
+    window.setTimeout(() => setStatus("done"), 1500);
+  };
+
+  return (
+    <div className="glass-light relative rounded-[2rem] p-6 sm:p-8">
+      {/* top highlight line */}
+      <div className="absolute inset-x-12 top-0 h-px bg-gradient-to-r from-transparent via-brand-500/70 to-transparent" />
+
+      <div className="flex items-center gap-4">
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-400 to-brand-600 shadow-lg shadow-brand-500/30">
+          <ShieldCheck className="h-5 w-5 text-white" />
+        </div>
+        <div>
+          <h2 className="font-display text-xl font-bold text-navy-900">Free Insurance Verification</h2>
+          <p className="mt-0.5 text-xs font-medium text-navy-500">100% confidential â€” responses within 24 hours</p>
+        </div>
+      </div>
+
+      <AnimatePresence mode="wait">
+        {status === "done" ? (
+          <motion.div
+            key="done"
+            initial={{ opacity: 0, scale: 0.92 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ type: "spring", stiffness: 200, damping: 18 }}
+            className="flex flex-col items-center py-14 text-center"
+          >
+            <motion.div
+              initial={{ scale: 0, rotate: -30 }}
+              animate={{ scale: 1, rotate: 0 }}
+              transition={{ delay: 0.15, type: "spring", stiffness: 260, damping: 15 }}
+              className="flex h-16 w-16 items-center justify-center rounded-full bg-brand-500/15"
+            >
+              <CheckCircle2 className="h-8 w-8 text-brand-400" />
+            </motion.div>
+            <h3 className="mt-5 font-display text-lg font-bold text-navy-900">Thank you!</h3>
+            <p className="mt-2 max-w-xs text-sm leading-relaxed text-navy-600">
+              Our admissions team will reach out shortly to verify your benefits â€” 100% confidential.
+            </p>
+            <button
+              onClick={() => setStatus("idle")}
+              className="mt-6 text-xs font-bold text-brand-700 underline-offset-4 transition-colors hover:text-brand-800 hover:underline"
+            >
+              Verify another plan
+            </button>
+          </motion.div>
+        ) : (
+          <motion.form
+            key="form"
+            onSubmit={handleSubmit}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.35 }}
+            className="mt-6 space-y-4"
+          >
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label htmlFor="first" className="field-label">
+                  First Name <span className="text-brand-600">*</span>
+                </label>
+                <input id="first" required placeholder="John" className="field" autoComplete="given-name" />
+              </div>
+              <div>
+                <label htmlFor="last" className="field-label">
+                  Last Name <span className="text-brand-600">*</span>
+                </label>
+                <input id="last" required placeholder="Doe" className="field" autoComplete="family-name" />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <div>
+                <label htmlFor="phone" className="field-label">
+                  Phone <span className="text-brand-600">*</span>
+                </label>
+                <input
+                  id="phone"
+                  required
+                  type="tel"
+                  placeholder="(555) 000-0000"
+                  className="field"
+                  autoComplete="tel"
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="field-label">
+                  Email <span className="text-brand-600">*</span>
+                </label>
+                <input
+                  id="email"
+                  required
+                  type="email"
+                  placeholder="john@email.com"
+                  className="field"
+                  autoComplete="email"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label htmlFor="insurance" className="field-label">
+                Insurance Provider
+              </label>
+              <select id="insurance" className="field" defaultValue="">
+                <option value="" disabled>
+                  Select your provider
+                </option>
+                {insurers.map((i) => (
+                  <option key={i} value={i}>
+                    {i}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label htmlFor="message" className="field-label">
+                Anything we should know?
+              </label>
+              <textarea
+                id="message"
+                rows={3}
+                placeholder="Tell us a little about your situation (optional)"
+                className="field resize-none"
+              />
+            </div>
+
+            <CtaButton type="submit" fluid loading={status === "sending"} disabled={status === "sending"}>
+              {status === "sending" ? "Verifyingâ€¦" : "Verify My Insurance"}
+            </CtaButton>
+
+           
+          </motion.form>
+        )}
+      </AnimatePresence>
+{/*
+      <div className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 border-t border-navy-100 pt-5">
+        {trustBadges.map((b) => (
+          <span key={b} className="flex items-center gap-1.5 text-[11px] font-semibold text-navy-500">
+            <BadgeCheck className="h-3.5 w-3.5 text-brand-600" />
+            {b}
+          </span>
+        ))}
+      </div>*/}
+    </div>
+  );
+}
+=== LevelsOfCare.tsx ===
+import { Route } from "lucide-react";
+import CtaButton from "./CtaButton";
+import { Reveal, SectionTag, Stagger, StaggerItem } from "./ui";
+
+const programs = [
+  {
+    id: "php",
+    num: "01",
+    tag: "PHP",
+    title: "Partial Hospitalization Program",
+    text: "Comprehensive PHP designed to provide structure and consistent care while allowing you to maintain independence and continue living at home. Our program combines individual therapy, group sessions, and medical oversight, all delivered through a trauma-informed approach tailored to your needs.",
+    tags: ["Individual Therapy", "Group Sessions", "Medical Oversight"],
+    img: "https://images.pexels.com/photos/5711021/pexels-photo-5711021.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+    alt: "A diverse group therapy session sitting in a circle",
+  },
+  {
+    id: "iop",
+    num: "02",
+    tag: "IOP",
+    title: "Intensive Outpatient Program",
+    text: "Our IOP is designed for those who need consistent support and accountability while managing work, school, or family responsibilities. With flexible scheduling, including Evening IOP options, the program combines evidence-based therapy with continued access to the tools and structure that help you build lasting stability.",
+    tags: ["Flexible Scheduling", "Evening IOP", "Evidence-Based Therapy"],
+    img: "https://images.pexels.com/photos/9064678/pexels-photo-9064678.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+    alt: "A one-on-one therapy session in a modern office",
+  },
+  {
+    id: "supportive",
+    num: "03",
+    tag: "Housing + Aftercare",
+    title: "Supportive Housing & Aftercare",
+    text: "For those who need continued support, we offer supportive housing and aftercare options that provide a safe, structured environment alongside ongoing therapy and peer support. It's there when you need it, to help you keep the progress you've made while rebuilding your daily life.",
+    tags: ["Safe Environment", "Peer Support", "Ongoing Therapy"],
+    img: "https://images.pexels.com/photos/8556339/pexels-photo-8556339.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+    alt: "Friends supporting each other outdoors",
+  },
+];
+
+export default function LevelsOfCare() {
+  return (
+    <section className="relative overflow-hidden bg-gradient-to-b from-white via-navy-50/60 to-white py-24 lg:py-32">
+      <div className="pointer-events-none absolute inset-0" aria-hidden>
+        <div className="absolute right-0 top-24 h-96 w-96 rounded-full bg-brand-100/60 blur-3xl" />
+        <div className="absolute bottom-10 left-0 h-96 w-96 rounded-full bg-navy-100/50 blur-3xl" />
+      </div>
+
+      <div className="container-x relative">
+        <Reveal className="mx-auto max-w-2xl text-center">
+          <SectionTag icon={Route}>Levels of Care</SectionTag>
+          <h2 className="mt-5 font-display text-3xl font-extrabold leading-tight tracking-tight text-navy-900 sm:text-4xl lg:text-[2.75rem]">
+            Your Path to Recovery
+          </h2>
+          <p className="mt-5 text-lg text-navy-600">Guiding you through every stage of recovery.</p>
+        </Reveal>
+
+        <Stagger className="mt-14 grid gap-7 md:grid-cols-2 lg:grid-cols-3">
+          {programs.map((p) => (
+            <StaggerItem key={p.id}>
+              <article
+                id={p.id}
+                className="group flex h-full scroll-mt-32 flex-col overflow-hidden rounded-[1.75rem] border border-navy-100/80 bg-white shadow-[0_10px_40px_-18px_rgba(28,28,32,0.2)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_32px_60px_-20px_rgba(28,28,32,0.3)]"
+              >
+                <div className="relative h-52 overflow-hidden">
+                  <img
+                    src={p.img}
+                    alt={p.alt}
+                    loading="lazy"
+                    className="h-full w-full object-cover saturate-[0.85] transition-transform duration-700 ease-out group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy-950/70 via-navy-950/10 to-transparent" />
+                  <span className="glass-dark absolute left-4 top-4 rounded-full px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-white">
+                    {p.tag}
+                  </span>
+                  <span className="absolute bottom-3 right-5 font-display text-5xl font-extrabold text-white/25 transition-transform duration-500 group-hover:-translate-y-1">
+                    {p.num}
+                  </span>
+                </div>
+
+                <div className="flex flex-1 flex-col p-7">
+                  <h3 className="font-display text-xl font-bold text-navy-900">{p.title}</h3>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-navy-600">{p.text}</p>
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {p.tags.map((t) => (
+                      <span
+                        key={t}
+                        className="rounded-full bg-brand-50 px-3 py-1 text-[11px] font-bold text-brand-700 transition-colors duration-300 group-hover:bg-brand-500/15"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                  <CtaButton href="#verify" size="sm" className="mt-6 self-start">
+                    Verify Insurance
+                  </CtaButton>
+                </div>
+              </article>
+            </StaggerItem>
+          ))}
+        </Stagger>
+      </div>
+    </section>
+  );
+}
+=== Navbar.tsx ===
+import { AnimatePresence, motion } from "framer-motion";
+import { Menu, Phone, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import { cn } from "../utils/cn";
+import CtaButton from "./CtaButton";
+import { EASE } from "./ui";
+
+const LOGO_URL =
+  "https://raw.githubusercontent.com/Binec/lp-crc/refs/heads/main/src/Captura%20de%20pantalla%202026-09-17%20004355%20(1).png";
+
+const links = [
+  { label: "Facility", href: "#facility" },
+  { label: "PHP Program", href: "#php" },
+  { label: "IOP Program", href: "#iop" },
+  { label: "Supportive Housing", href: "#supportive" },
+  { label: "Insurance", href: "#insurance" },
+  { label: "Reviews", href: "#reviews" },
+];
+
+export const PHONE_DISPLAY = "(866) 913-7063";
+export const PHONE_TEL = "tel:8669137063";
+
+/* Shared calling CTA â€” circle icon + number, same design everywhere */
+export function PhoneCta({
+  tone = "dark",
+  size = "sm",
+  className,
+}: {
+  tone?: "dark" | "light" | "gold";
+  size?: "xs" | "sm" | "md" | "lg";
+  className?: string;
+}) {
+  const tones = {
+    dark: {
+      link: "text-white hover:text-brand-300",
+      circle:
+        "border border-white/15 bg-white/10 text-white group-hover:scale-110 group-hover:border-brand-400/50 group-hover:bg-brand-500/15 group-hover:text-brand-300",
+    },
+    light: {
+      link: "text-navy-900 hover:text-brand-700",
+      circle:
+        "border border-navy-900/10 bg-navy-900/[0.06] text-navy-900 group-hover:scale-110 group-hover:border-brand-500/50 group-hover:bg-brand-500/15 group-hover:text-brand-700",
+    },
+    gold: {
+      link: "text-navy-900 hover:text-navy-950",
+      circle:
+        "border border-navy-900/20 bg-navy-900/10 text-navy-900 group-hover:scale-110 group-hover:border-navy-900 group-hover:bg-navy-900 group-hover:text-white",
+    },
+  } as const;
+
+  const sizes = {
+    xs: { link: "gap-1.5 text-[11px] font-semibold tracking-wide", circle: "h-6 w-6", icon: "h-3 w-3" },
+    sm: { link: "gap-2.5 text-sm font-bold", circle: "h-9 w-9", icon: "h-4 w-4" },
+    md: { link: "gap-3 text-base font-bold sm:text-lg", circle: "h-11 w-11", icon: "h-[18px] w-[18px]" },
+    lg: {
+      link: "gap-4 font-display text-xl font-extrabold tracking-tight sm:text-2xl",
+      circle: "h-14 w-14 sm:h-16 sm:w-16",
+      icon: "h-6 w-6 sm:h-7 sm:w-7",
+    },
+  } as const;
+
+  const t = tones[tone];
+  const s = sizes[size];
+
+  return (
+    <a
+      href={PHONE_TEL}
+      className={cn(
+        "group inline-flex items-center transition-colors duration-300",
+        s.link,
+        t.link,
+        className,
+      )}
+    >
+      <span
+        className={cn(
+          "flex shrink-0 items-center justify-center rounded-full backdrop-blur transition-all duration-300",
+          s.circle,
+          t.circle,
+        )}
+      >
+        <Phone className={s.icon} />
+      </span>
+      {PHONE_DISPLAY}
+    </a>
+  );
+}
+
+/* Site logo â€” uses the provided image */
+function Logo() {
+  return (
+    <a href="#" className="group flex items-center gap-2.5">
+      <img
+        src={LOGO_URL}
+        alt="CRC Logo"
+        className="h-10 w-auto max-w-[180px] object-contain transition-transform duration-300 group-hover:scale-[1.03] sm:h-12 sm:max-w-[220px]"
+      />
+    </a>
+  );
+}
+
+export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <header className="fixed inset-x-0 top-0 z-50">
+      {/* Announcement bar â€” hidden on mobile */}
+      <div
+        className={cn(
+          "hidden overflow-hidden bg-navy-950/95 transition-all duration-500 sm:block",
+          scrolled ? "max-h-0 opacity-0" : "max-h-12 opacity-100",
+        )}
+      >
+        <div className="container-x flex h-10 items-center justify-between text-[11px] font-semibold tracking-wide text-white/70">
+          <p className="flex items-center gap-2.5">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-400 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-500" />
+            </span>
+            100% Confidential Admissions â€” 24/7
+          </p>
+          <PhoneCta tone="dark" size="xs" />
+        </div>
+      </div>
+
+      {/* Main nav */}
+      <div
+        className={cn(
+          "border-b border-white/10 bg-navy-950/95 backdrop-blur-xl transition-shadow duration-500",
+          scrolled ? "shadow-2xl shadow-navy-950/40" : "shadow-none",
+        )}
+      >
+        <nav className="container-x flex h-[72px] items-center justify-between">
+          <Logo />
+
+          <ul className="hidden items-center gap-0.5 lg:flex">
+            {links.map((l) => (
+              <li key={l.href}>
+                <a
+                  href={l.href}
+                  className="group relative rounded-full px-4 py-2 text-sm font-semibold text-white/75 transition-colors duration-300 hover:text-white"
+                >
+                  {l.label}
+                  <span className="absolute inset-x-4 -bottom-0.5 h-0.5 origin-left scale-x-0 rounded-full bg-gradient-to-r from-brand-400 to-brand-600 transition-transform duration-300 group-hover:scale-x-100" />
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          <div className="flex items-center gap-3">
+            
+            <CtaButton href="#verify" tone="dark" size="sm" className="hidden sm:inline-flex">
+              Verify Insurance
+            </CtaButton>
+            <button
+              onClick={() => setOpen((v) => !v)}
+              className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/15 bg-white/5 text-white backdrop-blur transition-colors hover:bg-white/10 lg:hidden"
+              aria-label="Toggle menu"
+            >
+              {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
+        </nav>
+      </div>
+
+      {/* Mobile menu */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.4, ease: EASE }}
+            className="overflow-hidden border-b border-white/10 bg-navy-950/95 backdrop-blur-2xl lg:hidden"
+          >
+            <div className="container-x flex flex-col gap-1 py-4">
+              {links.map((l, i) => (
+                <motion.a
+                  key={l.href}
+                  href={l.href}
+                  onClick={() => setOpen(false)}
+                  initial={{ opacity: 0, x: -16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.05 * i, duration: 0.3 }}
+                  className="rounded-xl px-4 py-3 text-sm font-semibold text-white/80 transition-colors hover:bg-white/5 hover:text-white"
+                >
+                  {l.label}
+                </motion.a>
+              ))}
+              <CtaButton
+                href="#verify"
+                tone="dark"
+                fluid
+                onClick={() => setOpen(false)}
+                className="mt-3"
+              >
+                Verify Insurance
+              </CtaButton>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
+  );
+}
+=== Programs.tsx ===
+import {
+  Anchor,
+  BookOpenCheck,
+  Building2,
+  CalendarCheck2,
+  ClipboardList,
+  Compass,
+  Sparkle,
+  Sparkles,
+} from "lucide-react";
+import { Reveal, SectionTag, Stagger, StaggerItem } from "./ui";
+
+const features = [
+  { icon: Building2, title: "Center Overview" },
+  { icon: Compass, title: "Our Approach" },
+  { icon: ClipboardList, title: "Personalized Treatment Plans" },
+  { icon: BookOpenCheck, title: "Evidence-Based Therapies" },
+  { icon: CalendarCheck2, title: "Flexible Scheduling" },
+  { icon: Anchor, title: "Focus on Lasting Stability" },
+];
+
+const marqueeItems = [
+  "1-on-1 Counseling",
+  "CBT",
+  "DBT",
+  "Meditation & Mindfulness",
+  "Twelve Step Facilitation",
+  "Family & Group Therapy",
+  "Dual-Diagnosis Treatment",
+  "Evening IOP",
+  "Aftercare",
+  "Supportive Housing",
+];
+
+export default function Programs() {
+  return (
+    <>
+      <section className="relative bg-gradient-to-b from-white via-brand-50/50 to-white py-24 lg:py-32">
+        <div className="container-x">
+          <Reveal className="mx-auto max-w-2xl text-center">
+            <SectionTag icon={Sparkles}>Outpatient Programs</SectionTag>
+            <h2 className="mt-5 font-display text-3xl font-extrabold leading-tight tracking-tight text-navy-900 sm:text-4xl lg:text-[2.75rem]">
+              Flexible PHP &amp; IOP Programs for Lasting Recovery
+            </h2>
+            <p className="mt-5 leading-relaxed text-navy-600">
+              Flexible outpatient programs built around your schedule, whether you&rsquo;re stepping down from a higher
+              level of care or looking for structured support while managing work, school, or family life.
+            </p>
+          </Reveal>
+
+          <Stagger className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {features.map((f) => (
+              <StaggerItem key={f.title}>
+                <div className="flex h-full items-center gap-4 rounded-2xl border border-navy-100/80 bg-white/70 p-5 shadow-sm backdrop-blur">
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-500/10 text-brand-700">
+                    <f.icon className="h-5.5 w-5.5" />
+                  </span>
+                  <h3 className="font-display text-[15px] font-bold text-navy-900">{f.title}</h3>
+                </div>
+              </StaggerItem>
+            ))}
+          </Stagger>
+        </div>
+      </section>
+
+      {/* Scrolling services strip */}
+      <div className="relative overflow-hidden border-y border-navy-800/20 bg-navy-900 py-5">
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-navy-900 to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-navy-900 to-transparent" />
+        <div className="flex w-max animate-marquee">
+          {[...marqueeItems, ...marqueeItems].map((item, i) => (
+            <span
+              key={i}
+              className="mx-7 flex items-center gap-3 whitespace-nowrap text-sm font-semibold tracking-wide text-white/70"
+            >
+              <Sparkle className="h-4 w-4 fill-brand-400/30 text-brand-400" />
+              {item}
+            </span>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+}
+=== Reviews.tsx ===
+import { AnimatePresence, motion } from "framer-motion";
+import { ChevronLeft, ChevronRight, Quote, Star } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { cn } from "../utils/cn";
+import { EASE, Reveal, SectionTag } from "./ui";
+
+function GoogleG({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden>
+      <path
+        fill="#4285F4"
+        d="M23.49 12.27c0-.79-.07-1.54-.19-2.27H12v4.51h6.47c-.29 1.48-1.14 2.73-2.4 3.58v3h3.86c2.26-2.09 3.56-5.17 3.56-8.82z"
+      />
+      <path
+        fill="#34A853"
+        d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.86-3c-1.08.72-2.45 1.16-4.07 1.16-3.13 0-5.78-2.11-6.73-4.96H1.29v3.09C3.26 21.3 7.31 24 12 24z"
+      />
+      <path
+        fill="#FBBC05"
+        d="M5.27 14.29c-.25-.72-.38-1.49-.38-2.29s.14-1.57.38-2.29V6.62H1.29C.47 8.24 0 10.06 0 12s.47 3.76 1.29 5.38l3.98-3.09z"
+      />
+      <path
+        fill="#EA4335"
+        d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.26 2.7 1.29 6.62l3.98 3.09C6.22 6.86 8.87 4.75 12 4.75z"
+      />
+    </svg>
+  );
+}
+
+type Review = { name: string; short: string; more?: string };
+
+const reviews: Review[] = [
+  {
+    name: "Shelley Henn",
+    short: "I can\u2019t express my gratitude for what Create Recovery Center has done for my son. After years of struggling with addiction and attempting other inpatient facilities with no success, we were beginning to lose hope.",
+    more: "That\u2019s when he found Create Recovery Center, and it truly was a life-changing experience. The level of care, compassion, and expertise provided by the staff is nothing short of remarkable.",
+  },
+  {
+    name: "Andy Kaiser",
+    short: "I can attest to what the rest of these reviews say when they say that Create literally saved their life because it LITERALLY saved mine too. I can\u2019t thank them enough for their understanding staff that put me back on the right track in life.",
+  },
+  {
+    name: "Mia Austin",
+    short: "Create recovery is the best level of care I\u2019ve experienced. This company has a great focus on success after leaving the program and discharge planning.",
+    more: "Case management is phenomenal and one on one therapy with extremely qualified professionals. Create recovery center has played a primary role in my sobriety and became the foundation for my success. Thank you create recovery!",
+  },
+  {
+    name: "Stuart Lyon",
+    short: "Create was a phenomenal, vital experience for me. It created within me a solid, deep foundation of recovery. I have been to many treatments \u2013 Create was special.",
+    more: "From bottom to top, staff was always positive leading me to a solution. The facilitators, the therapist, all staff were fabulous. This place rocks. If you\u2019re looking to recover \u2013 look no further!",
+  },
+  {
+    name: "Diane Holliday",
+    short: "I will forever be grateful to Create Recovery Center for all the many ways they helped me through my recovery journey. The facilitators, therapists, doctor & nurse, case workers and management are top notch.",
+    more: "I am nothing like the wreck I was when I walked in their doors. I\u2019m sober now, finished the 12 steps with the help of a sponsor and the staff at Create and never want to look back. They truly care about their clients.",
+  },
+  {
+    name: "Simon Thomas",
+    short: "CREATE IS ABSOLUTELY AMAZING! The amount of consideration they have toward clients is unparalleled! They have gone above and beyond what any other outpatient center would have done for me.",
+    more: "The staff at Create definitely make it a point to get to know each person individually and make each client feel special. The environment is very connected and no one is ever left out here.",
+  },
+  {
+    name: "Jeremy Farr",
+    short: "Create recovery is truly a home. The staff are what create the entire experience here. This is a place that is absolutely ran by servant leaders in their own right.",
+    more: "Special shout out to Garrett and Zeena they are absolutely phenomenal with making a seamless process to get started. The clinical team here is unmatched and unlike any other. I am so grateful to have found create.",
+  },
+  {
+    name: "Trenn Medlin",
+    short: "I absolutely love this place. Create provided so much support for me while I was there and has continued to show support for me through aftercare.",
+    more: "The groups are amazing and the staff truly cares about their clients. Since attending Create I have been able to maintain my sobriety and even got a job working in treatment myself. I recommend Create for anyone looking to get sober and change their life.",
+  },
+];
+
+const AUTO_MS = 6000;
+
+function initials(name: string) {
+  return name.split(" ").map((n) => n[0]).join("").slice(0, 2).toUpperCase();
+}
+
+export default function Reviews() {
+  const [index, setIndex] = useState(0);
+  const [dir, setDir] = useState(1);
+  const touchX = useRef<number | null>(null);
+
+  const paginate = useCallback((step: number) => {
+    setDir(step);
+    setIndex((i) => (i + step + reviews.length) % reviews.length);
+  }, []);
+
+  const goTo = useCallback((i: number) => {
+    setDir(i > index ? 1 : -1);
+    setIndex(i);
+  }, [index]);
+
+  // Autoplay
+  useEffect(() => {
+    const t = setInterval(() => {
+      setDir(1);
+      setIndex((i) => (i + 1) % reviews.length);
+    }, AUTO_MS);
+    return () => clearInterval(t);
+  }, [index]);
+
+  const review = reviews[index];
+
+  return (
+    <section
+      id="reviews"
+      className="relative scroll-mt-28 overflow-hidden bg-gradient-to-b from-white via-navy-50/40 to-white py-16 sm:py-24 lg:py-32"
+    >
+      <div className="pointer-events-none absolute inset-0" aria-hidden>
+        <div className="absolute -left-32 top-20 h-96 w-96 rounded-full bg-brand-100/40 blur-3xl" />
+        <div className="absolute -right-32 bottom-20 h-96 w-96 rounded-full bg-navy-100/40 blur-3xl" />
+      </div>
+
+      <div className="container-x relative">
+        <Reveal className="mx-auto max-w-2xl text-center">
+          <SectionTag icon={() => <GoogleG className="h-3.5 w-3.5" />}>Google Reviews</SectionTag>
+          <h2 className="mt-4 font-display text-[1.75rem] font-extrabold leading-tight tracking-tight text-navy-900 sm:mt-5 sm:text-4xl lg:text-[2.75rem]">
+            What Our Clients Say
+          </h2>
+          <p className="mt-4 text-sm leading-relaxed text-navy-600 sm:mt-5 sm:text-base">
+            Real stories from clients and families who found lasting recovery at Create Recovery Center.
+          </p>
+        </Reveal>
+
+        {/* Simple slider */}
+        <Reveal delay={0.15} className="relative mx-auto mt-10 max-w-3xl sm:mt-14">
+          <div className="flex items-center gap-3 sm:gap-5">
+            {/* Prev â€” desktop only */}
+            <button
+              onClick={() => paginate(-1)}
+              aria-label="Previous review"
+              className="hidden h-11 w-11 shrink-0 items-center justify-center rounded-full border border-navy-100 bg-white text-navy-600 shadow-sm transition-colors hover:border-brand-400 hover:text-brand-600 sm:flex"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+
+            {/* Card viewport */}
+            <div
+              className="relative min-h-[400px] w-full flex-1 overflow-hidden xs:min-h-[360px] sm:min-h-[300px]"
+              onTouchStart={(e) => {
+                touchX.current = e.touches[0].clientX;
+              }}
+              onTouchEnd={(e) => {
+                if (touchX.current == null) return;
+                const dx = e.changedTouches[0].clientX - touchX.current;
+                if (Math.abs(dx) > 45) paginate(dx < 0 ? 1 : -1);
+                touchX.current = null;
+              }}
+            >
+              <AnimatePresence mode="wait" custom={dir}>
+                <motion.figure
+                  key={index}
+                  custom={dir}
+                  initial={{ opacity: 0, x: dir > 0 ? 40 : -40 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: dir > 0 ? -40 : 40 }}
+                  transition={{ duration: 0.4, ease: EASE }}
+                  className="flex h-full flex-col rounded-2xl border border-navy-100/80 bg-white p-5 shadow-[0_14px_40px_-20px_rgba(28,28,32,0.18)] sm:p-8 lg:p-9"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="flex items-center gap-0.5 sm:gap-1">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <Star key={i} className="h-3.5 w-3.5 fill-brand-500 text-brand-500 sm:h-4 sm:w-4" />
+                      ))}
+                    </span>
+                    <Quote className="h-6 w-6 text-brand-500/40 sm:h-7 sm:w-7" />
+                  </div>
+
+                  <blockquote className="mt-4 flex-1 sm:mt-5">
+                    <p className="text-[15px] leading-relaxed text-navy-700 sm:text-base lg:text-lg">
+                      &ldquo;{review.more ? `${review.short} ${review.more}` : review.short}&rdquo;
+                    </p>
+                  </blockquote>
+
+                  <figcaption className="mt-5 flex items-center gap-3 border-t border-navy-100/70 pt-4 sm:mt-6 sm:gap-3.5 sm:pt-5">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand-400 to-brand-600 text-xs font-bold text-white sm:h-11 sm:w-11 sm:text-sm">
+                      {initials(review.name)}
+                    </span>
+                    <div className="min-w-0">
+                      <p className="truncate font-display text-sm font-bold text-navy-900 sm:text-base">
+                        {review.name}
+                      </p>
+                      <p className="mt-0.5 flex items-center gap-1.5 text-[11px] font-medium text-navy-400 sm:text-xs">
+                        <GoogleG className="h-3 w-3 shrink-0 sm:h-3.5 sm:w-3.5" />
+                        Google Review Â· Verified
+                      </p>
+                    </div>
+                  </figcaption>
+                </motion.figure>
+              </AnimatePresence>
+            </div>
+
+            {/* Next â€” desktop only */}
+            <button
+              onClick={() => paginate(1)}
+              aria-label="Next review"
+              className="hidden h-11 w-11 shrink-0 items-center justify-center rounded-full border border-navy-100 bg-white text-navy-600 shadow-sm transition-colors hover:border-brand-400 hover:text-brand-600 sm:flex"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
+          </div>
+
+          {/* Mobile arrows + counter */}
+          <div className="mt-5 flex items-center justify-center gap-4 sm:hidden">
+            <button
+              onClick={() => paginate(-1)}
+              aria-label="Previous review"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-navy-200 bg-white text-navy-700 shadow-sm active:scale-95"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+            <span className="min-w-[3.5rem] text-center font-display text-xs font-bold text-navy-500">
+              <span className="text-navy-900">{String(index + 1).padStart(2, "0")}</span>
+              <span className="mx-1 text-navy-300">/</span>
+              {String(reviews.length).padStart(2, "0")}
+            </span>
+            <button
+              onClick={() => paginate(1)}
+              aria-label="Next review"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-navy-200 bg-white text-navy-700 shadow-sm active:scale-95"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
+          </div>
+
+          {/* Dots */}
+          <div className="mt-5 flex flex-wrap items-center justify-center gap-2 sm:mt-8">
+            {reviews.map((r, i) => (
+              <button
+                key={r.name}
+                onClick={() => goTo(i)}
+                aria-label={`Go to review ${i + 1}`}
+                aria-current={i === index}
+                className={cn(
+                  "h-2.5 rounded-full transition-all duration-300",
+                  i === index ? "w-7 bg-brand-500" : "w-2.5 bg-navy-200 hover:bg-navy-300",
+                )}
+              />
+            ))}
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+=== TrustSection.tsx ===
+import { Award, Clock, Layers, ShieldCheck, Star } from "lucide-react";
+import { PhoneCta } from "./Navbar";
+import { CheckItem, CountUp, Reveal, SectionTag, Stagger, StaggerItem } from "./ui";
+
+const bullets = [
+  "Most private insurance accepted",
+  "Exceptional remission rates",
+  "Career and educational planning",
+];
+
+const stats = [
+  { icon: Star, value: 5, suffix: "-Star", label: "Rated Outpatient Treatment Center" },
+  { icon: Clock, value: 24, suffix: "/7", label: "Confidential Admissions" },
+  { icon: ShieldCheck, value: 100, suffix: "%", label: "Confidential Care" },
+  { icon: Layers, value: 4, suffix: "+", label: "Programs â€” PHP, IOP, Evening & Aftercare" },
+];
+
+export default function TrustSection() {
+  return (
+    <section id="insurance" className="relative scroll-mt-28 overflow-hidden bg-white py-24 lg:py-32">
+      {/* soft background tints */}
+      <div className="pointer-events-none absolute inset-0" aria-hidden>
+        <div className="absolute -right-40 top-0 h-[30rem] w-[30rem] rounded-full bg-brand-100/50 blur-3xl" />
+        <div className="absolute -left-40 bottom-0 h-[26rem] w-[26rem] rounded-full bg-navy-100/60 blur-3xl" />
+      </div>
+
+      <div className="container-x relative grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
+        {/* Copy */}
+        <Reveal>
+          <SectionTag icon={Award}>Joint Commission Accredited</SectionTag>
+          <h2 className="mt-5 font-display text-3xl font-extrabold leading-tight tracking-tight text-navy-900 sm:text-4xl lg:text-[2.75rem]">
+            Top-Rated Treatment in a Private, Supportive Setting
+          </h2>
+          {/* <p className="mt-6 leading-relaxed text-navy-600">
+            Create Recovery Center offers top-rated addiction treatment in a private, supportive setting. Our
+            expert-led programs â€” Medically supervised detox, inpatient, IOP, PHP, and Online Outpatient â€” are
+            tailored to your unique needs, ensuring lasting recovery. With evidence-based care, innovative therapies,
+            and 24/7 support, we help you heal and rebuild your life.
+          </p>
+          <p className="mt-4 font-semibold text-navy-800">
+            Start your recovery today â€” call now to verify insurance.
+          </p>*/}
+
+          <div className="mt-7 space-y-3.5">
+            {bullets.map((b, i) => (
+              <Reveal key={b} delay={0.1 + i * 0.08} y={14}>
+                <CheckItem>{b}</CheckItem>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={0.35} className="mt-9">
+            <PhoneCta tone="light" size="md" />
+          </Reveal>
+        </Reveal>
+
+        {/* Stats grid */}
+        <Stagger className="grid gap-5 sm:grid-cols-2">
+          {stats.map((s) => (
+            <StaggerItem key={s.label}>
+              <div className="glass-light group h-full rounded-3xl p-6 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_24px_50px_-20px_rgba(28,28,32,0.3)]">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-500/10 text-brand-700 transition-all duration-500 group-hover:scale-110 group-hover:bg-brand-500 group-hover:text-navy-900 group-hover:shadow-lg group-hover:shadow-brand-500/40">
+                  <s.icon className="h-5.5 w-5.5" />
+                </div>
+                <p className="mt-5 font-display text-4xl font-extrabold tracking-tight text-navy-900">
+                  <CountUp to={s.value} suffix={s.suffix} />
+                </p>
+                <p className="mt-1.5 text-sm font-medium leading-snug text-navy-500">{s.label}</p>
+              </div>
+            </StaggerItem>
+          ))}
+        </Stagger>
+      </div>
+    </section>
+  );
+}
+=== ui.tsx ===
+import { motion, useInView } from "framer-motion";
+import { Check, Sprout, type LucideIcon } from "lucide-react";
+import { useEffect, useRef, useState, type ReactElement, type ReactNode } from "react";
+import { cn } from "../utils/cn";
+
+export type IconType = LucideIcon | ((props: { className?: string }) => ReactElement);
+
+export const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
+/* ---------------- Scroll reveal wrapper ---------------- */
+export function Reveal({
+  children,
+  className,
+  delay = 0,
+  y = 32,
+}: {
+  children: ReactNode;
+  className?: string;
+  delay?: number;
+  y?: number;
+}) {
+  return (
+    <motion.div
+      className={className}
+      initial={{ opacity: 0, y, filter: "blur(8px)" }}
+      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.8, delay, ease: EASE }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+/* ---------------- Stagger containers ---------------- */
+export function Stagger({ children, className }: { children: ReactNode; className?: string }) {
+  return (
+    <motion.div
+      className={className}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, margin: "-60px" }}
+      variants={{
+        hidden: {},
+        show: { transition: { staggerChildren: 0.1, delayChildren: 0.08 } },
+      }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+export function StaggerItem({ children, className }: { children: ReactNode; className?: string }) {
+  return (
+    <motion.div
+      className={className}
+      variants={{
+        hidden: { opacity: 0, y: 26, filter: "blur(6px)" },
+        show: {
+          opacity: 1,
+          y: 0,
+          filter: "blur(0px)",
+          transition: { duration: 0.7, ease: EASE },
+        },
+      }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+/* ---------------- Section eyebrow tag ---------------- */
+export function SectionTag({
+  icon: Icon,
+  children,
+  dark = false,
+  className,
+}: {
+  icon: IconType;
+  children: ReactNode;
+  dark?: boolean;
+  className?: string;
+}) {
+  return (
+    <span
+      className={cn(
+        "inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.16em]",
+        dark
+          ? "border-brand-400/30 bg-brand-400/10 text-brand-300"
+          : "border-brand-500/25 bg-brand-50 text-brand-700",
+        className,
+      )}
+    >
+      <Icon className="h-3.5 w-3.5" />
+      {children}
+    </span>
+  );
+}
+
+/* ---------------- Green check bullet ---------------- */
+export function CheckItem({
+  children,
+  dark = false,
+  className,
+}: {
+  children: ReactNode;
+  dark?: boolean;
+  className?: string;
+}) {
+  return (
+    <div className={cn("flex items-center gap-2.5", className)}>
+      <span
+        className={cn(
+          "flex h-5 w-5 shrink-0 items-center justify-center rounded-full",
+          dark ? "bg-brand-500/20 text-brand-300" : "bg-brand-500/15 text-brand-700",
+        )}
+      >
+        <Check className="h-3 w-3" strokeWidth={3} />
+      </span>
+      <span className={cn("text-sm font-medium", dark ? "text-white/80" : "text-navy-700")}>{children}</span>
+    </div>
+  );
+}
+
+/* ---------------- Brand logo ---------------- */
+export function Logo({ dark = true }: { dark?: boolean }) {
+  return (
+    <a href="#top" className="group flex items-center gap-2.5" aria-label="Create Recovery Center â€” home">
+      <span className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand-400 to-brand-600 shadow-lg shadow-brand-500/30 transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-105">
+        <Sprout className="h-5 w-5 text-white" />
+      </span>
+      <span className="font-display leading-none">
+        <span className={cn("block text-[17px] font-extrabold tracking-tight", dark ? "text-white" : "text-navy-900")}>
+          CREATE
+        </span>
+        <span className={cn("block pt-0.5 text-[9px] font-bold tracking-[0.3em]", dark ? "text-brand-300" : "text-brand-600")}>
+          RECOVERY CENTER
+        </span>
+      </span>
+    </a>
+  );
+}
+
+/* ---------------- Animated counter ---------------- */
+export function CountUp({
+  to,
+  suffix = "",
+  duration = 1.6,
+}: {
+  to: number;
+  suffix?: string;
+  duration?: number;
+}) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-40px" });
+  const [val, setVal] = useState(0);
+
+  useEffect(() => {
+    if (!inView) return;
+    let raf = 0;
+    const start = performance.now();
+    const tick = (t: number) => {
+      const p = Math.min(1, (t - start) / (duration * 1000));
+      const eased = 1 - Math.pow(1 - p, 3);
+      setVal(Math.round(to * eased));
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [inView, to, duration]);
+
+  return (
+    <span ref={ref}>
+      {val}
+      {suffix}
+    </span>
+  );
+}

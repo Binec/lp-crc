@@ -7,22 +7,25 @@ import Navbar from "./components/Navbar";
 import Programs from "./components/Programs";
 import Reviews from "./components/Reviews";
 import TrustSection from "./components/TrustSection";
+import { ContentProvider } from "./lib/content";
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-white font-body text-navy-800">
-      <Navbar />
-      <main>
-        <Hero />
-        <TrustSection />
-        <Gallery />
-        <Programs />
-        <LevelsOfCare />
-        <Details />
-        <Reviews />
-      </main>
-      <Footer />
-      <FloatingCall />
-    </div>
+    <ContentProvider>
+      <div className="min-h-screen bg-white font-body text-navy-800">
+        <Navbar />
+        <main>
+          <Hero />
+          <TrustSection />
+          <Gallery />
+          <Programs />
+          <LevelsOfCare />
+          <Details />
+          <Reviews />
+        </main>
+        <Footer />
+        <FloatingCall />
+      </div>
+    </ContentProvider>
   );
 }

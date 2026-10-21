@@ -123,21 +123,18 @@ export default function InsuranceForm() {
               </div>
             </div>
 
+            
             <div>
-              <label htmlFor="insurance" className="field-label">
-                Insurance Provider
-              </label>
-              <select id="insurance" className="field" defaultValue="">
-                <option value="" disabled>
-                  Select your provider
-                </option>
-                {insurers.map((i) => (
-                  <option key={i} value={i}>
-                    {i}
-                  </option>
-                ))}
-              </select>
-            </div>
+  <label htmlFor="insurance" className="field-label">
+    Insurance Provider
+  </label>
+  <input
+    id="insurance"
+    type="text"
+    placeholder="e.g. Aetna, Cigna, Self-Pay"
+    className="field"
+  />
+</div>
 
             <div>
               <label htmlFor="message" className="field-label">
