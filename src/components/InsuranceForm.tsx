@@ -1,23 +1,13 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { BadgeCheck, CheckCircle2, ShieldCheck } from "lucide-react";
+import { CheckCircle2, ShieldCheck } from "lucide-react";
 import { useState, type FormEvent } from "react";
 import CtaButton from "./CtaButton";
 
-const insurers = [
-  "Aetna",
-  "Anthem Blue Cross",
-  "Cigna",
-  "UnitedHealthcare",
-  "Kaiser Permanente",
-  "Blue Shield",
-  "Self-Pay / Cash",
-  "Other",
-];
-
-const trustBadges = ["Joint Commission Accredited", "Insurance accepted", "Cash pay options"];
+type Who = "myself" | "loved-one";
 
 export default function InsuranceForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "done">("idle");
+  const [who, setWho] = useState<Who>("myself");
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -25,6 +15,9 @@ export default function InsuranceForm() {
     setStatus("sending");
     window.setTimeout(() => setStatus("done"), 1500);
   };
+
+  const toggleBase =
+    "rounded-xl px-4 py-3 text-sm font-bold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500";
 
   return (
     <div className="glass-light relative rounded-[2rem] p-6 sm:p-8">
@@ -79,92 +72,126 @@ export default function InsuranceForm() {
             transition={{ duration: 0.35 }}
             className="mt-6 space-y-4"
           >
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label htmlFor="first" className="field-label">
-                  First Name <span className="text-brand-600">*</span>
-                </label>
-                <input id="first" required placeholder="John" className="field" autoComplete="given-name" />
-              </div>
-              <div>
-                <label htmlFor="last" className="field-label">
-                  Last Name <span className="text-brand-600">*</span>
-                </label>
-                <input id="last" required placeholder="Doe" className="field" autoComplete="family-name" />
+            <p className="text-xs text-navy-500">
+              <span className="text-brand-600">*</span> indicates required fields
+            </p>
+
+            {/* For myself / For loved one */}
+            <div
+              role="group"
+              aria-label="Who is this for?"
+              className="grid grid-cols-2 gap-1 rounded-2xl bg-navy-100 p-1"
+            >
+              <button
+                type="button"
+                aria-pressed={who === "myself"}
+                onClick={() => setWho("myself")}
+                className={`${toggleBase} ${
+                  who === "myself" ? "bg-white text-navy-900 shadow-sm" : "text-navy-500 hover:text-navy-700"
+                }`}
+              >
+                For myself
+              </button>
+              <button
+                type="button"
+                aria-pressed={who === "loved-one"}
+                onClick={() => setWho("loved-one")}
+                className={`${toggleBase} ${
+                  who === "loved-one" ? "bg-white text-navy-900 shadow-sm" : "text-navy-500 hover:text-navy-700"
+                }`}
+              >
+                For loved one
+              </button>
+            </div>
+
+            {/* Full Name */}
+            <div>
+              <span className="field-label">
+                Full Name <span className="text-brand-600">*</span>
+              </span>
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                <input
+                  id="first"
+                  name="firstName"
+                  required
+                  aria-label="First name"
+                  placeholder="First name"
+                  className="field"
+                  autoComplete="given-name"
+                />
+                <input
+                  id="last"
+                  name="lastName"
+                  required
+                  aria-label="Last name"
+                  placeholder="Last Name"
+                  className="field"
+                  autoComplete="family-name"
+                />
               </div>
             </div>
 
+            {/* Phone / Email */}
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               <div>
                 <label htmlFor="phone" className="field-label">
                   Phone <span className="text-brand-600">*</span>
                 </label>
-                <input
-                  id="phone"
-                  required
-                  type="tel"
-                  placeholder="(555) 000-0000"
-                  className="field"
-                  autoComplete="tel"
-                />
+                <input id="phone" name="phone" required type="tel" className="field" autoComplete="tel" />
               </div>
               <div>
                 <label htmlFor="email" className="field-label">
-                  Email <span className="text-brand-600">*</span>
+                  Email
                 </label>
-                <input
-                  id="email"
-                  required
-                  type="email"
-                  placeholder="john@email.com"
-                  className="field"
-                  autoComplete="email"
-                />
+                <input id="email" name="email" type="email" className="field" autoComplete="email" />
               </div>
             </div>
 
-            
-            <div>
-  <label htmlFor="insurance" className="field-label">
-    Insurance Provider
-  </label>
-  <input
-    id="insurance"
-    type="text"
-    placeholder="e.g. Aetna, Cigna, Self-Pay"
-    className="field"
-  />
-</div>
+            {/* DOB / Insurance Provider */}
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <div>
+                <label htmlFor="dob" className="field-label">
+                  DOB <span className="text-brand-600">*</span>
+                </label>
+                <input
+                  id="dob"
+                  name="dob"
+                  required
+                  type="date"
+                  className="field"
+                  autoComplete="bday"
+                  max={new Date().toISOString().split("T")[0]}
+                />
+              </div>
+              <div>
+                <label htmlFor="insurance" className="field-label">
+                  Insurance Provider <span className="text-brand-600">*</span>
+                </label>
+                <input id="insurance" name="insuranceProvider" required type="text" className="field" />
+              </div>
+            </div>
 
+            {/* Member ID */}
             <div>
-              <label htmlFor="message" className="field-label">
-                Anything we should know?
+              <label htmlFor="memberId" className="field-label">
+                Member ID Policy Number <span className="text-brand-600">*</span>
               </label>
-              <textarea
-                id="message"
-                rows={3}
-                placeholder="Tell us a little about your situation (optional)"
-                className="field resize-none"
+              <input
+                id="memberId"
+                name="memberId"
+                required
+                type="text"
+                className="field"
+                autoComplete="off"
               />
             </div>
 
             <CtaButton type="submit" fluid loading={status === "sending"} disabled={status === "sending"}>
-              {status === "sending" ? "Verifying…" : "Verify My Insurance"}
+              {status === "sending" ? "Sending…" : "Get Admissions info"}
             </CtaButton>
-
-           
           </motion.form>
         )}
       </AnimatePresence>
-{/*
-      <div className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 border-t border-navy-100 pt-5">
-        {trustBadges.map((b) => (
-          <span key={b} className="flex items-center gap-1.5 text-[11px] font-semibold text-navy-500">
-            <BadgeCheck className="h-3.5 w-3.5 text-brand-600" />
-            {b}
-          </span>
-        ))}
-      </div>*/}
     </div>
   );
 }
