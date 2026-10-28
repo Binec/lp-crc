@@ -17,8 +17,8 @@ const links = [
   { label: "Reviews", href: "#reviews" },
 ];
 
-export const PHONE_DISPLAY = "(866) 913-7063";
-export const PHONE_TEL = "tel:8669137063";
+export const PHONE_DISPLAY = "(310) 218-1904";
+export const PHONE_TEL = "tel:3102181904";
 
 /* Shared calling CTA — circle icon + number, same design everywhere */
 export function PhoneCta({
